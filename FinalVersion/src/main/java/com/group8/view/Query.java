@@ -127,7 +127,7 @@ public class Query extends javax.swing.JFrame
 
         orLabel.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         orLabel.setForeground(new java.awt.Color(102, 102, 102));
-        orLabel.setText("Hej");
+        orLabel.setText("or");
         orLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(orLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 55, 30, -1));
 
