@@ -4,6 +4,10 @@ import com.group8.model.Restaurant;
 
 public class RestaurantEditController {
 
+    RestaurantEditController(Controller aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void updateRestaurant() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -33,6 +37,10 @@ public class RestaurantEditController {
     }
 
     public void closeView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void loadView() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

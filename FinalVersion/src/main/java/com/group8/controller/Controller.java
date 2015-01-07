@@ -35,6 +35,8 @@ public class Controller implements ControllerListener
     public User userView;
     //KIKE _ OWMER
     public Owner ownerView;
+    //Sergiu restaurant edit controller
+    public RestaurantEditController reController;
 
     //Constructor - Makes the dependency with the views and the model.
     public Controller(EditRestaurant editRestaurantView, Login loginView, Query queryView, Register registerView, ViewRestaurant viewRestaurantView, User userView, Owner ownerView, Model model) 
@@ -83,14 +85,12 @@ public class Controller implements ControllerListener
     // RestaurantView Related Controls
     public void openEditRestaurantsView ()
     {
-        editRestaurantView.loadView();
-        /*NEW*/
-        editRestaurantView.setLocationRelativeTo(null);
-        editRestaurantView.setVisible(true);
+        reController = new RestaurantEditController(this);
+        reController.loadView();
     }
     public void closeEditRestaurantsView ()
     {
-        editRestaurantView.setVisible(false);
+        reController.closeView();
     }
  
     
