@@ -4,7 +4,7 @@ package com.group8.model;
 import java.util.Calendar;
 
 
-public class Model 
+public class Model
 {
     //                  ***************************
     //                  **   Arrays for Combos   **
