@@ -1,6 +1,7 @@
 package com.group8.model;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public abstract class SQLTranslator 
 {
@@ -73,8 +74,7 @@ public abstract class SQLTranslator
 		sqlQuery = "SELECT * FROM Restaurant;";
 		return sqlQuery;
 	}
-	
-	/**
+ /**
 	 * This function shall return the SQL statement to find out if a restaurant exists given the values. 
          * 
          * @Param Restaurant rest
@@ -90,7 +90,7 @@ public abstract class SQLTranslator
 		
 		sqlQuery += "Area='"+ rest.getArea() +"' AND ";
 		
-		sqlQuery += "Zipcode="+ rest.getZipcode() +" AND ";
+		sqlQuery += "Zipcode="+ rest.getZipCode() +" AND ";
 		
 		sqlQuery += "City='"+ rest.getCity() +"' AND ";
 		
@@ -98,41 +98,58 @@ public abstract class SQLTranslator
 		
 		return sqlQuery;
 	}
-	
-	
-	/**
-	 * This function shall return the SQL statement to update the database. 
-	 * It is similar to the add function in term of variables received (all the variables).
-	 *  Where to set it depends always on the ID.
+        
+        /**
+         * 
+         * Added by Sergiu
+	 * This function shall return the SQL statement to find out if a restaurant name exists given the string name. 
          * 
          * @Param Restaurant rest
          * @return
 	 */
-	public static String translateUpdateRestaurant (Restaurant rest) {
-		
-		sqlQuery = "UPDATE Restaurant SET ";
-		
-		sqlQuery += "Name='"+ rest.getName() +"', ";
-                
-                sqlQuery += "Street='"+ rest.getStreet() +"', ";
-		
-		sqlQuery += "Area='"+ rest.getArea() +"', ";
-                
-                sqlQuery += "Zipcode="+ rest.getZipcode()+", ";
-		
-		sqlQuery += "City='"+ rest.getCity() +"', ";
-		
-		sqlQuery += "Type='"+ rest.getType() +"', ";
-		
-		sqlQuery += "MinPrice="+ rest.getMinPrice() +", ";
-		
-		sqlQuery += "MaxPrice="+ rest.getMaxPrice() +", ";
-		
-		sqlQuery += "Owner="+ rest.getOwner() +"";
-		
-		sqlQuery += " WHERE ID="+ rest.getId() +";";
-		
+	public static String translateRestaurantNameExists (String name) 
+        {
+		sqlQuery = "SELECT COUNT(*) FROM `Restaurant` WHERE `Name` = '" + name + "'";
 		return sqlQuery;
+	}
+	
+	// Modified by Sergiu
+        public static String translateUpdateRestaurant (Restaurant r) {
+            
+            sqlQuery = "";
+
+            int id = r.getId();
+            int ownerID = r.getOwnerID();
+            String name = r.getName();
+            String type = r.getType().toString();
+            String street = r.getStreet();
+            String area = r.getArea();
+            String city = r.getCity();
+            int zipCode = r.getZipCode();
+            int telephone = r.getTelephone();
+            String imageURL = r.getImageURL();
+            String description = r.getDescription();
+            int maxPrice = r.getMaxPrice();
+            int minPrice = r.getMinPrice();
+
+            sqlQuery = String.format("UPDATE `Restaurant` SET "
+                    + "`Owner` = '%d',"
+                    + " `Name` = '%s',"
+                    + " `Type` = '%s',"
+                    + " `Street` = '%s',"
+                    + " `Area` = '%s',"
+                    + " `City` = '%s',"
+                    + " `Zipcode` = '%d',"
+                    + " `ImageURL` = '%s',"
+                    + " `Telephone` = '%d',"
+                    + " `Description` = '%s',"
+                    + " `MinPrice` = '%d',"
+                    + " `MaxPrice` = '%d'"
+                    + " WHERE "
+                    + "`Restaurant`.`ID` = %d;",
+                    ownerID, name, type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice, id);
+
+            return sqlQuery;
 	}
 	
 	
@@ -151,28 +168,37 @@ public abstract class SQLTranslator
 		return sqlQuery;
 	}
 	
-	/**
-	 * This function shall return the SQL statement to Insert the values into the Restaurant table.
-	 *  Where the values will be the variables received. Please take into account the Structure of the table 
-	 *  and the variable types of each value. For example Name is a string and shall be respresented as �Name�. 
-	 *  Also take into account that the ID is not needed to include in the statement given that the ID is autoincrement in the DB.
-         * 
-         * @Param Restaurant rest
-         * @return
-	 */
-	public static String translateAddRestaurant (Restaurant rest)
-        {
-		
-		sqlQuery = "INSERT INTO Restaurant (Name, Street, Area, Zipcode, City, Type, "
-                        + "                         MinPrice, MaxPrice, Owner) VALUES ";
-		
-		sqlQuery += "('"+ rest.getName() +"', '"+ rest.getStreet() +"', '"+ rest.getArea() +"', '"
-                                + rest.getZipcode() +"', '"+ rest.getCity() + "', '"+ rest.getType() + "'";
-		
-		sqlQuery += ", '"+ rest.getMinPrice() +"', '"+ rest.getMaxPrice() +"', '"+ rest.getOwner() +"') ;";
-		
-                System.out.println ("query to add: " + sqlQuery);
-		return sqlQuery;
+        // Modified by Sergiu
+	public static String translateAddRestaurant(Restaurant r){
+            sqlQuery = "";
+            
+            int ownerID = r.getOwnerID();
+            String name = r.getName();
+            String type = r.getType().toString();
+            String street = r.getStreet();
+            String area = r.getArea();
+            String city = r.getCity();
+            int zipCode = r.getZipCode();
+            int telephone = r.getTelephone();
+            String imageURL = r.getImageURL();
+            String description = r.getDescription();
+            int maxPrice = r.getMaxPrice();
+            int minPrice = r.getMinPrice();
+
+
+            sqlQuery = String.format("INSERT INTO `Restaurant` "
+                    + "(`Owner`, `Name`, `Type`, `Street`, `Area`, "
+                    + "`City`, `Zipcode`, `ImageURL`, `Telephone`, `Description`, "
+                    + "`MinPrice`, `MaxPrice`) "
+                    + "VALUES "
+                    + "('%d', '%s', '%s', '%s', '%s',"
+                    + " '%s', '%d', '%s', '%d', '%s',"
+                    + " '%d', '%d');",
+                    ownerID , name , type , street ,
+                    area , city , zipCode , imageURL , telephone , description, 
+                    minPrice , maxPrice);
+
+            return sqlQuery;
 	}
 
         public static String translateFindRestaurantByLogin (int UserId)
@@ -181,6 +207,18 @@ public abstract class SQLTranslator
             return answer;
         }
         
+        /**
+         * Added By Sergiu
+         * 
+         * @param ownerID The owner ID
+         * @param name the Name of the restaurant
+         * @return The SQL string
+         */
+        public static String translateRecentlyAddedRestaurantID(int ownerID, String name)
+        {
+            String answer = "SELECT `ID` FROM `Restaurant` WHERE `Owner` = '" + ownerID + "' AND `Name` = '" + name + "' LIMIT 0,1;";
+            return answer;
+        }
         
         /*Start NEW*/
         public static String translateAddUser (String username, String password)
@@ -333,6 +371,99 @@ public abstract class SQLTranslator
             
         return sqlQuery;
             
+    }
+    /**
+     * Added by Sergiu
+     * Generates the SQL string for getting the restaurant schedule given the restaurant ID
+     * @param restaurantID The restaurant's id
+     * @return returns the SQL string 
+     */
+    static String translateGetRestaurantSchedule(int restaurantID) {
+        sqlQuery = "SELECT * FROM `RestaurantSchedules` WHERE `restaurantID` = " + restaurantID + " ORDER BY `dayOfWeekID` ASC LIMIT 0 , 7;";
+        return sqlQuery;
+    }
+    
+    /**
+     * Added by Sergiu
+     * Adds restaurant schedule
+     * @param r Restaurant object that contains the schedule
+     * @return The SQL string
+     */
+    public static String translateAddRestaurantSchedule(Restaurant r) {
+
+        sqlQuery = "";
+        
+        sqlQuery = "INSERT INTO `RestaurantSchedules` "
+                + "(`restaurantID`, `dayOfWeekID`, `start`, `stop`) "
+                + "VALUES ";
+        
+        int dayOfWeek;
+        Time start = new Time(0);
+        Time stop = new Time(0);
+        
+        for(int i = 0; i < 7; i++){
+            
+            dayOfWeek = i;
+            
+            // NEEDS UPDATE EDIT DELETE WHATEVER. I added * 1000 because the values are seconds and should become millisecodns
+            start.setTime(r.getSchedule().getSeconds(i, 0) * 1000);
+            stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000);
+            
+            sqlQuery += "('" + r.getId() + "', '" + dayOfWeek + "', '" + start + "', '"+ stop + "')";
+            
+            if(i == 6)
+                sqlQuery += ";";
+            else
+                sqlQuery += ",";
+        }
+
+        return sqlQuery;
+    }
+    
+    /**
+     * Added by Sergiu
+     * Updates the Restaurant Schedule
+     * @param r Restaurant object with Schedule
+     * @return Returns the SQL string
+     */
+    public static String[] translateUpdateRestaurantSchedule(Restaurant r) {
+        sqlQuery = "";
+        String[] sqlArr = new String[7];
+        
+        int dayOfWeek;
+        
+        Time start = new Time(0);
+        Time stop = new Time(0);
+        
+        for(int i = 0; i < 7; i++){
+            
+            dayOfWeek = i;
+            // Removed 3600 seconds due to timezone difference (DB timezone is GMT +1 ); It's a hack i know...
+            start.setTime(r.getSchedule().getSeconds(i, 0) - 3600000 );
+            stop.setTime(r.getSchedule().getSeconds(i, 1)  - 3600000 );
+            
+            int closed = r.getSchedule().getClosed(dayOfWeek);
+            int nonStop = r.getSchedule().getNonStop(dayOfWeek);
+            
+            sqlArr[i] = "UPDATE `RestaurantSchedules`"
+                + " SET `start` = '"+ start +"', `stop` = '" + stop + "', "
+                + "`closed` = '" + closed + "', `nonstop` = '" + nonStop + "'"
+                + "WHERE `restaurantID` = " + r.getId() + " AND `dayOfWeekID` = " + dayOfWeek + ";";
+        }
+        return sqlArr;
+    }
+    
+    /**
+     * Added by Sergiu
+     * @param rest
+     * @return 
+     */
+    public static String translateRestaurantWithIDExists (Restaurant rest) 
+    {
+            sqlQuery = "SELECT `ID` FROM Restaurant WHERE ";		
+            sqlQuery += "`Name` ='"+ rest.getName() +"' ;";
+
+            return sqlQuery;
     }
 
 }
