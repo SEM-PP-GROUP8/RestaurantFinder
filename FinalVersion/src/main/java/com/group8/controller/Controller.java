@@ -17,9 +17,13 @@ import com.group8.model.Session;
 import com.group8.view.Owner;
 import com.group8.view.User;
 import com.group8.view.ViewRestaurant;
+import java.awt.Image;
+import java.net.URL;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Controller implements ControllerListener
 {
@@ -301,9 +305,23 @@ public class Controller implements ControllerListener
     @Override
     public void viewButtonClicked(Restaurant selectedRestaurant) {
         
+        // Set the restaurant icon
+        try {
+            
+            URL url = new URL(selectedRestaurant.getImageURL());
+            Image image = ImageIO.read(url);
+            
+            ImageIcon icon = new ImageIcon(image);
+            viewRestaurantView.setRestaurantPicture(icon);
+            
+        } catch(Exception ex) {
+            
+            viewRestaurantView.setRestaurantPicture(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/profilepicture.png")));
+        
+        }
+           
         // Set the UI content for the viewRestaurantView
         viewRestaurantView.getFullReviewArea().setText("");
-        viewRestaurantView.getFullReviewArea().setBackground(new java.awt.Color(240, 240, 240));
         viewRestaurantView.setCurrentRestaurant(selectedRestaurant);
         viewRestaurantView.getNameValueLabel().setText(selectedRestaurant.getName());
         viewRestaurantView.getTypeValueLabel().setText(selectedRestaurant.getType().toString());
@@ -313,8 +331,6 @@ public class Controller implements ControllerListener
         viewRestaurantView.getStreetValueLabel().setText(selectedRestaurant.getStreet());
         viewRestaurantView.getPriceMinValueLabel().setText("" + selectedRestaurant.getMinPrice() + "kr");
         viewRestaurantView.getPriceMaxValueLabel().setText("" + selectedRestaurant.getMaxPrice() + "kr");
-        viewRestaurantView.getDeleteButton().setEnabled(false);
-        viewRestaurantView.getUpdateButton().setEnabled(false);
         setReviews(selectedRestaurant);
         
         // Set the grade dropdown

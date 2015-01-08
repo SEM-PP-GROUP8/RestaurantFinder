@@ -45,7 +45,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -79,7 +79,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -133,7 +133,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -168,7 +168,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="iconTextGap" type="int" value="0"/>
@@ -468,7 +468,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Type of food"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
       </Properties>
       <Constraints>
@@ -492,7 +492,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="iconTextGap" type="int" value="0"/>
@@ -526,7 +526,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Prize range"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
       </Properties>
       <Constraints>
@@ -549,7 +549,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
@@ -572,7 +572,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Location"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
       </Properties>
       <Constraints>
@@ -595,7 +595,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
@@ -618,7 +618,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Open at"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
       </Properties>
       <Constraints>
@@ -641,7 +641,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
@@ -687,7 +687,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Restaurants"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -711,7 +711,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Users"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -735,7 +735,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Owners"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -759,7 +759,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Admin"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Standardmark&#xf6;r"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>

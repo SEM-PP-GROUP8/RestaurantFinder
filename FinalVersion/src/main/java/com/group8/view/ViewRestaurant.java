@@ -6,6 +6,7 @@ import com.group8.model.Review;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -562,6 +563,10 @@ public class ViewRestaurant extends javax.swing.JFrame {
     
     public DefaultTableModel getReviewTable() {
         return (DefaultTableModel) reviewTable.getModel();
+    }
+
+    public void setRestaurantPicture(ImageIcon image) {
+        this.restaurantPicture.setIcon(image);
     }
 
 }
