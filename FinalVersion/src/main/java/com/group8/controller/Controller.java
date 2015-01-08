@@ -321,16 +321,18 @@ public class Controller implements ControllerListener
         }
            
         // Set the UI content for the viewRestaurantView
-        viewRestaurantView.getFullReviewArea().setText("");
+        viewRestaurantView.setFullReviewArea("");
         viewRestaurantView.setCurrentRestaurant(selectedRestaurant);
-        viewRestaurantView.getNameValueLabel().setText(selectedRestaurant.getName());
-        viewRestaurantView.getTypeValueLabel().setText(selectedRestaurant.getType().toString());
-        viewRestaurantView.getCityValueLabel().setText(selectedRestaurant.getCity());
-        viewRestaurantView.getAreaValueLabel().setText(selectedRestaurant.getArea());
-        viewRestaurantView.getZipcodeValueLabel().setText("" + selectedRestaurant.getZipCode());
-        viewRestaurantView.getStreetValueLabel().setText(selectedRestaurant.getStreet());
-        viewRestaurantView.getPriceMinValueLabel().setText("" + selectedRestaurant.getMinPrice() + "kr");
-        viewRestaurantView.getPriceMaxValueLabel().setText("" + selectedRestaurant.getMaxPrice() + "kr");
+        viewRestaurantView.setAreaValue(selectedRestaurant.getArea());
+        viewRestaurantView.setCityValue(selectedRestaurant.getCity());
+        viewRestaurantView.setNameValue(selectedRestaurant.getName());
+        viewRestaurantView.setPriceMaxValue("" + selectedRestaurant.getMaxPrice() + "kr");
+        viewRestaurantView.setPriceMinValue("" + selectedRestaurant.getMinPrice() + "kr");
+        viewRestaurantView.setStreetValue(selectedRestaurant.getStreet());
+        viewRestaurantView.setTypeValue(selectedRestaurant.getType().toString());
+        viewRestaurantView.setZipcodeValue("" + selectedRestaurant.getZipCode());      
+        viewRestaurantView.setTelephoneValue("" + selectedRestaurant.getTelephone());
+        viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription());
         setReviews(selectedRestaurant);
         
         // Set the grade dropdown
@@ -373,7 +375,7 @@ public class Controller implements ControllerListener
  
         // Get the specific review and print the comment in the fullReviewArea
         Review review = viewRestaurantView.getReview(index);
-        viewRestaurantView.getFullReviewArea().setText("" + review.getReview());
+        viewRestaurantView.setFullReviewArea("" + review.getReview());
         
         // Determine if the user should be allowed to edit the selected review
         if(Session.isUser() && review.getUserID() == Session.getId()) {
@@ -391,7 +393,7 @@ public class Controller implements ControllerListener
         // Get the details
         int restaurantId = viewRestaurantView.getCurrentRestaurant().getId();
         int userId = Session.getId();
-        String comment = viewRestaurantView.getCommentTextArea().getText();
+        String comment = viewRestaurantView.getComment();
         int grade = viewRestaurantView.getGradeDropdown().getSelectedIndex();
         
         // Get the current date
@@ -405,7 +407,7 @@ public class Controller implements ControllerListener
         ReviewDAO.addReview(review);
         
         // Update the UI
-        viewRestaurantView.getCommentTextArea().setText("Write your comment here...");
+        viewRestaurantView.setCommentTextArea("Write your comment here...");
         viewRestaurantView.getGradeDropdown().setSelectedIndex(0);
         setReviews(viewRestaurantView.getCurrentRestaurant());
         
@@ -427,7 +429,7 @@ public class Controller implements ControllerListener
         ReviewDAO.deleteReview(restaurantId, userId);
         
         // Update the UI
-        viewRestaurantView.getFullReviewArea().setText("");
+        viewRestaurantView.setFullReviewArea("");
         setReviews(viewRestaurantView.getCurrentRestaurant());
         
         // Determine if the user can add a review(if the review has been deleted successfully)
@@ -450,7 +452,7 @@ public class Controller implements ControllerListener
         // Get the details for review
         int restaurantId = viewRestaurantView.getCurrentRestaurant().getId();
         int userId = Session.getId();
-        String comment = viewRestaurantView.getFullReviewArea().getText();
+        String comment = viewRestaurantView.getFullReviewAreaComment();
         int grade = viewRestaurantView.getGradeDropdown().getSelectedIndex();
         
         // Update review
@@ -476,9 +478,9 @@ public class Controller implements ControllerListener
     // Enable or disable editing of review --- viewRestaurantView
     private void setCanEdit(boolean ableToEdit) {
         
-        viewRestaurantView.getFullReviewArea().setEditable(ableToEdit);
-        viewRestaurantView.getDeleteButton().setEnabled(ableToEdit);
-        viewRestaurantView.getUpdateButton().setEnabled(ableToEdit);
+        viewRestaurantView.setFullReviewAreaState(ableToEdit);
+        viewRestaurantView.setDeleteButtonState(ableToEdit);
+        viewRestaurantView.setUpdateButtonState(ableToEdit);
         viewRestaurantView.getGradeDropdown().setEnabled(ableToEdit);
         
         if(Session.isUser() && canAddReview()) {
@@ -490,14 +492,14 @@ public class Controller implements ControllerListener
     // Enable or disable adding of review in the --- viewRestaurantView
     private void setCanAdd(boolean ableToAdd) {
         
-        viewRestaurantView.getCommentTextArea().setEditable(ableToAdd);
-        viewRestaurantView.getSendButton().setEnabled(ableToAdd);
+        viewRestaurantView.setCommentTextAreaState(ableToAdd);
+        viewRestaurantView.setSendButtonState(ableToAdd);
         viewRestaurantView.getGradeDropdown().setEnabled(ableToAdd);
         
         if(ableToAdd)
-            viewRestaurantView.getCommentTextArea().setText("Write your comment here...");
+            viewRestaurantView.setCommentTextArea("Write your comment here...");
         else
-            viewRestaurantView.getCommentTextArea().setText("");
+            viewRestaurantView.setCommentTextArea("");
         
     }
     

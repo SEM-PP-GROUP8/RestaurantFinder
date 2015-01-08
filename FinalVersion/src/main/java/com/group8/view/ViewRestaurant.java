@@ -36,7 +36,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
         commentTextArea = new javax.swing.JTextArea();
         gradeModel = new DefaultComboBoxModel();
         gradeDropdown = new javax.swing.JComboBox();
-        addReviewButton = new javax.swing.JButton();
+        sendButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         fullReviewLabel = new javax.swing.JLabel();
@@ -72,9 +72,6 @@ public class ViewRestaurant extends javax.swing.JFrame {
         logoLabel = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
         detailsLabel1 = new javax.swing.JLabel();
-        reviewScroll = new javax.swing.JScrollPane();
-        reviewModel = new DefaultListModel();
-        reviewList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -94,11 +91,6 @@ public class ViewRestaurant extends javax.swing.JFrame {
                 commentTextAreaFocusGained(evt);
             }
         });
-        commentTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                commentTextAreaMousePressed(evt);
-            }
-        });
         commentTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 commentTextAreaKeyTyped(evt);
@@ -111,13 +103,13 @@ public class ViewRestaurant extends javax.swing.JFrame {
         gradeDropdown.setModel(gradeModel);
         getContentPane().add(gradeDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, 90, 30));
 
-        addReviewButton.setText("Send");
-        addReviewButton.addActionListener(new java.awt.event.ActionListener() {
+        sendButton.setText("Send");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addReviewButtonActionPerformed(evt);
+                sendButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(addReviewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 90, 110));
+        getContentPane().add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 90, 110));
 
         deleteButton.setText("Delete review");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -328,45 +320,8 @@ public class ViewRestaurant extends javax.swing.JFrame {
         detailsLabel1.setText("Details");
         getContentPane().add(detailsLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, 20));
 
-        reviewScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        reviewList.setModel(reviewModel);
-        reviewList.setBackground(new java.awt.Color(235, 235, 235));
-        reviewList.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                reviewListFocusLost(evt);
-            }
-        });
-        reviewList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reviewListMouseClicked(evt);
-            }
-        });
-        reviewList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                reviewListValueChanged(evt);
-            }
-        });
-        reviewScroll.setViewportView(reviewList);
-
-        getContentPane().add(reviewScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 5, 280, 400));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void commentTextAreaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_commentTextAreaMousePressed
-        
-
-    }//GEN-LAST:event_commentTextAreaMousePressed
-
-    private void reviewListFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reviewListFocusLost
-        reviewList.setBackground(new java.awt.Color(235, 235, 235));
-        getFullReviewArea().setBackground(new java.awt.Color(235, 235, 235));
-    }//GEN-LAST:event_reviewListFocusLost
-
-    private void reviewListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewListMouseClicked
-        reviewList.setBackground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_reviewListMouseClicked
 
     private void commentTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commentTextAreaKeyTyped
         shouldResetText = false;
@@ -376,15 +331,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
         controllerListener.exitViewRestaurantView();
     }//GEN-LAST:event_formWindowClosing
 
-    private void reviewListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_reviewListValueChanged
-        
-        if(reviewList.getSelectedIndex() >= 0) {
-            getFullReviewArea().setBackground(new java.awt.Color(255, 255, 255));
-            controllerListener.reviewItemChanged(reviewList.getSelectedIndex());
-        }
-    }//GEN-LAST:event_reviewListValueChanged
-
-    private void addReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReviewButtonActionPerformed
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         if(controllerListener.canAddReview()) {
             controllerListener.addReview();
             shouldResetText = true;
@@ -392,7 +339,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "You have already posted a review on this restaurant.", 
                                                 "Error Message", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_addReviewButtonActionPerformed
+    }//GEN-LAST:event_sendButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         controllerListener.reviewDeleteButtonPressed(reviewTable.getSelectedRow());
@@ -408,18 +355,16 @@ public class ViewRestaurant extends javax.swing.JFrame {
 
     private void reviewTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewTableMouseClicked
         if(reviewTable.getSelectedRow() >= 0) {
-            getFullReviewArea().setBackground(new java.awt.Color(255, 255, 255));
             controllerListener.reviewItemChanged(reviewTable.getSelectedRow());
         }
     }//GEN-LAST:event_reviewTableMouseClicked
 
     private void commentTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_commentTextAreaFocusGained
-        getCommentTextArea().setText("");
+        commentTextArea.setText("");
     }//GEN-LAST:event_commentTextAreaFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addReviewButton;
     private javax.swing.JLabel areaLabel;
     private javax.swing.JLabel areaValue;
     private javax.swing.JButton backButton;
@@ -448,11 +393,9 @@ public class ViewRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel priceMinValue;
     private javax.swing.JLabel restaurantDetailsBackground;
     private javax.swing.JLabel restaurantPicture;
-    private javax.swing.JList reviewList;
-    DefaultListModel reviewModel;
-    private javax.swing.JScrollPane reviewScroll;
     private javax.swing.JTable reviewTable;
     private javax.swing.JLabel reviewsLabel;
+    private javax.swing.JButton sendButton;
     private javax.swing.JLabel streetLabel;
     private javax.swing.JLabel streetValue;
     private javax.swing.JLabel telephoneLabel;
@@ -465,74 +408,67 @@ public class ViewRestaurant extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    public JTextArea getNameValueLabel() {
-        return nameValue;
+    
+    /*SETTERS*/
+    public void setAreaValue(String value) {
+        this.areaValue.setText(value);
+    }
+
+    public void setCityValue(String value) {
+        this.cityValue.setText(value);
     }
     
-    public JLabel getTypeValueLabel() {
-        return typeValue;
+    public void setCommentTextArea(String value) {
+        this.commentTextArea.setText(value);
     }
-        
-    public JLabel getCityValueLabel() {
-        return cityValue;
-    }
-    
-    public JLabel getAreaValueLabel() {
-        return areaValue;
-    }
-        
-    public JLabel getZipcodeValueLabel() {
-        return zipcodeValue;
+
+    public void setDescriptionValue(String value) {
+        this.descriptionValue.setText(value);
     }
     
-    public JLabel getStreetValueLabel() {
-        return streetValue;
+    public void setFullReviewArea(String value) {
+        this.fullReviewArea.setText(value);
     }
     
-    public JLabel getPriceMinValueLabel() {
-        return priceMinValue;
+    public void setNameValue(String value) {
+        this.nameValue.setText(value);
+    }
+
+    public void setPriceMaxValue(String value) {
+        this.priceMaxValue.setText(value);
+    }
+
+    public void setPriceMinValue(String value) {
+        this.priceMinValue.setText(value);
     }
     
-    public JLabel getPriceMaxValueLabel() {
-        return priceMaxValue;
-    }
-    
-    public JLabel getTelephoneValueLabel() {
-        return telephoneValue;
-    }
-    
-    public JTextArea getDescriptionValueLabel() {
-        return descriptionValue;
-    }
-    
-    public DefaultListModel getReviewListModel() {
-        return reviewModel;
+    public void setRestaurantPicture(ImageIcon image) {
+        this.restaurantPicture.setIcon(image);
     }
     
     public void setReviews(List reviews) {    
         this.reviews = reviews;       
     }
-    
-    public Review getReview(int index) {
-        return reviews.get(index);
-    }
-    
-    public JTextArea getFullReviewArea() {
-        return fullReviewArea;
-    }
-    
-    public void setCurrentRestaurant(Restaurant currentRestaurant) {
-        this.currentRestaurant = currentRestaurant;
+
+    public void setStreetValue(String value) {
+        this.streetValue.setText(value);
     }
 
-    public Restaurant getCurrentRestaurant() {
-        return currentRestaurant;
+    public void setTelephoneValue(String value) {
+        this.telephoneValue.setText(value);
     }
     
-    public JTextArea getCommentTextArea() {
-        return commentTextArea;
+    public void setTypeValue(String value) {
+        this.typeValue.setText(value);
+    }
+
+    public void setZipcodeValue(String value) {
+        this.zipcodeValue.setText(value);
     }
     
+    
+
+    /*GETTERS*/
     public DefaultComboBoxModel getGradeModel() {
         return gradeModel;
     }
@@ -541,32 +477,55 @@ public class ViewRestaurant extends javax.swing.JFrame {
         return gradeDropdown;
     }
     
-    public JButton getSendButton() {
-        return addReviewButton;
-    }
-
-    public JButton getDeleteButton() {
-        return deleteButton;
-    }
-
-    public JButton getUpdateButton() {
-        return updateButton;
-    }
-
-    public JList getReviewList() {
-        return reviewList;
+    public String getComment() {
+        return commentTextArea.getText();
     }
     
-    public void setControllerListener(ControllerListener controllerListener) {
-        this.controllerListener = controllerListener;
+    public String getFullReviewAreaComment() {
+        return fullReviewArea.getText();
     }
     
     public DefaultTableModel getReviewTable() {
         return (DefaultTableModel) reviewTable.getModel();
     }
-
-    public void setRestaurantPicture(ImageIcon image) {
-        this.restaurantPicture.setIcon(image);
+    
+    
+    
+    /*OTHER SETTERS AND GETTERS*/
+    public Restaurant getCurrentRestaurant() {
+        return currentRestaurant;
+    }
+    
+    public Review getReview(int index) {
+        return reviews.get(index);
+    }
+    
+    public void setCurrentRestaurant(Restaurant currentRestaurant) {
+        this.currentRestaurant = currentRestaurant;
+    }
+    
+    public void setCommentTextAreaState(Boolean state) {
+        this.commentTextArea.setEditable(state);
+    }
+    
+    public void setDeleteButtonState(Boolean state) {
+        this.deleteButton.setEnabled(state);
+    }
+    
+    public void setFullReviewAreaState(Boolean state) {
+        this.fullReviewArea.setEditable(state);
+    }
+    
+    public void setSendButtonState(Boolean state) {
+        this.sendButton.setEnabled(state);
+    }
+        
+    public void setUpdateButtonState(Boolean state) {
+        this.updateButton.setEnabled(state);
+    }
+    
+    public void setControllerListener(ControllerListener controllerListener) {
+        this.controllerListener = controllerListener;
     }
 
 }
