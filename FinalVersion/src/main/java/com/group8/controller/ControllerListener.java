@@ -16,13 +16,6 @@ public interface ControllerListener
     //EditRestaurant Handlers
     public void restaurantsButtonClicked();
     public void exitEditRestaurantsView();
-    public List<Restaurant> fetchRestaurantsByLogin(int ownerID);
-    public List<Restaurant> fetchAllRestaurants();
-    public void addNewRestaurant(Restaurant rest);
-    public void deleteRestaurant(int id);
-    public boolean restExists(Restaurant rest);
-    public void updateRest(Restaurant rest);
-    public int getIndexArray(String value, String type);
 
     //Query View
     public void reloadQueryView();

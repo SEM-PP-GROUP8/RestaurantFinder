@@ -6,7 +6,6 @@ import com.group8.model.RegisteredOwner;
 import com.group8.model.RegisteredOwnerDAO;
 import com.group8.model.Restaurant;
 import com.group8.model.RestaurantDAO;
-import com.group8.view.EditRestaurant;
 import com.group8.view.Login;
 import com.group8.view.Query;
 import com.group8.view.Register;
@@ -24,7 +23,6 @@ import java.util.List;
 
 public class Controller implements ControllerListener
 {
-    public EditRestaurant editRestaurantView;
     public Login loginView;
     public Query queryView;
     public Model model;
@@ -35,11 +33,12 @@ public class Controller implements ControllerListener
     public User userView;
     //KIKE _ OWMER
     public Owner ownerView;
+    //Sergiu restaurant edit controller
+    public RestaurantEditController reController;
 
     //Constructor - Makes the dependency with the views and the model.
-    public Controller(EditRestaurant editRestaurantView, Login loginView, Query queryView, Register registerView, ViewRestaurant viewRestaurantView, User userView, Owner ownerView, Model model) 
+    public Controller(Login loginView, Query queryView, Register registerView, ViewRestaurant viewRestaurantView, User userView, Owner ownerView, Model model) 
     {
-        this.editRestaurantView = editRestaurantView;
         this.loginView = loginView;
         this.queryView = queryView;
         this.model = model;
@@ -81,22 +80,16 @@ public class Controller implements ControllerListener
     }
     
     // RestaurantView Related Controls
-    public void openEditRestaurantsView ()
+    public void openEditRestaurantsView()
     {
-        editRestaurantView.loadView();
-        /*NEW*/
-        editRestaurantView.setLocationRelativeTo(null);
-        editRestaurantView.setVisible(true);
+        reController = new RestaurantEditController(this);
+        reController.loadView();
     }
     public void closeEditRestaurantsView ()
     {
-        editRestaurantView.setVisible(false);
+        reController.closeView();
     }
- 
-    
-    
-    
-    
+
     
     //                  ***************************
     //                  **  Controller Listeners **
@@ -153,69 +146,6 @@ public class Controller implements ControllerListener
     {
         closeEditRestaurantsView();
         openQueryView();
-    }
-
-    @Override
-    public List<Restaurant> fetchRestaurantsByLogin(int ownerID) 
-    {
-        List<Restaurant> restaurantsByLogin = RestaurantDAO.fetchRestaurantsByLogin(ownerID);
-        return restaurantsByLogin;
-    }
-
-    @Override
-    public List<Restaurant> fetchAllRestaurants() 
-    {
-        List<Restaurant> filteredRestaurants = RestaurantDAO.fetchAllRestaurants();
-        return filteredRestaurants;
-    }
-
-    @Override
-    @SuppressWarnings("empty-statement")
-    public int getIndexArray(String value, String type) 
-    {
-       String [] array;
-       int index = 0;
-       if ("Type".equals(type))
-       {
-           array = Model.getTypeFoodArray();
-       }
-       else if ("Area".equals(type))
-       {
-           array = Model.getLocationArray();
-       }
-       else
-       {
-           array = new String []{};
-       }     
-       for (int x=0;x<array.length; x++)
-       {
-           if (value.equals(array[x]))
-               index = x;
-       }
-       return index;
-    }
-    @Override
-    public void addNewRestaurant(Restaurant rest) 
-    {
-        RestaurantDAO.addRestaurant(rest);
-        
-    }
-
-    @Override
-    public void deleteRestaurant(int id) 
-    {
-        RestaurantDAO.deleteRestaurant(id, "Restaurant");
-    }
-
-    @Override
-    public boolean restExists(Restaurant rest) {
-        return RestaurantDAO.restaurantExists(rest);
-    }
-
-    @Override
-    public void updateRest(Restaurant rest) 
-    {
-        RestaurantDAO.updateRestaurant(rest);
     }
     
     @Override
@@ -376,10 +306,10 @@ public class Controller implements ControllerListener
         viewRestaurantView.getFullReviewArea().setBackground(new java.awt.Color(240, 240, 240));
         viewRestaurantView.setCurrentRestaurant(selectedRestaurant);
         viewRestaurantView.getNameValueLabel().setText(selectedRestaurant.getName());
-        viewRestaurantView.getTypeValueLabel().setText(selectedRestaurant.getType());
+        viewRestaurantView.getTypeValueLabel().setText(selectedRestaurant.getType().toString());
         viewRestaurantView.getCityValueLabel().setText(selectedRestaurant.getCity());
         viewRestaurantView.getAreaValueLabel().setText(selectedRestaurant.getArea());
-        viewRestaurantView.getZipcodeValueLabel().setText("" + selectedRestaurant.getZipcode());
+        viewRestaurantView.getZipcodeValueLabel().setText("" + selectedRestaurant.getZipCode());
         viewRestaurantView.getStreetValueLabel().setText(selectedRestaurant.getStreet());
         viewRestaurantView.getPriceMinValueLabel().setText("" + selectedRestaurant.getMinPrice() + "kr");
         viewRestaurantView.getPriceMaxValueLabel().setText("" + selectedRestaurant.getMaxPrice() + "kr");

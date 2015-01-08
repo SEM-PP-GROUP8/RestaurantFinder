@@ -11,11 +11,7 @@
     -->
 
     <bean id="controller" class = "com.group8.controller.Controller">
-        <constructor-arg>
-            <bean id="editRestWindow" class = "com.group8.view.EditRestaurant">
-
-            </bean>
-        </constructor-arg>
+        
         <constructor-arg>
             <bean id="loginWindow" class = "com.group8.view.Login">
 
