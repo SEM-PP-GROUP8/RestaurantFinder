@@ -134,7 +134,7 @@ public class RestaurantEditViewDataValidator {
             
             Component[] f = (restaurantEditView.getRestaurantSchedule1()).getComponents();
             
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date;
             
@@ -157,10 +157,10 @@ public class RestaurantEditViewDataValidator {
                         int stopMilliseconds = 0;
                         
                         try {
-                            date = sdf.parse("1970-01-01 " + start);
+                            date = sdf.parse("1970-01-01 " + start + ":00.000");
                             System.out.println("The start time is: " + date.getTime());
                             startMilliseconds = (int) date.getTime() / 1000;
-                            date = sdf.parse("1970-01-01 " + stop);
+                            date = sdf.parse("1970-01-01 " + stop + ":00.000");
                             System.out.println("The stop time is: " + date.getTime());
                             stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
