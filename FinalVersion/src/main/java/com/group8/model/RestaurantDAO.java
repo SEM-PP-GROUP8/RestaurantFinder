@@ -221,6 +221,50 @@ public abstract class RestaurantDAO
     
     /**
      * Added by Sergiu
+     * Given a list of restaurants, for each restaurant we get the ID. For each id we get the schedule from the DB. 
+     * For each schedule taken from DB we update the Restaurant object's schedule.
+     * We return back a list of restaurants with updated schedules.
+     * @param restaurants A List of restaurants
+     * @return A list of restaurants with updated schedule information
+     */
+    private static List<Restaurant> setScheduleForMultipleRestaurants(List<Restaurant> restaurants){        
+
+        ResultSet rs = null;
+        
+        for(Restaurant r : restaurants){
+
+            String sql = SQLTranslator.translateGetRestaurantSchedule(r.getId());
+            rs = DBHandler.query(sql);
+            
+            try 
+            {
+                while(rs.next()){
+
+                    int i = rs.getInt("dayOfWeekID");
+                    int start = rs.getTime("start").toLocalTime().toSecondOfDay();
+                    int stop = rs.getTime("stop").toLocalTime().toSecondOfDay();
+                    int closed = rs.getInt("closed");
+                    int nonstop = rs.getInt("nonstop");
+
+                    r.getSchedule().setSeconds(start, i, 0);
+                    r.getSchedule().setSeconds(stop, i, 1);
+                    r.getSchedule().setClosed(i, closed);
+                    r.getSchedule().setNonStop(i, nonstop);
+                    
+                }
+            } catch (Exception e) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                return null;
+            }
+        }
+
+        DBHandler.terminateDB();
+
+        return restaurants;
+    }
+    
+    /**
+     * Added by Sergiu
      * Should be used when adding the schedule of a newly created restaurant
      * @param ownerID Owner ID
      * @param name Restaurant Name
@@ -250,7 +294,7 @@ public abstract class RestaurantDAO
     //@Param ResultSet rs
     //@Param List<Restaurant> restaurants
     //The restaurants will be then included in the list given.
-        private static List<Restaurant> RsToRL(ResultSet rs)
+    private static List<Restaurant> RsToRL(ResultSet rs)
     {
         List<Restaurant> restaurants = new ArrayList<Restaurant>();
         RestaurantFactory rFactory = new RestaurantFactory();
@@ -274,13 +318,14 @@ public abstract class RestaurantDAO
                 int minPrice = rs.getInt("MinPrice");
                 int maxPrice = rs.getInt("MaxPrice");
                 
-                RestaurantSchedule schedule = getRestaurantSchedule(id);
-                
-                restaurants.add(rFactory.getRestaurant("Existing", id, ownerID, name, type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice, schedule));
-                
+                // Create and add a new restaurant with the data. The schedule is empty for now. Data for the schedule is added after this loop.
+                restaurants.add(rFactory.getRestaurant("Existing", id, ownerID, name, type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice, new RestaurantSchedule()));
             } // end of while
             
-            return restaurants;
+            // Update each of the restaurant's schedule
+            List<Restaurant> finalRestaurants = setScheduleForMultipleRestaurants(restaurants);
+            
+            return finalRestaurants;
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return null;
