@@ -134,6 +134,10 @@ public class RestaurantEditViewDataValidator {
             
             Component[] f = (restaurantEditView.getRestaurantSchedule1()).getComponents();
             
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date;
+            
             for ( Component c : f){
                 
                 if(c.getName() != null && c.getName().equalsIgnoreCase("scheduleContent")){
@@ -148,19 +152,16 @@ public class RestaurantEditViewDataValidator {
                         String stop = ((JTextField) elements[2]).getText();
                         boolean closed = ((JCheckBox) elements[3]).isSelected();
                         boolean endless = ((JCheckBox) elements[4]).isSelected();
-                        
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                        Date date;
 
                         int startMilliseconds = 0;
                         int stopMilliseconds = 0;
                         
                         try {
-                            
                             date = sdf.parse("1970-01-01 " + start);
+                            System.out.println("The start time is: " + date.getTime());
                             startMilliseconds = (int) date.getTime() / 1000;
                             date = sdf.parse("1970-01-01 " + stop);
+                            System.out.println("The stop time is: " + date.getTime());
                             stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -173,22 +174,6 @@ public class RestaurantEditViewDataValidator {
                         schedule.setClosed(i, closed);
                         schedule.setNonStop(i, endless);            
                         }
-                    
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                    Date newDate;
-                    sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-                    try {
-                        System.out.println("Starts here:");
-                        newDate = sdf.parse("1970-01-01 00:00");
-                        System.out.println(newDate.getTime());
-                        System.out.println(sdf.format(newDate));
-                        System.out.println("Ends here");
-                    } catch (ParseException ex) {
-                        Logger.getLogger(RestaurantEditViewDataValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                    
-                    
                     }                    
                 }
             
