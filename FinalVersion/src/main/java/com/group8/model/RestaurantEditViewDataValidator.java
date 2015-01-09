@@ -155,14 +155,16 @@ public class RestaurantEditViewDataValidator {
                         
                         try {
                             date = sdf.parse("1970-01-01 " + start);
-                            startMilliseconds = (int) date.getTime();
+                            System.out.println("Date for start is: " + date.toString());
+                            startMilliseconds = (int) date.getTime() / 1000;
                             date = sdf.parse("1970-01-01 " + stop);
-                            stopMilliseconds = (int) date.getTime();                                
+                            System.out.println("Date for stop is: " + date.toString());
+                            stopMilliseconds = (int) date.getTime() / 1000;                                
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                         
-                        System.out.println("REDVD. Build. Day + " + i + " Start: " + startMilliseconds + " Stop: " + stopMilliseconds);
+                        System.out.println("REVDValidator. Build. Day + " + i + " Start: " + startMilliseconds + " Stop: " + stopMilliseconds);
                         
                         schedule.setSeconds(startMilliseconds, i, 0);
                         schedule.setSeconds(stopMilliseconds, i, 1);
