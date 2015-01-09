@@ -347,7 +347,6 @@ public class RestaurantEditController {
             validator.resetValidator();
         } else {
             Restaurant toBeSaved = validator.getToBeSavedRestaurant(); // get the restaurant modified with user data that has been valdiated
-            System.out.println("ToBeSaved Day 1" + toBeSaved.getSchedule().isClosed(0) + " " + toBeSaved.getSchedule().isEndless(0));
             RestaurantDAO.addRestaurant(toBeSaved); // Save the restaurant
             loadMessage("Restaurant " + toBeSaved.getName() + " has been saved in the database!");
             buildPersistentData(); // We need to rebuild the data

@@ -395,13 +395,16 @@ public abstract class SQLTranslator
         sqlQuery = "";
         
         sqlQuery = "INSERT INTO `RestaurantSchedules` "
-                + "(`restaurantID`, `dayOfWeekID`, `start`, `stop`) "
+                + "(`restaurantID`, `dayOfWeekID`, `start`, `stop`, `closed`, `nonstop`) "
                 + "VALUES ";
         
         int dayOfWeek;
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         Time start = new Time(0);
         Time stop = new Time(0);
+        int closed;
+        int nonStop;
+        
         
         for(int i = 0; i < 7; i++){
             dayOfWeek = i;
@@ -409,7 +412,10 @@ public abstract class SQLTranslator
             start.setTime(r.getSchedule().getSeconds(i, 0) * 1000);
             stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000);
             
-            sqlQuery += "('" + r.getId() + "', '" + dayOfWeek + "', '" + start + "', '"+ stop + "')";
+            closed = r.getSchedule().getClosed(dayOfWeek);
+            nonStop = r.getSchedule().getNonStop(dayOfWeek);
+            
+            sqlQuery += "('" + r.getId() + "', '" + dayOfWeek + "', '" + start + "', '"+ stop + "', '"+ closed + "', '"+ nonStop + "')";
             
             if(i == 6)
                 sqlQuery += ";";
