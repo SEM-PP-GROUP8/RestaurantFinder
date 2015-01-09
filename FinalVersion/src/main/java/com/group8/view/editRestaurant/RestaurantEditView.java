@@ -59,6 +59,7 @@ public class RestaurantEditView extends javax.swing.JFrame {
         getContentPane().add(restaurantSearchableList, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 80, -1, -1));
         getContentPane().add(restaurantButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
+        restaurantSchedule1.setOpaque(false);
         restaurantSchedule1.setPreferredSize(new java.awt.Dimension(310, 300));
         getContentPane().add(restaurantSchedule1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 310, -1));
         getContentPane().add(restaurantDetails2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
