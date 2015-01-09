@@ -402,7 +402,7 @@ public abstract class SQLTranslator
         Time stop = new Time(0);
         
         for(int i = 0; i < 7; i++){
-            
+            System.out.println("SQLTRANSLATOR. tADDrs. Day + " + i + " Start: " + r.getSchedule().getSeconds(i, 0) + " Stop: " + r.getSchedule().getSeconds(i, 1));
             dayOfWeek = i;
             
             // NEEDS UPDATE EDIT DELETE WHATEVER. I added * 1000 because the values are seconds and should become millisecodns
@@ -436,11 +436,15 @@ public abstract class SQLTranslator
         Time stop = new Time(0);
         
         for(int i = 0; i < 7; i++){
+            System.out.println("SQLTRANSLATOR. TURS. Day + " + i + " Start: " + r.getSchedule().getSeconds(i, 0) + " Stop: " + r.getSchedule().getSeconds(i, 1));
             
             dayOfWeek = i;
             // Removed 3600 seconds due to timezone difference (DB timezone is GMT +1 ); It's a hack i know...
             start.setTime(r.getSchedule().getSeconds(i, 0) - 3600000 );
             stop.setTime(r.getSchedule().getSeconds(i, 1)  - 3600000 );
+            
+            
+            
             
             int closed = r.getSchedule().getClosed(dayOfWeek);
             int nonStop = r.getSchedule().getNonStop(dayOfWeek);
