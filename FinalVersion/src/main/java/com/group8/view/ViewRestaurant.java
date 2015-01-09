@@ -57,6 +57,20 @@ public class ViewRestaurant extends javax.swing.JFrame {
         zipcodeValue = new javax.swing.JLabel();
         streetLabel = new javax.swing.JLabel();
         streetValue = new javax.swing.JLabel();
+        day7 = new javax.swing.JLabel();
+        day6 = new javax.swing.JLabel();
+        day5 = new javax.swing.JLabel();
+        day4 = new javax.swing.JLabel();
+        day3 = new javax.swing.JLabel();
+        day2 = new javax.swing.JLabel();
+        day1 = new javax.swing.JLabel();
+        day7Value = new javax.swing.JLabel();
+        day6Value = new javax.swing.JLabel();
+        day5Value = new javax.swing.JLabel();
+        day4Value = new javax.swing.JLabel();
+        day3Value = new javax.swing.JLabel();
+        day2Value = new javax.swing.JLabel();
+        day1Value = new javax.swing.JLabel();
         priceMinLabel = new javax.swing.JLabel();
         priceMinValue = new javax.swing.JLabel();
         priceMaxLabel = new javax.swing.JLabel();
@@ -183,7 +197,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
         nameLabel.setToolTipText("");
         nameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         nameLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        getContentPane().add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, 50));
+        getContentPane().add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, 30));
 
         nameValue.setColumns(20);
         nameValue.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -192,92 +206,162 @@ public class ViewRestaurant extends javax.swing.JFrame {
         nameValue.setText("...");
         nameValue.setToolTipText("");
         nameValue.setWrapStyleWord(true);
-        getContentPane().add(nameValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 181, 99, 49));
+        getContentPane().add(nameValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 181, 99, 30));
 
         typeLabel.setForeground(new java.awt.Color(102, 102, 102));
         typeLabel.setText("Type");
         typeLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(typeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 80, 50));
+        getContentPane().add(typeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 80, 20));
 
         typeValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         typeValue.setText("...");
         typeValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(typeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 99, 50));
+        getContentPane().add(typeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 99, 20));
 
         cityLabel.setForeground(new java.awt.Color(102, 102, 102));
         cityLabel.setText("City");
         cityLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(cityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 80, 25));
+        getContentPane().add(cityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 80, 20));
 
         cityValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cityValue.setText("...");
         cityValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(cityValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 99, 25));
+        getContentPane().add(cityValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 99, 20));
 
         areaLabel.setForeground(new java.awt.Color(102, 102, 102));
         areaLabel.setText("Area");
         areaLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(areaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 80, 25));
+        getContentPane().add(areaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 80, 20));
 
         areaValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         areaValue.setText("...");
         areaValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(areaValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 99, 25));
+        getContentPane().add(areaValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 99, 20));
 
         zipcodeLabel.setForeground(new java.awt.Color(102, 102, 102));
         zipcodeLabel.setText("Zip Code");
         zipcodeLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(zipcodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, 80, 25));
+        getContentPane().add(zipcodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 80, 20));
 
         zipcodeValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         zipcodeValue.setText("...");
         zipcodeValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(zipcodeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 325, 99, 25));
+        getContentPane().add(zipcodeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 99, 20));
 
         streetLabel.setForeground(new java.awt.Color(102, 102, 102));
         streetLabel.setText("Street");
         streetLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(streetLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 80, 50));
+        getContentPane().add(streetLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 80, -1));
 
         streetValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         streetValue.setText("...");
         streetValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(streetValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 99, 50));
+        getContentPane().add(streetValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 99, 20));
+
+        day7.setForeground(new java.awt.Color(102, 102, 102));
+        day7.setText("Sunday:");
+        day7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 80, -1));
+
+        day6.setForeground(new java.awt.Color(102, 102, 102));
+        day6.setText("Saturday:");
+        day6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 80, -1));
+
+        day5.setForeground(new java.awt.Color(102, 102, 102));
+        day5.setText("Friday:");
+        day5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 80, -1));
+
+        day4.setForeground(new java.awt.Color(102, 102, 102));
+        day4.setText("Thursday:");
+        day4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 80, -1));
+
+        day3.setForeground(new java.awt.Color(102, 102, 102));
+        day3.setText("Wednesday:");
+        day3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, -1));
+
+        day2.setForeground(new java.awt.Color(102, 102, 102));
+        day2.setText("Tuesday:");
+        day2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 80, -1));
+
+        day1.setForeground(new java.awt.Color(102, 102, 102));
+        day1.setText("Monday:");
+        day1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 80, -1));
+
+        day7Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day7Value.setText("...");
+        day7Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day7Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 99, -1));
+
+        day6Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day6Value.setText("...");
+        day6Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day6Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 99, -1));
+
+        day5Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day5Value.setText("...");
+        day5Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day5Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 99, -1));
+
+        day4Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day4Value.setText("...");
+        day4Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day4Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 99, -1));
+
+        day3Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day3Value.setText("...");
+        day3Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day3Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 99, -1));
+
+        day2Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day2Value.setText("...");
+        day2Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day2Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 99, -1));
+
+        day1Value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        day1Value.setText("...");
+        day1Value.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(day1Value, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 99, -1));
 
         priceMinLabel.setForeground(new java.awt.Color(102, 102, 102));
         priceMinLabel.setText("Minimum price");
         priceMinLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(priceMinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 90, 25));
+        getContentPane().add(priceMinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 90, 20));
 
         priceMinValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         priceMinValue.setText("...");
         priceMinValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(priceMinValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 99, 25));
+        getContentPane().add(priceMinValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 99, 20));
 
         priceMaxLabel.setForeground(new java.awt.Color(102, 102, 102));
         priceMaxLabel.setText("Maximum price");
         priceMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(priceMaxLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 425, 90, 25));
+        getContentPane().add(priceMaxLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 90, 20));
 
         priceMaxValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         priceMaxValue.setText("...");
         priceMaxValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(priceMaxValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 425, 99, 25));
+        getContentPane().add(priceMaxValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 99, -1));
 
         telephoneLabel.setForeground(new java.awt.Color(102, 102, 102));
         telephoneLabel.setText("Telephone");
         telephoneLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(telephoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 80, 50));
+        getContentPane().add(telephoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 80, 20));
 
         telephoneValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         telephoneValue.setText("...");
         telephoneValue.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(telephoneValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 99, 50));
+        getContentPane().add(telephoneValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 99, 20));
 
         descriptionLabel.setForeground(new java.awt.Color(102, 102, 102));
         descriptionLabel.setText("Description");
         descriptionLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 80, 90));
+        getContentPane().add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 80, 50));
 
         descriptionValue.setEditable(false);
         descriptionValue.setColumns(20);
@@ -287,7 +371,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
         descriptionValue.setText("...");
         descriptionValue.setToolTipText("");
         descriptionValue.setWrapStyleWord(true);
-        getContentPane().add(descriptionValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, 99, 89));
+        getContentPane().add(descriptionValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 99, 50));
 
         detailsLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         detailsLabel.setText("Details");
@@ -372,6 +456,20 @@ public class ViewRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel cityLabel;
     private javax.swing.JLabel cityValue;
     private javax.swing.JTextArea commentTextArea;
+    private javax.swing.JLabel day1;
+    private javax.swing.JLabel day1Value;
+    private javax.swing.JLabel day2;
+    private javax.swing.JLabel day2Value;
+    private javax.swing.JLabel day3;
+    private javax.swing.JLabel day3Value;
+    private javax.swing.JLabel day4;
+    private javax.swing.JLabel day4Value;
+    private javax.swing.JLabel day5;
+    private javax.swing.JLabel day5Value;
+    private javax.swing.JLabel day6;
+    private javax.swing.JLabel day6Value;
+    private javax.swing.JLabel day7;
+    private javax.swing.JLabel day7Value;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextArea descriptionValue;
@@ -489,7 +587,14 @@ public class ViewRestaurant extends javax.swing.JFrame {
         return (DefaultTableModel) reviewTable.getModel();
     }
     
-    
+    /**
+     * Added by Sergiu.
+     * @return An array of JLabels which contains all the day#value labels for the controller to set values from the RestaurnatSchedule
+     */
+    public JLabel[] getScheduleValueLabels(){
+        JLabel[] jLabels = {day1Value,day2Value,day3Value,day4Value,day5Value,day6Value,day7Value};
+        return jLabels;
+    }
     
     /*OTHER SETTERS AND GETTERS*/
     public Restaurant getCurrentRestaurant() {

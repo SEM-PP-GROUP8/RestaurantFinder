@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Controller implements ControllerListener
 {
@@ -333,6 +334,10 @@ public class Controller implements ControllerListener
         viewRestaurantView.setZipcodeValue("" + selectedRestaurant.getZipCode());      
         viewRestaurantView.setTelephoneValue("" + selectedRestaurant.getTelephone());
         viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription());
+        
+        // Added by Sergiu. Fill the schedule day#value labels with data
+        loadScheduleData(viewRestaurantView,selectedRestaurant);
+        
         setReviews(selectedRestaurant);
         
         // Set the grade dropdown
@@ -520,6 +525,29 @@ public class Controller implements ControllerListener
         
         }
         
+    }
+
+    /**
+     * Added by Sergiu.
+     * Loads schedule data to the view
+     * @param viewRestaurantView The ViewRestaurant View
+     * @param selectedRestaurant The selected Restaurant
+     */    
+    private void loadScheduleData(ViewRestaurant view, Restaurant r) {
+        JLabel[] scheduleValueLabels = view.getScheduleValueLabels();
+        
+        for(int i = 0; i < scheduleValueLabels.length ; i++){
+            String output = "";
+            
+            if(r.getSchedule().isClosed(i))
+                output = "Closed";
+            else if(r.getSchedule().isEndless(i))
+                output = "All day";
+            else 
+                output = r.getSchedule().getFormatedTime(i, 0) + " - " + r.getSchedule().getFormatedTime(i, 1);
+            
+            scheduleValueLabels[i].setText(output);
+        }        
     }
     
 }
