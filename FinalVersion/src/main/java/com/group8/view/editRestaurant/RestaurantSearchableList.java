@@ -119,12 +119,7 @@ public class RestaurantSearchableList extends javax.swing.JPanel {
     private void restaurantListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantListMouseClicked
         // Make sure it's a double click and after make sure the list is not empty
         if( (evt.getClickCount() == 1) && ( ((JList) evt.getSource()).getModel().getSize() > 0) ){
-            
             Restaurant r = (Restaurant) ( (JList) evt.getSource() ).getSelectedValue();
-            
-            System.out.println("SELECT HAPPENED. Title of selected restaurant is: ");
-            System.out.println(r.getName());
-            
             controller.loadDetailsAndSchedule(r);
         }
     }//GEN-LAST:event_restaurantListMouseClicked
@@ -133,10 +128,6 @@ public class RestaurantSearchableList extends javax.swing.JPanel {
 
         if((evt.getKeyCode() == KeyEvent.VK_ENTER) && ( ((JList) evt.getSource()).getModel().getSize() > 0) ){
             Restaurant r = (Restaurant) ( (JList) evt.getSource() ).getSelectedValue();
-
-            System.out.println("SELECT HAPPENED. Title of selected restaurant is: ");
-            System.out.println(r.getName());
-
             controller.loadDetailsAndSchedule(r);
         }
         
