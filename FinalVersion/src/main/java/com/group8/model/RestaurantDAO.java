@@ -25,7 +25,9 @@ public abstract class RestaurantDAO
     public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time)
     {
         String sql = SQLTranslator.translateFindRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time);
+        System.out.println("1. Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("1. I just called the DB!");
         List<Restaurant> restaurants = RsToRL(rs);
         DBHandler.terminateDB();
         return restaurants;
@@ -35,7 +37,9 @@ public abstract class RestaurantDAO
     public static List<Restaurant> fetchAllRestaurants ()
     {        
         String sql = SQLTranslator.translateAllRestaurants();
+        System.out.println("2. Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("2. I just called the DB!");
         List<Restaurant> restaurants = RsToRL(rs);
         DBHandler.terminateDB();
         return restaurants;
@@ -54,7 +58,9 @@ public abstract class RestaurantDAO
     public static boolean restaurantNameWithIDExists (Restaurant rest)
     {
         String sql = SQLTranslator.translateRestaurantWithIDExists (rest);
+        System.out.println("3. Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("3. I just called the DB!");
         int savedID = -1;
         
         try
@@ -83,7 +89,9 @@ public abstract class RestaurantDAO
     public static boolean restaurantExists (Restaurant rest)
     {
         String sql = SQLTranslator.translateRestaurantExists (rest);
+        System.out.println("4.  Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("4.  I just called the DB!");
         try
         {
             if(rs.next())
@@ -107,7 +115,9 @@ public abstract class RestaurantDAO
     public static boolean restaurantNameExists (String name)
     {
         String sql = SQLTranslator.translateRestaurantNameExists(name);
+        System.out.println("5.  Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("5.  I just called the DB!");
         
         int count = 0;
         
@@ -131,7 +141,9 @@ public abstract class RestaurantDAO
     public static List<Restaurant> fetchRestaurantsByLogin(int UserId)
     {
         String sql = SQLTranslator.translateFindRestaurantByLogin(UserId);
+        System.out.println("6.  Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("6.  I just called the DB!");
         List<Restaurant> restaurants = RsToRL(rs);
         DBHandler.terminateDB();
         return restaurants;
@@ -192,7 +204,10 @@ public abstract class RestaurantDAO
         ResultSet rs = null;
         String sql = SQLTranslator.translateGetRestaurantSchedule(restaurantID);
         
+
+        System.out.println("7.  Calling the DB!");
         rs = DBHandler.query(sql);
+        System.out.println("7.  I just called the DB!");
         
         try 
         {
@@ -234,7 +249,9 @@ public abstract class RestaurantDAO
         for(Restaurant r : restaurants){
 
             String sql = SQLTranslator.translateGetRestaurantSchedule(r.getId());
+            System.out.println("8.  Calling the DB!");
             rs = DBHandler.query(sql);
+            System.out.println("8.  I just called the DB!");
             
             try 
             {
@@ -273,7 +290,9 @@ public abstract class RestaurantDAO
     public static int fetchRecentlyAddedRestaurantID(int ownerID, String name){
         int restaurantID = 0;
         String sql = SQLTranslator.translateRecentlyAddedRestaurantID(ownerID, name);
+        System.out.println("7.  Calling the DB!");
         ResultSet rs = DBHandler.query(sql);
+        System.out.println("7.  I just called the DB!");
         
         try{
             if(rs.next()){
