@@ -9,11 +9,14 @@ package com.group8.model;
 import com.group8.view.editRestaurant.RestaurantEditView;
 import java.awt.Component;
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -147,18 +150,17 @@ public class RestaurantEditViewDataValidator {
                         boolean endless = ((JCheckBox) elements[4]).isSelected();
                         
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        //sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                         Date date;
 
                         int startMilliseconds = 0;
                         int stopMilliseconds = 0;
                         
                         try {
+                            
                             date = sdf.parse("1970-01-01 " + start);
-                            System.out.println("Date for start is: " + date.toString() + ". This was generated from the 1970 date and " + start);
                             startMilliseconds = (int) date.getTime() / 1000;
                             date = sdf.parse("1970-01-01 " + stop);
-                            System.out.println("Date for stop is: " + date.toString() + ". This was generated from the 1970 date and " + stop);
                             stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -171,6 +173,21 @@ public class RestaurantEditViewDataValidator {
                         schedule.setClosed(i, closed);
                         schedule.setNonStop(i, endless);            
                         }
+                    
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    Date newDate;
+                    try {
+                        System.out.println("Starts here:");
+                        newDate = sdf.parse("1970-01-01 00:00");
+                        System.out.println(newDate.getTime());
+                        System.out.println(sdf.format(newDate));
+                        System.out.println("Ends here");
+                    } catch (ParseException ex) {
+                        Logger.getLogger(RestaurantEditViewDataValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    
+                    
                     }                    
                 }
             
