@@ -2,6 +2,7 @@ package com.group8.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.TimeZone;
 
 public abstract class SQLTranslator 
 {
@@ -394,22 +395,27 @@ public abstract class SQLTranslator
         sqlQuery = "";
         
         sqlQuery = "INSERT INTO `RestaurantSchedules` "
-                + "(`restaurantID`, `dayOfWeekID`, `start`, `stop`) "
+                + "(`restaurantID`, `dayOfWeekID`, `start`, `stop`, `closed`, `nonstop`) "
                 + "VALUES ";
         
         int dayOfWeek;
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         Time start = new Time(0);
         Time stop = new Time(0);
+        int closed;
+        int nonStop;
+        
         
         for(int i = 0; i < 7; i++){
-            
             dayOfWeek = i;
             
-            // NEEDS UPDATE EDIT DELETE WHATEVER. I added * 1000 because the values are seconds and should become millisecodns
             start.setTime(r.getSchedule().getSeconds(i, 0) * 1000);
             stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000);
             
-            sqlQuery += "('" + r.getId() + "', '" + dayOfWeek + "', '" + start + "', '"+ stop + "')";
+            closed = r.getSchedule().getClosed(dayOfWeek);
+            nonStop = r.getSchedule().getNonStop(dayOfWeek);
+            
+            sqlQuery += "('" + r.getId() + "', '" + dayOfWeek + "', '" + start + "', '"+ stop + "', '"+ closed + "', '"+ nonStop + "')";
             
             if(i == 6)
                 sqlQuery += ";";
@@ -431,16 +437,15 @@ public abstract class SQLTranslator
         String[] sqlArr = new String[7];
         
         int dayOfWeek;
-        
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         Time start = new Time(0);
         Time stop = new Time(0);
         
         for(int i = 0; i < 7; i++){
             
             dayOfWeek = i;
-            // Removed 3600 seconds due to timezone difference (DB timezone is GMT +1 ); It's a hack i know...
-            start.setTime(r.getSchedule().getSeconds(i, 0) - 3600000 );
-            stop.setTime(r.getSchedule().getSeconds(i, 1)  - 3600000 );
+            start.setTime(r.getSchedule().getSeconds(i, 0) * 1000 );
+            stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000 );
             
             int closed = r.getSchedule().getClosed(dayOfWeek);
             int nonStop = r.getSchedule().getNonStop(dayOfWeek);

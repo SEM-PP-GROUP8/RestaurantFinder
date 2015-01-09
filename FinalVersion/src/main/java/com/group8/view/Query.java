@@ -436,21 +436,16 @@ public class Query extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        /*NEW - Hampus*/
-        if (controllerListener!=null && restaurantList.getSelectedIndex() >= 0)
-        {
+        if (controllerListener!=null && restaurantList.getSelectedIndex() >= 0) {
             Restaurant selectedRestaurant = filteredRestaurants.get(restaurantList.getSelectedIndex());
             controllerListener.viewButtonClicked(selectedRestaurant);
-        } else System.out.println(restaurantList.getSelectedIndex());
+        }
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        /*NEW*/
-        if (controllerListener!=null)
-        {
+        if (controllerListener!=null) {
             controllerListener.registerButtonClicked();
         }
-        /*END NEW*/
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

@@ -103,12 +103,6 @@ public class ComponentValidator {
                         date = sdf.parse("1970-01-01 " + stop);
                         int stopSeconds = (int) date.getTime();
 
-                        if(startSeconds >= stopSeconds){
-                            error = "The Start time must be strictly smaller than the Stop time";
-                            highlightComponent(((JTextField) elements[1]));
-                            highlightComponent(((JTextField) elements[2]));
-                        }
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

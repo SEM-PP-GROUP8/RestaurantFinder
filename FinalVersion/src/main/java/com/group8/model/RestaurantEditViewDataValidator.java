@@ -9,11 +9,14 @@ package com.group8.model;
 import com.group8.view.editRestaurant.RestaurantEditView;
 import java.awt.Component;
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -131,6 +134,10 @@ public class RestaurantEditViewDataValidator {
             
             Component[] f = (restaurantEditView.getRestaurantSchedule1()).getComponents();
             
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date;
+            
             for ( Component c : f){
                 
                 if(c.getName() != null && c.getName().equalsIgnoreCase("scheduleContent")){
@@ -145,19 +152,15 @@ public class RestaurantEditViewDataValidator {
                         String stop = ((JTextField) elements[2]).getText();
                         boolean closed = ((JCheckBox) elements[3]).isSelected();
                         boolean endless = ((JCheckBox) elements[4]).isSelected();
-                        
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-                        Date date;
 
                         int startMilliseconds = 0;
                         int stopMilliseconds = 0;
                         
                         try {
-                            date = sdf.parse("1970-01-01 " + start);
-                            startMilliseconds = (int) date.getTime();
-                            date = sdf.parse("1970-01-01 " + stop);
-                            stopMilliseconds = (int) date.getTime();                                
+                            date = sdf.parse("1970-01-01 " + start + ":00.000");
+                            startMilliseconds = (int) date.getTime() / 1000;
+                            date = sdf.parse("1970-01-01 " + stop + ":00.000");
+                            stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
