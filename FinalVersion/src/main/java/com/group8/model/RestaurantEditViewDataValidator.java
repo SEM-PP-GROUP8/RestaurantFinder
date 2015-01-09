@@ -147,7 +147,7 @@ public class RestaurantEditViewDataValidator {
                         boolean endless = ((JCheckBox) elements[4]).isSelected();
                         
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        //sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
                         Date date;
 
                         int startMilliseconds = 0;
