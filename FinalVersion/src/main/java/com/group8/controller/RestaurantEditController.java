@@ -78,6 +78,8 @@ public class RestaurantEditController {
         // If session is Owner, the ownerID field is always disabled
         if(Session.isAdmin())
             restaurantEditView.getRestaurantDetails2().getOwnerIDTextField().setEnabled(enabled);
+        else
+            restaurantEditView.getRestaurantDetails2().getOwnerIDTextField().setEnabled(false);
         
         restaurantEditView.getRestaurantDetails2().getNameTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getTypeComboBox().setEnabled(enabled);
@@ -88,6 +90,8 @@ public class RestaurantEditController {
         restaurantEditView.getRestaurantDetails2().getImageURLTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getTelephoneTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getDescriptionTextArea().setEnabled(enabled);
+        restaurantEditView.getRestaurantDetails2().getMinPriceTextField().setEnabled(enabled);
+        restaurantEditView.getRestaurantDetails2().getMaxPriceTextField().setEnabled(enabled);
         
         // This part enables or disables the schedule fields and check boxes for each day panel
         Component[] days = getDaysComponents();
