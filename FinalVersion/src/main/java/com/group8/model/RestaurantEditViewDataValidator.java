@@ -155,10 +155,10 @@ public class RestaurantEditViewDataValidator {
                         
                         try {
                             date = sdf.parse("1970-01-01 " + start);
-                            System.out.println("Date for start is: " + date.toString());
+                            System.out.println("Date for start is: " + date.toString() + ". This was generated from the 1970 date and " + start);
                             startMilliseconds = (int) date.getTime() / 1000;
                             date = sdf.parse("1970-01-01 " + stop);
-                            System.out.println("Date for stop is: " + date.toString());
+                            System.out.println("Date for stop is: " + date.toString() + ". This was generated from the 1970 date and " + stop);
                             stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
                             e.printStackTrace();
