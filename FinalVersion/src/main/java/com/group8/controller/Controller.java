@@ -534,7 +534,7 @@ public class Controller implements ControllerListener
      * @param selectedRestaurant The selected Restaurant
      */    
     private void loadScheduleData(ViewRestaurant view, Restaurant r) {
-        JLabel[] scheduleValueLabels = view.getScheduleValueLabels();
+        JLabel[] scheduleValueLabels = view.getScheduleValLabels();
         
         for(int i = 0; i < scheduleValueLabels.length ; i++){
             String output = "";

@@ -591,7 +591,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
      * Added by Sergiu.
      * @return An array of JLabels which contains all the day#value labels for the controller to set values from the RestaurnatSchedule
      */
-    public JLabel[] getScheduleValueLabels(){
+    public JLabel[] getScheduleValLabels(){
         JLabel[] jLabels = {day1Value,day2Value,day3Value,day4Value,day5Value,day6Value,day7Value};
         return jLabels;
     }
