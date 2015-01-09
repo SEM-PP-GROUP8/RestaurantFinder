@@ -1,7 +1,7 @@
 package com.group8.model;
 
 public enum RestaurantType {
-    INDIAN("Indian"),FAST_FOOD("Fastfood");
+    INDIAN("Indian"),FAST_FOOD("Fast food"),PIZZA("Pizza"),KEBAB("Kebab"),THAI("Thai"),ITALIAN("Italian");
     
     private String value;
     
@@ -22,6 +22,5 @@ public enum RestaurantType {
         }
         
         return null;
-    }
-    
+    }   
 }
