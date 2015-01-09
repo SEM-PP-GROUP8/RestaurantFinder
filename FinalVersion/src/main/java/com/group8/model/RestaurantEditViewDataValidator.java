@@ -167,8 +167,6 @@ public class RestaurantEditViewDataValidator {
                             e.printStackTrace();
                         }
                         
-                        System.out.println("REVDValidator. Build. Day + " + i + " Start: " + startMilliseconds + " Stop: " + stopMilliseconds);
-                        
                         schedule.setSeconds(startMilliseconds, i, 0);
                         schedule.setSeconds(stopMilliseconds, i, 1);
                         schedule.setClosed(i, closed);

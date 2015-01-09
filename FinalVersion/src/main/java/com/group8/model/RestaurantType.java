@@ -16,8 +16,6 @@ public enum RestaurantType {
     
     public static RestaurantType findConstantByValue(String value){
         
-        System.out.println(value);
-        
         for(RestaurantType rt : values()){
             if(rt.toString().equals(value))
                 return rt;

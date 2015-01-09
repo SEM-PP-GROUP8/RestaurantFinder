@@ -2,6 +2,7 @@ package com.group8.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.TimeZone;
 
 public abstract class SQLTranslator 
 {
@@ -398,14 +399,13 @@ public abstract class SQLTranslator
                 + "VALUES ";
         
         int dayOfWeek;
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         Time start = new Time(0);
         Time stop = new Time(0);
         
         for(int i = 0; i < 7; i++){
-            System.out.println("SQLTRANSLATOR. tADDrs. Day + " + i + " Start: " + r.getSchedule().getSeconds(i, 0) + " Stop: " + r.getSchedule().getSeconds(i, 1));
             dayOfWeek = i;
             
-            // NEEDS UPDATE EDIT DELETE WHATEVER. I added * 1000 because the values are seconds and should become millisecodns
             start.setTime(r.getSchedule().getSeconds(i, 0) * 1000);
             stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000);
             
@@ -431,19 +431,15 @@ public abstract class SQLTranslator
         String[] sqlArr = new String[7];
         
         int dayOfWeek;
-        
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         Time start = new Time(0);
         Time stop = new Time(0);
         
         for(int i = 0; i < 7; i++){
-            System.out.println("SQLTRANSLATOR. TURS. Day + " + i + " Start: " + r.getSchedule().getSeconds(i, 0) + " Stop: " + r.getSchedule().getSeconds(i, 1));
             
             dayOfWeek = i;
-            // Removed 3600 seconds due to timezone difference (DB timezone is GMT +1 ); It's a hack i know...
             start.setTime(r.getSchedule().getSeconds(i, 0) * 1000 );
             stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000 );
-            
-            System.out.println("SQLtranslator: stop TIME object to  string is: " + stop.toString());
             
             int closed = r.getSchedule().getClosed(dayOfWeek);
             int nonStop = r.getSchedule().getNonStop(dayOfWeek);
