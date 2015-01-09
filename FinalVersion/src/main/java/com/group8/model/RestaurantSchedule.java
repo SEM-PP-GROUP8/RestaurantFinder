@@ -32,7 +32,7 @@ public class RestaurantSchedule {
 
         int minutes = ((seconds /  60) % 60);
         int hours = (seconds / 3600) % 24;
-
+        
         return String.format("%02d:%02d", hours, minutes);
     }
     
