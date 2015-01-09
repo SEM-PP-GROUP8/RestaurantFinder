@@ -43,7 +43,7 @@ public class SQLTranslatorTests {
 
     @Test
     public void testQueryView() 
-    {
+    {/*
         Restaurant rest = new Restaurant (3, "Test", "Baldersgatan", "Haga", 11111, "Göteborg", "Indian", 1, 10, 1);
         
         
@@ -55,7 +55,7 @@ public class SQLTranslatorTests {
         
         String sqlupdate = SQLTranslator.translateUpdateRestaurant(rest);
         System.out.println ("SQL update: " + sqlupdate);
-        
+        */
         
     }
 }

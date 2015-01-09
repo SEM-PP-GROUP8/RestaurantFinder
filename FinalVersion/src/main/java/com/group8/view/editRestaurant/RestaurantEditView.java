@@ -39,35 +39,47 @@ public class RestaurantEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        restaurantDetails2 = new RestaurantDetails(controller);
+        restaurantSearchableList = new com.group8.view.editRestaurant.RestaurantSearchableList(controller);
         restaurantButtons = new RestaurantButtons(controller);
-        restaurantSchedule1 = new RestaurantSchedule(controller);
-        restaurantSearchableList = new RestaurantSearchableList(controller);
+        restaurantSchedule1 = new com.group8.view.editRestaurant.RestaurantSchedule(controller);
+        restaurantDetails2 = new com.group8.view.editRestaurant.RestaurantDetails(controller);
         returnButton = new javax.swing.JButton();
+        logoLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(restaurantDetails2, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 30, -1, -1));
-        getContentPane().add(restaurantButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 423, -1, -1));
 
-        restaurantSchedule1.setMaximumSize(new java.awt.Dimension(32767, 32767));
-        restaurantSchedule1.setOpaque(false);
-        getContentPane().add(restaurantSchedule1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
-        getContentPane().add(restaurantSearchableList, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        restaurantSearchableList.setPreferredSize(new java.awt.Dimension(250, 355));
+        getContentPane().add(restaurantSearchableList, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 80, -1, -1));
+        getContentPane().add(restaurantButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        restaurantSchedule1.setPreferredSize(new java.awt.Dimension(310, 300));
+        getContentPane().add(restaurantSchedule1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 310, -1));
+        getContentPane().add(restaurantDetails2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
         returnButton.setText("Close");
+        returnButton.setPreferredSize(new java.awt.Dimension(100, 40));
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(returnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 434, -1, -1));
+        getContentPane().add(returnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 460, -1, -1));
+
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/logo.jpg"))); // NOI18N
+        getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 510, 100, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/retina_wood_@2X.png"))); // NOI18N
         jLabel1.setLabelFor(this);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 470));
+        jLabel1.setPreferredSize(new java.awt.Dimension(900, 600));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -76,9 +88,14 @@ public class RestaurantEditView extends javax.swing.JFrame {
         controller.closeView();
     }//GEN-LAST:event_returnButtonActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controller.closeView();
+    }//GEN-LAST:event_formWindowClosing
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel logoLabel;
     private com.group8.view.editRestaurant.RestaurantButtons restaurantButtons;
     private com.group8.view.editRestaurant.RestaurantDetails restaurantDetails2;
     private com.group8.view.editRestaurant.RestaurantSchedule restaurantSchedule1;

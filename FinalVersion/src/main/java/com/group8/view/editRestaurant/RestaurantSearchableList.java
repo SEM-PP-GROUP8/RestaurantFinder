@@ -73,8 +73,12 @@ public class RestaurantSearchableList extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setOpaque(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        searchField.setPreferredSize(new java.awt.Dimension(200, 20));
+        searchField.setPreferredSize(new java.awt.Dimension(240, 20));
+        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 20, 240, -1));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(234, 300));
 
         restaurantList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,32 +92,11 @@ public class RestaurantSearchableList extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(restaurantList);
 
-        jLabel1.setText("Search Restaurants:");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 50, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(searchField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel1.setText("Search Restaurants:");
+        jLabel1.setPreferredSize(new java.awt.Dimension(125, 20));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void restaurantListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantListMouseClicked

@@ -163,169 +163,175 @@ public class RestaurantDetails extends javax.swing.JPanel {
         minPriceTextField = new javax.swing.JTextField();
         typeLabel2 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(300, 350));
+        setMaximumSize(new java.awt.Dimension(320, 470));
+        setMinimumSize(new java.awt.Dimension(320, 470));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(320, 470));
+        setSize(new java.awt.Dimension(320, 470));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         detailsLabel.setText("Restaurant Details:");
+        add(detailsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         ownerIDLabel.setText("OwnerID:");
+        ownerIDLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        ownerIDLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        ownerIDLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(ownerIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
+        ownerIDTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        ownerIDTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         ownerIDTextField.setName("ownerID"); // NOI18N
+        ownerIDTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(ownerIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 20, 205, -1));
 
         nameLabel.setText("Name:");
+        nameLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        nameLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        nameLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
 
         typeLabel.setText("Type:");
+        typeLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        typeLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        typeLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(typeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         streetLabel.setText("Street:");
+        streetLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        streetLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        streetLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(streetLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
 
         areaLabel.setText("Area:");
+        areaLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        areaLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        areaLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(areaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         cityLabel.setText("City:");
+        cityLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        cityLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        cityLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(cityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 195, -1, -1));
 
         zipCodeLabel.setText("Zip Code:");
+        zipCodeLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        zipCodeLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        zipCodeLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(zipCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
+        nameTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        nameTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         nameTextField.setName("name"); // NOI18N
+        nameTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 55, 205, -1));
 
+        streetTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        streetTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         streetTextField.setName("street"); // NOI18N
+        streetTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(streetTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 125, 205, -1));
 
+        areaTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        areaTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         areaTextField.setName("area"); // NOI18N
+        areaTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(areaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 160, 205, -1));
 
+        cityTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        cityTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         cityTextField.setName("city"); // NOI18N
+        cityTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(cityTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 195, 205, -1));
 
+        zipCodeTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        zipCodeTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         zipCodeTextField.setName("zipCode"); // NOI18N
+        zipCodeTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(zipCodeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 230, 205, -1));
 
+        telephoneTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        telephoneTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         telephoneTextField.setName("telephone"); // NOI18N
+        telephoneTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(telephoneTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 300, 205, -1));
 
+        imageURLTextField.setMaximumSize(new java.awt.Dimension(205, 30));
+        imageURLTextField.setMinimumSize(new java.awt.Dimension(205, 30));
         imageURLTextField.setName("imageURL"); // NOI18N
+        imageURLTextField.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(imageURLTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 265, 205, -1));
 
+        typeComboBox.setMaximumSize(new java.awt.Dimension(205, 30));
+        typeComboBox.setMinimumSize(new java.awt.Dimension(205, 30));
         typeComboBox.setName("type"); // NOI18N
+        typeComboBox.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(typeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 90, 205, -1));
 
         imageURLLabel.setText("Image URL:");
+        imageURLLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        imageURLLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        imageURLLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(imageURLLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 265, -1, -1));
 
         descriptionLabel.setText("Description:");
+        descriptionLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        descriptionLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        descriptionLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(200, 84));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(200, 84));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 84));
+        jScrollPane1.setSize(new java.awt.Dimension(200, 84));
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setRows(5);
         descriptionTextArea.setWrapStyleWord(true);
+        descriptionTextArea.setLocation(new java.awt.Point(105, 335));
+        descriptionTextArea.setMaximumSize(new java.awt.Dimension(15, 80));
+        descriptionTextArea.setMinimumSize(new java.awt.Dimension(15, 80));
         descriptionTextArea.setName("description"); // NOI18N
+        descriptionTextArea.setPreferredSize(new java.awt.Dimension(15, 80));
+        descriptionTextArea.setSize(new java.awt.Dimension(15, 80));
         jScrollPane1.setViewportView(descriptionTextArea);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 338, -1, -1));
+
         telephoneLabel.setText("Telephone:");
+        telephoneLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        telephoneLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        telephoneLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(telephoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         priceRangeLabel.setText("Price range:");
+        priceRangeLabel.setMaximumSize(new java.awt.Dimension(80, 15));
+        priceRangeLabel.setMinimumSize(new java.awt.Dimension(80, 15));
+        priceRangeLabel.setPreferredSize(new java.awt.Dimension(80, 30));
+        add(priceRangeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 428, -1, -1));
 
+        maxPriceTextField.setMaximumSize(new java.awt.Dimension(95, 30));
+        maxPriceTextField.setMinimumSize(new java.awt.Dimension(95, 30));
         maxPriceTextField.setName("maxPrice"); // NOI18N
+        maxPriceTextField.setPreferredSize(new java.awt.Dimension(95, 30));
+        maxPriceTextField.setSize(new java.awt.Dimension(95, 30));
+        add(maxPriceTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 428, -1, 30));
 
+        minPriceTextField.setMaximumSize(new java.awt.Dimension(95, 30));
+        minPriceTextField.setMinimumSize(new java.awt.Dimension(95, 30));
         minPriceTextField.setName("minPrice"); // NOI18N
+        minPriceTextField.setPreferredSize(new java.awt.Dimension(95, 30));
+        add(minPriceTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 428, -1, 30));
 
         typeLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         typeLabel2.setText("-");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 12, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameLabel)
-                                    .addComponent(typeLabel)
-                                    .addComponent(streetLabel)
-                                    .addComponent(areaLabel)
-                                    .addComponent(cityLabel)
-                                    .addComponent(zipCodeLabel)
-                                    .addComponent(imageURLLabel)
-                                    .addComponent(telephoneLabel))
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(imageURLTextField)
-                                    .addComponent(zipCodeTextField)
-                                    .addComponent(cityTextField)
-                                    .addComponent(areaTextField)
-                                    .addComponent(streetTextField)
-                                    .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(nameTextField)
-                                    .addComponent(telephoneTextField)
-                                    .addComponent(ownerIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(ownerIDLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(descriptionLabel)
-                                    .addComponent(priceRangeLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(minPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(typeLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(maxPriceTextField))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(detailsLabel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(detailsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ownerIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ownerIDLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typeLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(streetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(streetLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(areaLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cityLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(zipCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(zipCodeLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imageURLTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageURLLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telephoneLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(maxPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(minPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(priceRangeLabel)
-                        .addComponent(typeLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        typeLabel2.setMaximumSize(new java.awt.Dimension(5, 30));
+        typeLabel2.setMinimumSize(new java.awt.Dimension(5, 30));
+        typeLabel2.setPreferredSize(new java.awt.Dimension(5, 30));
+        typeLabel2.setSize(new java.awt.Dimension(5, 30));
+        add(typeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 428, 5, 30));
     }// </editor-fold>//GEN-END:initComponents
 
 

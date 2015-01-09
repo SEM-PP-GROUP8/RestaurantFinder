@@ -90,394 +90,243 @@ public class RestaurantSchedule extends javax.swing.JPanel {
         closedBox7 = new javax.swing.JCheckBox();
         nonStopBox7 = new javax.swing.JCheckBox();
 
+        setPreferredSize(new java.awt.Dimension(310, 20));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         scheduleLabel.setText("Schedule:");
+        add(scheduleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         headerLabels.setOpaque(false);
+        headerLabels.setPreferredSize(new java.awt.Dimension(310, 20));
+        headerLabels.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayHeader.setText("Day:");
+        dayHeader.setPreferredSize(new java.awt.Dimension(70, 20));
+        headerLabels.add(dayHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
+        startHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         startHeader.setText("Starts:");
+        startHeader.setPreferredSize(new java.awt.Dimension(50, 20));
+        headerLabels.add(startHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
 
+        startHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         startHeader1.setText("Ends:");
+        startHeader1.setPreferredSize(new java.awt.Dimension(50, 20));
+        headerLabels.add(startHeader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 0, -1, -1));
 
+        closedHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         closedHeader.setText("Closed");
+        closedHeader.setPreferredSize(new java.awt.Dimension(50, 20));
+        headerLabels.add(closedHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, -1));
 
+        openHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         openHeader.setText("24/7");
+        openHeader.setPreferredSize(new java.awt.Dimension(50, 20));
+        headerLabels.add(openHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 0, -1, -1));
 
-        javax.swing.GroupLayout headerLabelsLayout = new javax.swing.GroupLayout(headerLabels);
-        headerLabels.setLayout(headerLabelsLayout);
-        headerLabelsLayout.setHorizontalGroup(
-            headerLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLabelsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(dayHeader)
-                .addGap(59, 59, 59)
-                .addComponent(startHeader)
-                .addGap(23, 23, 23)
-                .addComponent(startHeader1)
-                .addGap(20, 20, 20)
-                .addComponent(closedHeader)
-                .addGap(13, 13, 13)
-                .addComponent(openHeader))
-        );
-        headerLabelsLayout.setVerticalGroup(
-            headerLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLabelsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(headerLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dayHeader)
-                    .addComponent(startHeader)
-                    .addComponent(startHeader1)
-                    .addComponent(closedHeader)
-                    .addComponent(openHeader))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        add(headerLabels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 22, -1, -1));
 
         content.setName("scheduleContent"); // NOI18N
         content.setOpaque(false);
+        content.setPreferredSize(new java.awt.Dimension(310, 250));
+        content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         day1.setName("TheDay1"); // NOI18N
         day1.setOpaque(false);
+        day1.setPreferredSize(new java.awt.Dimension(310, 20));
+        day1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel1.setText("Monday");
+        dayLabel1.setPreferredSize(new java.awt.Dimension(70, 20));
+        day1.add(dayLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField1.setText("12:00");
         startField1.setName(""); // NOI18N
+        startField1.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField1.setSize(new java.awt.Dimension(50, 20));
+        day1.add(startField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField1.setText("20:00");
+        stopField1.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField1.setSize(new java.awt.Dimension(50, 20));
+        day1.add(stopField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day1Layout = new javax.swing.GroupLayout(day1);
-        day1.setLayout(day1Layout);
-        day1Layout.setHorizontalGroup(
-            day1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(startField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox1)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox1)
-                .addContainerGap())
-        );
-        day1Layout.setVerticalGroup(
-            day1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox1)
-                    .addComponent(closedBox1)
-                    .addGroup(day1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel1)
-                        .addComponent(startField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox1.setPreferredSize(new java.awt.Dimension(28, 20));
+        day1.add(closedBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox1.setPreferredSize(new java.awt.Dimension(28, 20));
+        day1.add(nonStopBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
 
         day2.setOpaque(false);
+        day2.setPreferredSize(new java.awt.Dimension(310, 20));
+        day2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel2.setText("Tuesday");
+        dayLabel2.setPreferredSize(new java.awt.Dimension(70, 20));
+        day2.add(dayLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField2.setText("12:00");
         startField2.setName(""); // NOI18N
+        startField2.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField2.setSize(new java.awt.Dimension(50, 20));
         startField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startField2ActionPerformed(evt);
             }
         });
+        day2.add(startField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField2.setText("20:00");
+        stopField2.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField2.setSize(new java.awt.Dimension(50, 20));
+        day2.add(stopField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day2Layout = new javax.swing.GroupLayout(day2);
-        day2.setLayout(day2Layout);
-        day2Layout.setHorizontalGroup(
-            day2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(startField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox2)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox2)
-                .addContainerGap())
-        );
-        day2Layout.setVerticalGroup(
-            day2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox2)
-                    .addComponent(closedBox2)
-                    .addGroup(day2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel2)
-                        .addComponent(startField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox2.setPreferredSize(new java.awt.Dimension(28, 20));
+        day2.add(closedBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox2.setPreferredSize(new java.awt.Dimension(28, 20));
+        day2.add(nonStopBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         day3.setOpaque(false);
+        day3.setPreferredSize(new java.awt.Dimension(310, 20));
+        day3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel3.setText("Wednesday");
+        dayLabel3.setPreferredSize(new java.awt.Dimension(70, 20));
+        day3.add(dayLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField3.setText("12:00");
         startField3.setName(""); // NOI18N
+        startField3.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField3.setSize(new java.awt.Dimension(50, 20));
+        day3.add(startField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField3.setText("20:00");
+        stopField3.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField3.setSize(new java.awt.Dimension(50, 20));
+        day3.add(stopField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day3Layout = new javax.swing.GroupLayout(day3);
-        day3.setLayout(day3Layout);
-        day3Layout.setHorizontalGroup(
-            day3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(startField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox3)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox3)
-                .addContainerGap())
-        );
-        day3Layout.setVerticalGroup(
-            day3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day3Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox3)
-                    .addComponent(closedBox3)
-                    .addGroup(day3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel3)
-                        .addComponent(startField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox3.setPreferredSize(new java.awt.Dimension(28, 20));
+        day3.add(closedBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox3.setPreferredSize(new java.awt.Dimension(28, 20));
+        day3.add(nonStopBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 74, -1, -1));
 
         day4.setOpaque(false);
+        day4.setPreferredSize(new java.awt.Dimension(310, 20));
+        day4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel4.setText("Thursday");
+        dayLabel4.setPreferredSize(new java.awt.Dimension(70, 20));
+        day4.add(dayLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField4.setText("12:00");
         startField4.setName(""); // NOI18N
+        startField4.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField4.setSize(new java.awt.Dimension(50, 20));
+        day4.add(startField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField4.setText("20:00");
+        stopField4.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField4.setSize(new java.awt.Dimension(50, 20));
+        day4.add(stopField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day4Layout = new javax.swing.GroupLayout(day4);
-        day4.setLayout(day4Layout);
-        day4Layout.setHorizontalGroup(
-            day4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(startField4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox4)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox4)
-                .addContainerGap())
-        );
-        day4Layout.setVerticalGroup(
-            day4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day4Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox4)
-                    .addComponent(closedBox4)
-                    .addGroup(day4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel4)
-                        .addComponent(startField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox4.setPreferredSize(new java.awt.Dimension(28, 20));
+        day4.add(closedBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox4.setPreferredSize(new java.awt.Dimension(28, 20));
+        day4.add(nonStopBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 108, -1, -1));
 
         day5.setOpaque(false);
+        day5.setPreferredSize(new java.awt.Dimension(310, 20));
+        day5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel5.setText("Friday");
+        dayLabel5.setPreferredSize(new java.awt.Dimension(70, 20));
+        day5.add(dayLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField5.setText("12:00");
         startField5.setName(""); // NOI18N
+        startField5.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField5.setSize(new java.awt.Dimension(50, 20));
+        day5.add(startField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField5.setText("20:00");
+        stopField5.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField5.setSize(new java.awt.Dimension(50, 20));
+        day5.add(stopField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day5Layout = new javax.swing.GroupLayout(day5);
-        day5.setLayout(day5Layout);
-        day5Layout.setHorizontalGroup(
-            day5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(startField5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox5)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox5)
-                .addContainerGap())
-        );
-        day5Layout.setVerticalGroup(
-            day5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day5Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox5)
-                    .addComponent(closedBox5)
-                    .addGroup(day5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel5)
-                        .addComponent(startField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox5.setPreferredSize(new java.awt.Dimension(28, 20));
+        day5.add(closedBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox5.setPreferredSize(new java.awt.Dimension(28, 20));
+        day5.add(nonStopBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 142, -1, -1));
 
         day6.setOpaque(false);
+        day6.setPreferredSize(new java.awt.Dimension(310, 20));
+        day6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel6.setText("Saturday");
+        dayLabel6.setPreferredSize(new java.awt.Dimension(70, 20));
+        day6.add(dayLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField6.setText("12:00");
         startField6.setName(""); // NOI18N
+        startField6.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField6.setSize(new java.awt.Dimension(50, 20));
+        day6.add(startField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField6.setText("20:00");
+        stopField6.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField6.setSize(new java.awt.Dimension(50, 20));
+        day6.add(stopField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day6Layout = new javax.swing.GroupLayout(day6);
-        day6.setLayout(day6Layout);
-        day6Layout.setHorizontalGroup(
-            day6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(startField6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox6)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox6)
-                .addContainerGap())
-        );
-        day6Layout.setVerticalGroup(
-            day6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day6Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox6)
-                    .addComponent(closedBox6)
-                    .addGroup(day6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel6)
-                        .addComponent(startField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox6.setPreferredSize(new java.awt.Dimension(28, 20));
+        day6.add(closedBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
+
+        nonStopBox6.setPreferredSize(new java.awt.Dimension(28, 20));
+        day6.add(nonStopBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
+
+        content.add(day6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 176, -1, -1));
 
         day7.setOpaque(false);
+        day7.setPreferredSize(new java.awt.Dimension(310, 20));
+        day7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayLabel7.setText("Sunday");
+        dayLabel7.setPreferredSize(new java.awt.Dimension(70, 20));
+        day7.add(dayLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, -1));
 
         startField7.setText("12:00");
         startField7.setName(""); // NOI18N
+        startField7.setPreferredSize(new java.awt.Dimension(60, 20));
+        startField7.setSize(new java.awt.Dimension(50, 20));
+        day7.add(startField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 0, -1, 20));
 
         stopField7.setText("20:00");
+        stopField7.setPreferredSize(new java.awt.Dimension(60, 20));
+        stopField7.setSize(new java.awt.Dimension(50, 20));
+        day7.add(stopField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, 20));
 
-        javax.swing.GroupLayout day7Layout = new javax.swing.GroupLayout(day7);
-        day7.setLayout(day7Layout);
-        day7Layout.setHorizontalGroup(
-            day7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(dayLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(startField7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stopField7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(closedBox7)
-                .addGap(18, 18, 18)
-                .addComponent(nonStopBox7)
-                .addContainerGap())
-        );
-        day7Layout.setVerticalGroup(
-            day7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(day7Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(day7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nonStopBox7)
-                    .addComponent(closedBox7)
-                    .addGroup(day7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dayLabel7)
-                        .addComponent(startField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(stopField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        closedBox7.setPreferredSize(new java.awt.Dimension(28, 20));
+        day7.add(closedBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 0, -1, -1));
 
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(day1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(day7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(day1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(day7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        nonStopBox7.setPreferredSize(new java.awt.Dimension(28, 20));
+        day7.add(nonStopBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scheduleLabel)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(headerLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(scheduleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(headerLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        content.add(day7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, -1, -1));
+
+        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 44, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void startField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startField2ActionPerformed
