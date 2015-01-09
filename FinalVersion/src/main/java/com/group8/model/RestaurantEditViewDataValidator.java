@@ -147,7 +147,7 @@ public class RestaurantEditViewDataValidator {
                         boolean endless = ((JCheckBox) elements[4]).isSelected();
                         
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
                         Date date;
 
                         int startMilliseconds = 0;
@@ -159,7 +159,7 @@ public class RestaurantEditViewDataValidator {
                             startMilliseconds = (int) date.getTime() / 1000;
                             date = sdf.parse("1970-01-01 " + stop);
                             System.out.println("Date for stop is: " + date.toString());
-                            stopMilliseconds = (int) date.getTime() / 1000;                                
+                            stopMilliseconds = (int) date.getTime() / 1000;                     
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
