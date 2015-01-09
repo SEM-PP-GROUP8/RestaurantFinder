@@ -165,7 +165,7 @@ public class RestaurantEditViewDataValidator {
                             e.printStackTrace();
                         }
                         
-                        System.out.println("We are about to set the madafakas");
+                        System.out.println("Day: " + i + " . Is closed? A:" + closed + " . Is Endless? A:" + endless);
                         
                         schedule.setSeconds(startMilliseconds, i, 0);
                         schedule.setSeconds(stopMilliseconds, i, 1);
