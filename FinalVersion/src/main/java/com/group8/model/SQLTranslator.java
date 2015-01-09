@@ -440,12 +440,10 @@ public abstract class SQLTranslator
             
             dayOfWeek = i;
             // Removed 3600 seconds due to timezone difference (DB timezone is GMT +1 ); It's a hack i know...
-            start.setTime(r.getSchedule().getSeconds(i, 0)*1000 );
-            stop.setTime(r.getSchedule().getSeconds(i, 1)*1000 );
+            start.setTime(r.getSchedule().getSeconds(i, 0) * 1000 );
+            stop.setTime(r.getSchedule().getSeconds(i, 1) * 1000 );
             
-            System.out.println("SQLtranslator: stop TIME object to string is: " + stop.toString());
-            
-            
+            System.out.println("SQLtranslator: stop TIME object to  string is: " + stop.toString());
             
             int closed = r.getSchedule().getClosed(dayOfWeek);
             int nonStop = r.getSchedule().getNonStop(dayOfWeek);
