@@ -179,6 +179,7 @@ public class RestaurantEditViewDataValidator {
                     try {
                         System.out.println("Starts here:");
                         newDate = sdf.parse("1970-01-01 00:00");
+                        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
                         System.out.println(newDate.getTime());
                         System.out.println(sdf.format(newDate));
                         System.out.println("Ends here");
