@@ -480,6 +480,7 @@ public class RestaurantEditController {
     public void closeView(){
         this.restaurantEditView.setVisible(false);
         mainController.queryView.loadView();
+        mainController.queryView.setVisible(true);
     }
 
     /**
