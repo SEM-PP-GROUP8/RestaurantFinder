@@ -29,6 +29,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane4 = new javax.swing.JScrollPane();
         descriptionValueExpand = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         commentTextArea = new javax.swing.JTextArea();
@@ -94,18 +95,21 @@ public class ViewRestaurant extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jScrollPane4MouseExited(evt);
+            }
+        });
+
         descriptionValueExpand.setEditable(false);
         descriptionValueExpand.setColumns(20);
         descriptionValueExpand.setLineWrap(true);
         descriptionValueExpand.setRows(5);
         descriptionValueExpand.setWrapStyleWord(true);
-        descriptionValueExpand.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        descriptionValueExpand.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                descriptionValueExpandMouseExited(evt);
-            }
-        });
-        getContentPane().add(descriptionValueExpand, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 160, 90));
+        descriptionValueExpand.setPreferredSize(new java.awt.Dimension(160, 110));
+        jScrollPane4.setViewportView(descriptionValueExpand);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 160, 110));
 
         commentTextArea.setBackground(new java.awt.Color(235, 235, 235));
         commentTextArea.setColumns(20);
@@ -468,9 +472,9 @@ public class ViewRestaurant extends javax.swing.JFrame {
         setDescriptionValueExpandVisible(true);
     }//GEN-LAST:event_descriptionValueMouseEntered
 
-    private void descriptionValueExpandMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionValueExpandMouseExited
+    private void jScrollPane4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane4MouseExited
         setDescriptionValueExpandVisible(false);
-    }//GEN-LAST:event_descriptionValueExpandMouseExited
+    }//GEN-LAST:event_jScrollPane4MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -508,6 +512,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextArea nameValue;
@@ -652,7 +657,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }
     
     public void setDescriptionValueExpandVisible(boolean visible) {
-        this.descriptionValueExpand.setVisible(visible);
+        this.jScrollPane4.setVisible(visible);
     }
     
     public void setFullReviewAreaState(Boolean state) {

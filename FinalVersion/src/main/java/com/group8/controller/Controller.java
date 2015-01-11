@@ -371,11 +371,11 @@ public class Controller implements ControllerListener
         setCanEdit(false);
         
         // Determine if the user should be allowed to add a review
-        if(Session.isUser() && canAddReview()) {
+        if(Session.isUser() && canAddReview())
             setCanAdd(true);  
-        } else {
+       
+        else
             setCanAdd(false);
-        }
         
         // Close the queryView and display the viewRestaurantView
         closeQueryView();
