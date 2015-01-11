@@ -49,7 +49,7 @@ public class DBFilterRestTest {
         int intPriceMax = 1000;
         String location = "ALL";
         String time = "0600";
-        List<Restaurant> restaurants = RestaurantDAO.fetchRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time);
+        List<Restaurant> restaurants = RestaurantDAO.fetchRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time, "");
         
         try
         {

@@ -19,7 +19,7 @@ public interface ControllerListener
 
     //Query View
     public void reloadQueryView();
-    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time);
+    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt);
 
     // Register View
     public void exitRegisterView();
