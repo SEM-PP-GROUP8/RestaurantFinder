@@ -309,9 +309,18 @@ public class Controller implements ControllerListener
         // Set the restaurant icon
         try {
             
+            int maxWidth = viewRestaurantView.getRestaurantPicture().getWidth();
+            int maxHeight = viewRestaurantView.getRestaurantPicture().getHeight();
+            
             URL url = new URL(selectedRestaurant.getImageURL());
             Image image = ImageIO.read(url);
+
+            if(image.getWidth(null) > maxWidth)
+                image = image.getScaledInstance(maxWidth, image.getHeight(null), Image.SCALE_DEFAULT);
             
+            if(image.getHeight(null) > maxHeight)
+                image = image.getScaledInstance(image.getWidth(null) ,maxHeight, Image.SCALE_DEFAULT);
+
             ImageIcon icon = new ImageIcon(image);
             viewRestaurantView.setRestaurantPicture(icon);
             
@@ -320,7 +329,17 @@ public class Controller implements ControllerListener
             viewRestaurantView.setRestaurantPicture(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/profilepicture.png")));
         
         }
-           
+        
+        try {
+            
+            viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription().substring(0, 10) + "...");  
+        
+        } catch (StringIndexOutOfBoundsException ex) {
+            
+            viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription());  
+        
+        }
+        
         // Set the UI content for the viewRestaurantView
         viewRestaurantView.setFullReviewArea("");
         viewRestaurantView.setCurrentRestaurant(selectedRestaurant);
@@ -333,7 +352,8 @@ public class Controller implements ControllerListener
         viewRestaurantView.setTypeValue(selectedRestaurant.getType().toString());
         viewRestaurantView.setZipcodeValue("" + selectedRestaurant.getZipCode());      
         viewRestaurantView.setTelephoneValue("" + selectedRestaurant.getTelephone());
-        viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription());
+        viewRestaurantView.setDescriptionValueExpand(selectedRestaurant.getDescription());
+        viewRestaurantView.setDescriptionValueExpandVisible(false);
         
         // Added by Sergiu. Fill the schedule day#value labels with data
         loadScheduleData(viewRestaurantView,selectedRestaurant);
