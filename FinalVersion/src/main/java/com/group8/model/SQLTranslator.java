@@ -38,11 +38,18 @@ public abstract class SQLTranslator
 	 * @param intPriceMax
 	 * @param location
 	 * @param time
+         * @param searchTxt
 	 * @return
 	 */
-	public static String translateFindRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time) {
-		sqlQuery = "SELECT * FROM Restaurant WHERE ";
-		if(typeOfFood.equalsIgnoreCase("All")){
+	public static String translateFindRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt) {
+		sqlQuery = "SELECT distinct * FROM Restaurant WHERE concat_ws(' ', Name, Type, Area) like '%";
+		//if(searchTxt.equals(" ")){
+                        //sqlQuery += 99999 + "%' and ";
+                //}else{
+                        sqlQuery += searchTxt + "%' and ";
+                //}
+                
+                if(typeOfFood.equalsIgnoreCase("All")){
 			// do nothing
 		}else{
 			sqlQuery += "Type='"+typeOfFood +"' AND ";
@@ -62,6 +69,7 @@ public abstract class SQLTranslator
 		
 		sqlQuery += "MinPrice>="+ intPriceMin +" AND MaxPrice<="+ intPriceMax +";";
 		
+                System.out.println ("changed: " + sqlQuery);
 		return sqlQuery;
 	}
 	

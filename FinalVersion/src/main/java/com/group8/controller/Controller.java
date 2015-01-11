@@ -124,9 +124,9 @@ public class Controller implements ControllerListener
     } 
 
     @Override
-    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time)
+    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt)
     {
-        List<Restaurant> filteredRestaurants = RestaurantDAO.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time);
+        List<Restaurant> filteredRestaurants = RestaurantDAO.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
         return filteredRestaurants;
     }
     

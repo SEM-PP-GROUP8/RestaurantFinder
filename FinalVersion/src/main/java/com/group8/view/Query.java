@@ -10,8 +10,10 @@ import javax.swing.DefaultComboBoxModel;
 import com.group8.model.Model;
 import com.group8.model.Restaurant;
 import com.group8.model.Session;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,44 +47,24 @@ public class Query extends javax.swing.JFrame
         searchButton = new javax.swing.JButton();
         searchTextField = new javax.swing.JTextField();
         searchbarLabel = new javax.swing.JLabel();
-        label_filter_to = new javax.swing.JLabel();
         locationModel = new DefaultComboBoxModel ();
         drop_filter_location = new javax.swing.JComboBox();
-        minPriceModel = new DefaultComboBoxModel();
-        drop_filter_priceRangeMin = new javax.swing.JComboBox();
         tofModel = new DefaultComboBoxModel ();
         drop_filter_typeOfFood = new javax.swing.JComboBox();
-        maxPriceModel = new DefaultComboBoxModel();
-        drop_filter_priceRangeMax = new javax.swing.JComboBox();
         timeModel = new DefaultComboBoxModel ();
         drop_filter_openingHours = new javax.swing.JComboBox();
-        menuArrow1 = new javax.swing.JLabel();
-        menuArrow2 = new javax.swing.JLabel();
-        menuArrow3 = new javax.swing.JLabel();
-        menuArrow4 = new javax.swing.JLabel();
-        menuLine1 = new javax.swing.JLabel();
-        menuLine2 = new javax.swing.JLabel();
-        menuLine3 = new javax.swing.JLabel();
-        menuLine4 = new javax.swing.JLabel();
         typeOfFoodLabel = new javax.swing.JLabel();
-        typeOfFoodButton = new javax.swing.JButton();
         prizeRangeLabel = new javax.swing.JLabel();
-        prizeRangeButton = new javax.swing.JButton();
         locationLabel = new javax.swing.JLabel();
-        locationButton = new javax.swing.JButton();
-        openAtLabel = new javax.swing.JLabel();
-        openAtButton = new javax.swing.JButton();
-        searchBox = new javax.swing.JLabel();
-        filter_and_searchBorder = new javax.swing.JLabel();
         restaurantButton = new javax.swing.JButton();
         userButton = new javax.swing.JButton();
         ownerButton = new javax.swing.JButton();
-        adminButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
-        restaurantPanel = new javax.swing.JScrollPane();
-        restaurantModel = new DefaultListModel();
-        restaurantList = new javax.swing.JList();
+        rangeSlider1 = new com.group8.view.RangeSlider();
         logoLabel = new javax.swing.JLabel();
+        openAtLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        restaurantTable = new javax.swing.JTable();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -172,11 +154,21 @@ public class Query extends javax.swing.JFrame
 
         searchTextField.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         searchTextField.setForeground(new java.awt.Color(153, 153, 153));
-        searchTextField.setText("Search");
+        searchTextField.setText("Search by name, type or area");
         searchTextField.setBorder(null);
         searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 searchTextFieldFocusGained(evt);
+            }
+        });
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyPressed(evt);
             }
         });
         getContentPane().add(searchTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 62, 320, 26));
@@ -185,12 +177,6 @@ public class Query extends javax.swing.JFrame
         searchbarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/searchbar.png"))); // NOI18N
         getContentPane().add(searchbarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, 50));
 
-        label_filter_to.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        label_filter_to.setForeground(new java.awt.Color(102, 102, 102));
-        label_filter_to.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_filter_to.setText("to");
-        getContentPane().add(label_filter_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 25, 40));
-
         drop_filter_location.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         drop_filter_location.setModel(locationModel);
         drop_filter_location.addItemListener(new java.awt.event.ItemListener() {
@@ -198,16 +184,7 @@ public class Query extends javax.swing.JFrame
                 drop_filter_locationItemStateChanged(evt);
             }
         });
-        getContentPane().add(drop_filter_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 150, 120, 40));
-
-        drop_filter_priceRangeMin.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        drop_filter_priceRangeMin.setModel(minPriceModel);
-        drop_filter_priceRangeMin.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                drop_filter_priceRangeMinItemStateChanged(evt);
-            }
-        });
-        getContentPane().add(drop_filter_priceRangeMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 120, 120, 40));
+        getContentPane().add(drop_filter_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 120, 25));
 
         drop_filter_typeOfFood.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         drop_filter_typeOfFood.setModel(tofModel);
@@ -216,16 +193,7 @@ public class Query extends javax.swing.JFrame
                 drop_filter_typeOfFoodItemStateChanged(evt);
             }
         });
-        getContentPane().add(drop_filter_typeOfFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 150, 120, 40));
-
-        drop_filter_priceRangeMax.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        drop_filter_priceRangeMax.setModel(maxPriceModel);
-        drop_filter_priceRangeMax.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                drop_filter_priceRangeMaxItemStateChanged(evt);
-            }
-        });
-        getContentPane().add(drop_filter_priceRangeMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 180, 120, 40));
+        getContentPane().add(drop_filter_typeOfFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 120, 25));
 
         drop_filter_openingHours.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         drop_filter_openingHours.setModel(timeModel);
@@ -234,177 +202,66 @@ public class Query extends javax.swing.JFrame
                 drop_filter_openingHoursItemStateChanged(evt);
             }
         });
-        getContentPane().add(drop_filter_openingHours, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 150, 120, 40));
-
-        menuArrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuarrow.png"))); // NOI18N
-        getContentPane().add(menuArrow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 100, -1, -1));
-
-        menuArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuarrow.png"))); // NOI18N
-        getContentPane().add(menuArrow2, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 135, -1, -1));
-
-        menuArrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuarrow.png"))); // NOI18N
-        getContentPane().add(menuArrow3, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 170, -1, -1));
-
-        menuArrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuarrow.png"))); // NOI18N
-        getContentPane().add(menuArrow4, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 205, -1, -1));
-
-        menuLine1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuline.png"))); // NOI18N
-        getContentPane().add(menuLine1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 1, 35));
-
-        menuLine2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuline.png"))); // NOI18N
-        getContentPane().add(menuLine2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 135, 1, 35));
-
-        menuLine3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuline.png"))); // NOI18N
-        getContentPane().add(menuLine3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 1, 35));
-
-        menuLine4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuline.png"))); // NOI18N
-        getContentPane().add(menuLine4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 205, 1, 35));
+        getContentPane().add(drop_filter_openingHours, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 120, 25));
 
         typeOfFoodLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         typeOfFoodLabel.setForeground(new java.awt.Color(102, 102, 102));
-        typeOfFoodLabel.setText("Type of food");
+        typeOfFoodLabel.setText("Cuisine type");
         typeOfFoodLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(typeOfFoodLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 100, 100, 35));
-
-        typeOfFoodButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        typeOfFoodButton.setForeground(new java.awt.Color(102, 102, 102));
-        typeOfFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png"))); // NOI18N
-        typeOfFoodButton.setToolTipText("");
-        typeOfFoodButton.setBorderPainted(false);
-        typeOfFoodButton.setContentAreaFilled(false);
-        typeOfFoodButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        typeOfFoodButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        typeOfFoodButton.setIconTextGap(0);
-        typeOfFoodButton.setMaximumSize(new java.awt.Dimension(130, 35));
-        typeOfFoodButton.setMinimumSize(new java.awt.Dimension(130, 35));
-        typeOfFoodButton.setName(""); // NOI18N
-        typeOfFoodButton.setPreferredSize(new java.awt.Dimension(130, 35));
-        typeOfFoodButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typeOfFoodButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(typeOfFoodButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 130, 35));
+        getContentPane().add(typeOfFoodLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 100, 35));
 
         prizeRangeLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         prizeRangeLabel.setForeground(new java.awt.Color(102, 102, 102));
-        prizeRangeLabel.setText("Prize range");
+        prizeRangeLabel.setText("Price range");
         prizeRangeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(prizeRangeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 135, 100, 35));
-
-        prizeRangeButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        prizeRangeButton.setForeground(new java.awt.Color(102, 102, 102));
-        prizeRangeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png"))); // NOI18N
-        prizeRangeButton.setBorderPainted(false);
-        prizeRangeButton.setContentAreaFilled(false);
-        prizeRangeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        prizeRangeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        prizeRangeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prizeRangeButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(prizeRangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 135, 130, 35));
+        getContentPane().add(prizeRangeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 100, 35));
 
         locationLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         locationLabel.setForeground(new java.awt.Color(102, 102, 102));
-        locationLabel.setText("Location");
+        locationLabel.setText("Area");
         locationLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(locationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 170, 100, 35));
-
-        locationButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        locationButton.setForeground(new java.awt.Color(102, 102, 102));
-        locationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png"))); // NOI18N
-        locationButton.setBorderPainted(false);
-        locationButton.setContentAreaFilled(false);
-        locationButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        locationButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        locationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(locationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 130, 35));
-
-        openAtLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
-        openAtLabel.setForeground(new java.awt.Color(102, 102, 102));
-        openAtLabel.setText("Open at");
-        openAtLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(openAtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 205, 100, 35));
-
-        openAtButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        openAtButton.setForeground(new java.awt.Color(102, 102, 102));
-        openAtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png"))); // NOI18N
-        openAtButton.setBorderPainted(false);
-        openAtButton.setContentAreaFilled(false);
-        openAtButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        openAtButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        openAtButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openAtButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(openAtButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 205, 130, 35));
-
-        searchBox.setBackground(new java.awt.Color(255, 255, 255));
-        searchBox.setOpaque(true);
-        getContentPane().add(searchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 400, 140));
-
-        filter_and_searchBorder.setBackground(new java.awt.Color(102, 102, 102));
-        filter_and_searchBorder.setOpaque(true);
-        getContentPane().add(filter_and_searchBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 49, 402, 192));
+        getContentPane().add(locationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 100, 35));
 
         restaurantButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         restaurantButton.setText("Restaurants");
         restaurantButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         restaurantButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         restaurantButton.setName(""); // NOI18N
-        restaurantButton.setPreferredSize(new java.awt.Dimension(120, 40));
+        restaurantButton.setPreferredSize(new java.awt.Dimension(140, 30));
         restaurantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restaurantButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(restaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 120, 40));
+        getContentPane().add(restaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, 140, 30));
 
         userButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        userButton.setText("Users");
         userButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         userButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        userButton.setLabel("My profile");
         userButton.setName(""); // NOI18N
-        userButton.setPreferredSize(new java.awt.Dimension(120, 40));
+        userButton.setPreferredSize(new java.awt.Dimension(140, 30));
         userButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(userButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 40));
+        getContentPane().add(userButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 140, 30));
 
         ownerButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        ownerButton.setText("Owners");
         ownerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ownerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ownerButton.setLabel("My profile");
+        ownerButton.setMaximumSize(new java.awt.Dimension(123, 39));
+        ownerButton.setMinimumSize(new java.awt.Dimension(123, 39));
         ownerButton.setName(""); // NOI18N
-        ownerButton.setPreferredSize(new java.awt.Dimension(120, 40));
+        ownerButton.setPreferredSize(new java.awt.Dimension(140, 30));
         ownerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ownerButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(ownerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, 40));
-
-        adminButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        adminButton.setText("Admin");
-        adminButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        adminButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        adminButton.setName(""); // NOI18N
-        adminButton.setPreferredSize(new java.awt.Dimension(120, 40));
-        adminButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(adminButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        getContentPane().add(ownerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 140, 30));
 
         viewButton.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         viewButton.setText("View");
@@ -416,18 +273,62 @@ public class Query extends javax.swing.JFrame
         });
         getContentPane().add(viewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 180, 60));
 
-        restaurantList.setModel(restaurantModel);
-        restaurantList.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        restaurantList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        restaurantList.setOpaque(false);
-        restaurantList.setPreferredSize(new java.awt.Dimension(370, 370));
-        restaurantList.setVisibleRowCount(15);
-        restaurantPanel.setViewportView(restaurantList);
-
-        getContentPane().add(restaurantPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 400, 170));
+        rangeSlider1.setMajorTickSpacing(100);
+        rangeSlider1.setMaximum(500);
+        rangeSlider1.setMinorTickSpacing(25);
+        rangeSlider1.setPaintLabels(true);
+        rangeSlider1.setPaintTicks(true);
+        rangeSlider1.setSnapToTicks(true);
+        rangeSlider1.setValue(0);
+        rangeSlider1.setOpaque(false);
+        rangeSlider1.setUpperValue(500);
+        rangeSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rangeSlider1MouseReleased(evt);
+            }
+        });
+        getContentPane().add(rangeSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 330, -1));
 
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/logo.jpg"))); // NOI18N
         getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 100, -1));
+
+        openAtLabel1.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        openAtLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        openAtLabel1.setText("Open at");
+        openAtLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(openAtLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 100, 35));
+
+        restaurantTable.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        restaurantTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Type", "Area"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        restaurantTable.setName(""); // NOI18N
+        restaurantTable.setOpaque(false);
+        restaurantNewModel = (DefaultTableModel) restaurantTable.getModel();
+        jScrollPane1.setViewportView(restaurantTable);
+        restaurantTable.getAccessibleContext().setAccessibleName("");
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 500, 130));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/retina_wood_@2X.png"))); // NOI18N
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
@@ -436,16 +337,21 @@ public class Query extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        if (controllerListener!=null && restaurantList.getSelectedIndex() >= 0) {
-            Restaurant selectedRestaurant = filteredRestaurants.get(restaurantList.getSelectedIndex());
+        /*NEW - Hampus*/
+        if (controllerListener!=null && restaurantTable.getSelectedRow()>=0)
+        {
+            Restaurant selectedRestaurant = filteredRestaurants.get(restaurantTable.getSelectedRow());
             controllerListener.viewButtonClicked(selectedRestaurant);
-        }
+        } 
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if (controllerListener!=null) {
+        /*NEW*/
+        if (controllerListener!=null)
+        {
             controllerListener.registerButtonClicked();
         }
+        /*END NEW*/
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
@@ -470,10 +376,6 @@ public class Query extends javax.swing.JFrame
         }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminButtonActionPerformed
-
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
         controllerListener.userButtonClicked();
     }//GEN-LAST:event_userButtonActionPerformed
@@ -482,41 +384,7 @@ public class Query extends javax.swing.JFrame
         controllerListener.restaurantsButtonClicked();
 
     }//GEN-LAST:event_restaurantButtonActionPerformed
-
-    private void drop_filter_priceRangeMinItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_priceRangeMinItemStateChanged
-        //Every time the dropdown filters get changed then it should modify the list.
-        //First it checks that its the actual choice event (drop downs have two events: one
-        // to deselct the currently selected and another one to select a new item) so that it
-        // does not execute twice. Then it checks its not initializing the values. Then it calls
-        // the appropriate methods.
-        if (evt.getStateChange()==1)
-        {
-            if (!dropDownInitiation)
-            {
-                restaurantModel.clear();
-                restaurantsToView();
-                populateMaxDropDown(drop_filter_priceRangeMin.getSelectedIndex());
-            }
-        }
-    }//GEN-LAST:event_drop_filter_priceRangeMinItemStateChanged
-
-    private void drop_filter_priceRangeMaxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_priceRangeMaxItemStateChanged
-        //Every time the dropdown filters get changed then it should modify the list.
-        //First it checks that its the actual choice event (drop downs have two events: one
-        // to deselct the currently selected and another one to select a new item) so that it
-        // does not execute twice. Then it checks its not initializing the values. Then it calls
-        // the appropriate methods.
-        if (evt.getStateChange()==1)
-        {    
-            if (!dropDownInitiation)
-            {
-                restaurantModel.clear();
-                restaurantsToView();
-                populateMinDropDown(drop_filter_priceRangeMax.getSelectedIndex());
-            }
-        }
-    }//GEN-LAST:event_drop_filter_priceRangeMaxItemStateChanged
-
+/**/
     private void drop_filter_locationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_locationItemStateChanged
         //Every time the dropdown filters get changed then it should modify the list.
         //First it checks that its the actual choice event (drop downs have two events: one
@@ -547,29 +415,14 @@ public class Query extends javax.swing.JFrame
         }
     }//GEN-LAST:event_drop_filter_openingHoursItemStateChanged
 
-    /*HAMPUS*/
-    private void typeOfFoodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeOfFoodButtonActionPerformed
-        menuItemHandler(1);
-    }//GEN-LAST:event_typeOfFoodButtonActionPerformed
-
-    private void prizeRangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prizeRangeButtonActionPerformed
-        menuItemHandler(2);
-    }//GEN-LAST:event_prizeRangeButtonActionPerformed
-
-    private void locationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationButtonActionPerformed
-        menuItemHandler(3);
-    }//GEN-LAST:event_locationButtonActionPerformed
-
-    private void openAtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAtButtonActionPerformed
-        menuItemHandler(4);
-    }//GEN-LAST:event_openAtButtonActionPerformed
-
+    //kevin
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        //listRestaurants();
+        restaurantsToView ();
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
         searchTextField.setText("");
+        restaurantsToView ();
     }//GEN-LAST:event_searchTextFieldFocusGained
    
     private void drop_filter_typeOfFoodItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_typeOfFoodItemStateChanged
@@ -591,51 +444,48 @@ public class Query extends javax.swing.JFrame
         controllerListener.ownerButtonClicked();
     }//GEN-LAST:event_ownerButtonActionPerformed
 
+    private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
+        if(searchTextField.getText()!=""){
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+                restaurantsToView();
+        }
+    }//GEN-LAST:event_searchTextFieldKeyPressed
+
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+
+    private void rangeSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangeSlider1MouseReleased
+         restaurantNewModel.setRowCount(0);
+         restaurantsToView();
+    }//GEN-LAST:event_rangeSlider1MouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminButton;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JComboBox drop_filter_location;
     private DefaultComboBoxModel locationModel;
     private javax.swing.JComboBox drop_filter_openingHours;
     private DefaultComboBoxModel timeModel;
-    private javax.swing.JComboBox drop_filter_priceRangeMax;
-    private DefaultComboBoxModel maxPriceModel;
-    private javax.swing.JComboBox drop_filter_priceRangeMin;
-    private DefaultComboBoxModel minPriceModel;
     private javax.swing.JComboBox drop_filter_typeOfFood;
     private DefaultComboBoxModel tofModel;
-    private javax.swing.JLabel filter_and_searchBorder;
-    private javax.swing.JLabel label_filter_to;
-    private javax.swing.JButton locationButton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JLabel menuArrow1;
-    private javax.swing.JLabel menuArrow2;
-    private javax.swing.JLabel menuArrow3;
-    private javax.swing.JLabel menuArrow4;
-    private javax.swing.JLabel menuLine1;
-    private javax.swing.JLabel menuLine2;
-    private javax.swing.JLabel menuLine3;
-    private javax.swing.JLabel menuLine4;
-    private javax.swing.JButton openAtButton;
-    private javax.swing.JLabel openAtLabel;
+    private javax.swing.JLabel openAtLabel1;
     private javax.swing.JLabel orLabel;
     private javax.swing.JButton ownerButton;
-    private javax.swing.JButton prizeRangeButton;
     private javax.swing.JLabel prizeRangeLabel;
+    private com.group8.view.RangeSlider rangeSlider1;
     private javax.swing.JButton registerButton;
     private javax.swing.JButton restaurantButton;
-    private javax.swing.JList restaurantList;
-    DefaultListModel restaurantModel;
-    private javax.swing.JScrollPane restaurantPanel;
-    private javax.swing.JLabel searchBox;
+    private javax.swing.JTable restaurantTable;
+    DefaultTableModel restaurantNewModel;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel searchbarLabel;
-    private javax.swing.JButton typeOfFoodButton;
     private javax.swing.ButtonGroup typeOfFoodGroup;
     private javax.swing.JLabel typeOfFoodLabel;
     private javax.swing.JButton userButton;
@@ -653,7 +503,7 @@ public class Query extends javax.swing.JFrame
         restaurantsToView();
     }
     
-    private void menuItemHandler (int option) 
+    /*private void menuItemHandler (int option) 
     {   
         //If any of the menu items is clicked then it tries to switch between the view in the menu.
         defaultMenuItems();
@@ -680,35 +530,26 @@ public class Query extends javax.swing.JFrame
                 openAtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem_clicked.png")));
                 menuArrow4.setVisible(true);
                 drop_filter_openingHours.setVisible(true);
-                /*NEW*/
+                
                 drop_filter_openingHours.setSelectedIndex(Model.setCurrentOpeningHour());
                 break;
         }
-    }
+    }*/
+
 
     private void defaultMenuItems ()
     {
-        //Everything is like when the window opened in the menu items.
-        typeOfFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png")));
-        menuArrow1.setVisible(false);
-        drop_filter_typeOfFood.setVisible(false);
-        prizeRangeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png")));
-        menuArrow2.setVisible(false);
-        drop_filter_priceRangeMin.setVisible(false);
-        drop_filter_priceRangeMax.setVisible(false);
-        label_filter_to.setVisible(false); 
-        locationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png")));
-        menuArrow3.setVisible(false);
-        drop_filter_location.setVisible(false);
-        openAtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem.png")));
-        menuArrow4.setVisible(false);
-        drop_filter_openingHours.setVisible(false);
+        drop_filter_typeOfFood.setVisible(true);
+        //drop_filter_priceRangeMin.setVisible(true);
+        //drop_filter_priceRangeMax.setVisible(true);
+        //label_filter_to.setVisible(true); 
+        drop_filter_location.setVisible(true);
+        drop_filter_openingHours.setVisible(true);
     }
     
     private void populateSessionButtons ()
     {
         //Populates the buttons according to the right session.
-        adminButton.setVisible(false);
         ownerButton.setVisible(false);
         userButton.setVisible(false);
         restaurantButton.setVisible(false);             
@@ -719,7 +560,6 @@ public class Query extends javax.swing.JFrame
         switch (Session.getType())
         {
             case "Admins":
-                adminButton.setVisible(true);
                 ownerButton.setVisible(true);
                 userButton.setVisible(true);
                 restaurantButton.setVisible(true);
@@ -771,12 +611,13 @@ public class Query extends javax.swing.JFrame
             timeModel.addElement(Model.timeArray[x]);
         }
         drop_filter_openingHours.setSelectedIndex(0);
+        dropDownInitiation = false;
         
-        populateMinDropDown (0);
-        dropDownInitiation = true;
-        populateMaxDropDown (0);
+        //populateMinDropDown (0);
+        //dropDownInitiation = true;
+        //populateMaxDropDown (0);
     }
-    
+    /*
     private void populateMinDropDown (int indexChosen)
     //Populates the minPrice dropdown depending on the chosen max.
     {
@@ -820,29 +661,27 @@ public class Query extends javax.swing.JFrame
         drop_filter_priceRangeMax.setSelectedIndex(currentIndex);
         dropDownInitiation = false;
     }
+    */
     
     private void loadRestaurantList ()
     {
         //Loads the appropriate restaurant list into the variable.
         String typeOfFood = drop_filter_typeOfFood.getSelectedItem().toString();
-        String priceMin = drop_filter_priceRangeMin.getSelectedItem().toString();
-        String priceMax = drop_filter_priceRangeMax.getSelectedItem().toString();
+        String priceMin = "" + rangeSlider1.getValue();
+        String priceMax = "" + rangeSlider1.getUpperValue();
         String location = drop_filter_location.getSelectedItem().toString();
         String time = drop_filter_openingHours.getSelectedItem().toString();
-        int intPriceMin = 0;
-        int intPriceMax = 1000;
-        try
-        {
-            intPriceMin = Integer.parseInt(priceMin);
-            intPriceMax = Integer.parseInt(priceMax);
-        }
-        catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Problem with the PriceRange!", "Program error", JOptionPane.ERROR_MESSAGE);
-        }
-        filteredRestaurants = controllerListener.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time);
+        String searchTxt = searchTextField.getText().trim();
+        if (searchTxt.equals("Search by name, type or area"))
+                searchTxt = "";
+        System.out.println ("SearchTxt = " + searchTxt);
+        
+        int intPriceMin = Integer.parseInt(priceMin);
+        int intPriceMax = Integer.parseInt(priceMax);
+        
+        filteredRestaurants = controllerListener.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
     }
-    
+    /*
     private void populateRestaurantList ()
     {
         //populates the restaurant list with the list in the variable.
@@ -865,12 +704,36 @@ public class Query extends javax.swing.JFrame
             restaurantModel.addElement("No Matches.");
         }
     }
+    */
+    private void populateRestaurantTable()
+    {
+        //populates the restaurant table with the list in the variable
+        try
+        {
+            restaurantNewModel.setRowCount(0);
+            for (Restaurant current : filteredRestaurants)  
+            {
+                String restaurant = current.getName();
+                String area = current.getArea();
+                String type = current.getType().toString();
+                restaurantNewModel.addRow(new Object[]{restaurant, type, area});
+            }
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (filteredRestaurants.isEmpty())
+        {
+            restaurantNewModel.addRow(new Object[]{"No","Restaurant", "Matches."});
+        }
+    }
     
     public void restaurantsToView ()
     {
         //Loads the restaurants to view.
         loadRestaurantList();
-        populateRestaurantList();
+        populateRestaurantTable();
     }
     
     public void setControllerListener(ControllerListener controllerListener) {
