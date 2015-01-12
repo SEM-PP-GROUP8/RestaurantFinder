@@ -63,7 +63,7 @@ public class Controller implements ControllerListener
     // Query Related Controls
     public void openQueryView ()
     {
-        queryView.restaurantsToView();
+        queryView.reloadView();
         /*NEW*/
         queryView.setLocationRelativeTo(null);
         queryView.setVisible(true);
@@ -120,13 +120,13 @@ public class Controller implements ControllerListener
     {
         /*NEW*/
         queryView.setLocationRelativeTo(null);
-        queryView.loadView();
+        queryView.reloadView();
     } 
 
     @Override
-    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt)
+    public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time,String dayName, String searchTxt)
     {
-        List<Restaurant> filteredRestaurants = RestaurantDAO.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
+        List<Restaurant> filteredRestaurants = RestaurantDAO.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, dayName, searchTxt);
         return filteredRestaurants;
     }
     
@@ -568,6 +568,13 @@ public class Controller implements ControllerListener
             
             scheduleValueLabels[i].setText(output);
         }        
+    }
+
+    @Override
+    public void initiliazeQueryView() {
+        queryView.loadView();
+        queryView.setLocationRelativeTo(null);
+        queryView.setVisible(true);
     }
     
 }

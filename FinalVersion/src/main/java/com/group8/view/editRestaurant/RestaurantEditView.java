@@ -64,7 +64,7 @@ public class RestaurantEditView extends javax.swing.JFrame {
         getContentPane().add(restaurantSchedule1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 310, -1));
         getContentPane().add(restaurantDetails2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
-        returnButton.setText("Close");
+        returnButton.setText("<- Back");
         returnButton.setPreferredSize(new java.awt.Dimension(100, 40));
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
