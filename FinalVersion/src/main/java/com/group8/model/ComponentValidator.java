@@ -33,6 +33,8 @@ import javax.swing.border.Border;
 public class ComponentValidator {
 
     private String error = "";
+    private final String extendedTimeLimit = "08:00";
+    
 
     private boolean valid = true;
     private String userInputValue = "";
@@ -99,10 +101,19 @@ public class ComponentValidator {
 
                         try {
                         date = sdf.parse("1970-01-01 " + start);
-                        int startSeconds = (int) date.getTime();
+                        int startSeconds = (int) date.getTime() / 1000;
                         date = sdf.parse("1970-01-01 " + stop);
-                        int stopSeconds = (int) date.getTime();
+                        int stopSeconds = (int) date.getTime() / 1000;
+                        
+                        
+                        
+                        date = sdf.parse("1970-01-01 " + extendedTimeLimit);
+                        int extendedSecondsLimit = (int) date.getTime() / 1000;
 
+                        if (startSeconds > stopSeconds && startSeconds > extendedSecondsLimit ){
+                            error = "You have extended the day over to the next one and crossed the limit. Stop must be lower than " + extendedTimeLimit;
+                        }
+                        
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

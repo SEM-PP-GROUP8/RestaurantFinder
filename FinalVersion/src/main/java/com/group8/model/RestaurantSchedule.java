@@ -1,5 +1,8 @@
 package com.group8.model;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class RestaurantSchedule {
     
@@ -80,5 +83,65 @@ public class RestaurantSchedule {
         }
         
         return output;
+    }
+
+    int parseDayStringToInt(String dayOfWeek) {
+        
+        for(int i = 0; i < dayOfWeekString.length ; i++){
+            if(dayOfWeekString[i].equalsIgnoreCase(dayOfWeek))
+                return i;
+        }
+        
+        return -1;
+    }
+
+    int parseTimeStringToSeconds(String time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date;
+
+        int seconds = -1;
+        
+        try {
+            date = sdf.parse("1970-01-01 " + time);
+            seconds = (int) date.getTime() / 1000;
+        } catch (Exception e) {
+            System.out.println("At this moment, he knew, he'd fucked up. parseTimeStringToSeconds(String time) Parsing failed");
+        }
+        
+        return seconds; 
+    }
+
+    boolean isOpen(int day, int seconds) {
+        System.out.println("The day is " + day + " and the seconds are: " + seconds + ". Returning flase by default.");
+        return false;
+        
+        /*
+        if(isEndless(day))
+            return true;
+        
+        if(isPreviousDayExtending(day))
+            // Verifica daca este intre 00:00 si STOPUL din ziua prvious
+            
+        if(isClosed(day))
+            return false;
+        
+        int start = getSeconds(day, 0);
+        int stop = getSeconds(day, 1);
+        
+        if(seconds > start && seconds < stop)
+            return true;
+        else
+            return false;
+        */
+    }
+    
+    private boolean isPreviousDayExtending(int currentDay){
+        
+        currentDay = currentDay == 0 ? dayOfWeekString.length - 1 : currentDay - 1;
+        
+        int start = getSeconds(currentDay, 0);
+        int stop = getSeconds(currentDay, 1);
+        return (start > stop);
     }
 }

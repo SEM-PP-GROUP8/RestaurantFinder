@@ -22,12 +22,15 @@ public abstract class RestaurantDAO
     //                  ***************************
     
     // Modified by Sergiu
-    public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt)
+    public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location, String time, String dayOfWeek, String searchTxt)
     {
         String sql = SQLTranslator.translateFindRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
         ResultSet rs = DBHandler.query( sql);
         List<Restaurant> restaurants = RsToRL(rs);
         DBHandler.terminateDB();
+        
+        List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayOfWeek);
+        
         return restaurants;
     }
 
@@ -332,4 +335,22 @@ public abstract class RestaurantDAO
         }
     }
 
+    private static List<Restaurant> filterRestaurantsByTimeDay(List<Restaurant> restaurants, String time, String dayOfWeek) {
+        
+        List<Restaurant> filteredRestaurants = new ArrayList<Restaurant>();
+        
+        for(Restaurant r : restaurants ){
+            if(isRestaurantOpen(r,time,dayOfWeek))
+                filteredRestaurants.add(r);
+        }
+        
+        return filteredRestaurants;
+    }
+
+    private static boolean isRestaurantOpen(Restaurant r, String time, String dayOfWeek) {
+        int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
+        
+        int seconds = r.getSchedule().parseTimeStringToSeconds(time);
+        return r.getSchedule().isOpen(day,seconds);
+    }
 }
