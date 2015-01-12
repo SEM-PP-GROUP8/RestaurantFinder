@@ -142,29 +142,30 @@ public class RestaurantSchedule {
         if(seconds == -1){
             if(!isClosed(day)){
                 System.out.println("Case 4");
-                return true;
+                return true; // True cus the day is not closed
             }
             else if(isPreviousDayClosed(day)){
                 System.out.println("Case 5");
-                return false;
+                return false; // False if the day and previous day are both closed
             }
             else if (isPreviousDayExtending(day)){
                 System.out.println("Case 6");
-                return true;
+                return true; // True if the day is closed but the previous day is extending
             }
             else{
                 System.out.println("Case 7");
-                return false;
+                return false; // Just false
             }
                 
         }
         
+        // If we pass this point, it means we have a positive value for day and seconds
+        
         if(isEndless(day)){
             System.out.println("Case 8");
-            return true;
+            return true; // If it's non stop then it's open all day
         }
             
-        
         // Check if we are in extending period (between 00:00 and previous day stop)
         if(isPreviousDayExtending(day)){
             int previousDay = day == 0 ? dayOfWeekString.length - 1 : day - 1;
@@ -174,7 +175,6 @@ public class RestaurantSchedule {
                 System.out.println("Case 9");
                 return true;
             }
-                
         }
 
         if(isClosed(day)){
