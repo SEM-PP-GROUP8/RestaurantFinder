@@ -96,6 +96,7 @@ public class RestaurantSchedule {
     }
 
     int parseTimeStringToSeconds(String time) {
+        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date;
@@ -108,7 +109,7 @@ public class RestaurantSchedule {
             date = sdf.parse("1970-01-01 " + time);
             seconds = (int) date.getTime() / 1000;
         } catch (Exception e) {
-            System.out.println("At this moment, he knew, he'd fucked up. parseTimeStringToSeconds(String time) Parsing failed");
+            return -1;
         }
         
         return seconds; 
@@ -116,34 +117,96 @@ public class RestaurantSchedule {
 
     boolean isOpen(int day, int seconds) {
         System.out.println("The day is " + day + " and the seconds are: " + seconds + ". Returning flase by default.");
-        return false;
         
-        /*
-        if(isEndless(day))
+        // If both are any return true
+        if(day == seconds && day == -1){
+            System.out.println("Case 1");
             return true;
-        
-        if(isPreviousDayExtending(day))
-            // Verifica daca este intre 00:00 si STOPUL din ziua prvious
+        }
             
-        if(isClosed(day))
+        
+        // If day is any, we check all days.
+        if(day == -1){
+            for(int i = 0; i < 7 ; i++){
+                if(isOpen(i, seconds)){
+                    System.out.println("Case 2");
+                    return true;
+                }
+                    
+            }
+            System.out.println("Case 3");
+            return false; // None of the days are open at that time
+        }
+        
+        // Day is selected to specific value, but time is Any. So if it's not closed, then it's open. If it's closed, see if previous day is extending and it's not closed ;)
+        if(seconds == -1){
+            if(!isClosed(day)){
+                System.out.println("Case 4");
+                return true;
+            }
+            else if(isPreviousDayClosed(day)){
+                System.out.println("Case 5");
+                return false;
+            }
+            else if (isPreviousDayExtending(day)){
+                System.out.println("Case 6");
+                return true;
+            }
+            else{
+                System.out.println("Case 7");
+                return false;
+            }
+                
+        }
+        
+        if(isEndless(day)){
+            System.out.println("Case 8");
+            return true;
+        }
+            
+        
+        // Check if we are in extending period (between 00:00 and previous day stop)
+        if(isPreviousDayExtending(day)){
+            int previousDay = day == 0 ? dayOfWeekString.length - 1 : day - 1;
+            int previousDayStop = getSeconds(previousDay, 1);
+            
+            if(seconds < previousDayStop){
+                System.out.println("Case 9");
+                return true;
+            }
+                
+        }
+
+        if(isClosed(day)){
+            System.out.println("Case 9");
             return false;
+        }
         
         int start = getSeconds(day, 0);
         int stop = getSeconds(day, 1);
         
-        if(seconds > start && seconds < stop)
+        if(seconds > start && seconds < stop){
+            System.out.println("Case 10");
             return true;
-        else
+        }
+        else{
+            System.out.println("Case 11");
             return false;
-        */
+        }
+            
     }
     
     private boolean isPreviousDayExtending(int currentDay){
         
-        currentDay = currentDay == 0 ? dayOfWeekString.length - 1 : currentDay - 1;
+        int previousDay = currentDay == 0 ? dayOfWeekString.length - 1 : currentDay - 1;
         
-        int start = getSeconds(currentDay, 0);
-        int stop = getSeconds(currentDay, 1);
+        int start = getSeconds(previousDay, 0);
+        int stop = getSeconds(previousDay, 1);
         return (start > stop);
+    }
+
+    private boolean isPreviousDayClosed(int currentDay) {
+        int previousDay = currentDay == 0 ? dayOfWeekString.length - 1 : currentDay - 1;
+        return isClosed(previousDay);
     }
 }
