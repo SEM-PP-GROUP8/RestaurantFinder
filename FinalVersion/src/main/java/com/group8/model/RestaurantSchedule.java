@@ -102,6 +102,8 @@ public class RestaurantSchedule {
 
         int seconds = -1;
         
+        System.out.println("The time string is" + time);
+        
         try {
             date = sdf.parse("1970-01-01 " + time);
             seconds = (int) date.getTime() / 1000;
