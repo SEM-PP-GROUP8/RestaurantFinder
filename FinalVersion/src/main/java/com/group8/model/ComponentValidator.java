@@ -113,6 +113,7 @@ public class ComponentValidator {
                             System.out.println("extendedSecondsLimit is " + extendedSecondsLimit);
                         
                         if (startSeconds > stopSeconds && startSeconds > extendedSecondsLimit ){
+                            highlightComponent(((JTextField) elements[2]));
                             error = "You have extended the day over to the next one and crossed the limit. Stop must be lower than " + extendedTimeLimit;
                         }
                         
