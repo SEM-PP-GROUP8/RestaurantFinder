@@ -109,7 +109,9 @@ public class ComponentValidator {
                         
                         date = sdf.parse("1970-01-01 " + extendedTimeLimit);
                         int extendedSecondsLimit = (int) date.getTime() / 1000;
-
+                        
+                            System.out.println("extendedSecondsLimit is " + extendedSecondsLimit);
+                        
                         if (startSeconds > stopSeconds && startSeconds > extendedSecondsLimit ){
                             error = "You have extended the day over to the next one and crossed the limit. Stop must be lower than " + extendedTimeLimit;
                         }
