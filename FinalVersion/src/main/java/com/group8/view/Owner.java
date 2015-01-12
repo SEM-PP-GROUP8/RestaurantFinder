@@ -194,7 +194,7 @@ public class Owner extends javax.swing.JFrame
         });
         getContentPane().add(savePassButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 80, -1));
 
-        backButton.setText("Back");
+        backButton.setText("<- Back");
         backButton.setPreferredSize(new java.awt.Dimension(100, 40));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

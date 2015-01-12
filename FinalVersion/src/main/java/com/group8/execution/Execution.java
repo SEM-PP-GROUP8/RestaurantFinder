@@ -25,7 +25,6 @@ public abstract class Execution
         /*NEW - Hampus*/
         controller.viewRestaurantView.setControllerListener(controller);
         
-        controller.reloadQueryView();
-        controller.openQueryView();
+        controller.initiliazeQueryView();
     }
 }

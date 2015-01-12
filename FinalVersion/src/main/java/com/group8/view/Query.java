@@ -53,9 +53,12 @@ public class Query extends javax.swing.JFrame
         drop_filter_typeOfFood = new javax.swing.JComboBox();
         timeModel = new DefaultComboBoxModel ();
         drop_filter_openingHours = new javax.swing.JComboBox();
+        drop_filter_dayOfWeek = new javax.swing.JComboBox();
         typeOfFoodLabel = new javax.swing.JLabel();
         prizeRangeLabel = new javax.swing.JLabel();
         locationLabel = new javax.swing.JLabel();
+        openAtTimeLabel = new javax.swing.JLabel();
+        openAtDayLabel = new javax.swing.JLabel();
         restaurantButton = new javax.swing.JButton();
         userButton = new javax.swing.JButton();
         ownerButton = new javax.swing.JButton();
@@ -197,12 +200,23 @@ public class Query extends javax.swing.JFrame
 
         drop_filter_openingHours.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         drop_filter_openingHours.setModel(timeModel);
+        drop_filter_openingHours.setPreferredSize(new java.awt.Dimension(120, 25));
         drop_filter_openingHours.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 drop_filter_openingHoursItemStateChanged(evt);
             }
         });
-        getContentPane().add(drop_filter_openingHours, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 120, 25));
+        getContentPane().add(drop_filter_openingHours, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 175, 120, 25));
+
+        drop_filter_dayOfWeek.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        drop_filter_dayOfWeek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Any", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" }));
+        drop_filter_dayOfWeek.setPreferredSize(new java.awt.Dimension(120, 25));
+        drop_filter_dayOfWeek.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                drop_filter_dayOfWeekItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(drop_filter_dayOfWeek, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 175, 120, 25));
 
         typeOfFoodLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         typeOfFoodLabel.setForeground(new java.awt.Color(102, 102, 102));
@@ -221,6 +235,22 @@ public class Query extends javax.swing.JFrame
         locationLabel.setText("Area");
         locationLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(locationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 100, 35));
+
+        openAtTimeLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        openAtTimeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        openAtTimeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        openAtTimeLabel.setText("Time");
+        openAtTimeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        openAtTimeLabel.setPreferredSize(new java.awt.Dimension(120, 25));
+        getContentPane().add(openAtTimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, -1, -1));
+
+        openAtDayLabel.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        openAtDayLabel.setForeground(new java.awt.Color(102, 102, 102));
+        openAtDayLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        openAtDayLabel.setText("Weekday");
+        openAtDayLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        openAtDayLabel.setPreferredSize(new java.awt.Dimension(120, 25));
+        getContentPane().add(openAtDayLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
         restaurantButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         restaurantButton.setText("Restaurants");
@@ -246,7 +276,7 @@ public class Query extends javax.swing.JFrame
                 userButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(userButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 140, 30));
+        getContentPane().add(userButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 140, 30));
 
         ownerButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         ownerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -261,7 +291,7 @@ public class Query extends javax.swing.JFrame
                 ownerButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(ownerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 140, 30));
+        getContentPane().add(ownerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 140, 30));
 
         viewButton.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         viewButton.setText("View");
@@ -460,9 +490,25 @@ public class Query extends javax.swing.JFrame
          restaurantsToView();
     }//GEN-LAST:event_rangeSlider1MouseReleased
 
+    private void drop_filter_dayOfWeekItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_dayOfWeekItemStateChanged
+        //Every time the dropdown filters get changed then it should modify the list.
+        //First it checks that its the actual choice event (drop downs have two events: one
+        // to deselct the currently selected and another one to select a new item) so that it
+        // does not execute twice. Then it checks its not initializing the values. Then it calls
+        // the appropriate methods.
+        if (evt.getStateChange()==1)
+        {
+            if (!dropDownInitiation)
+            {
+                restaurantsToView();
+            }
+        }
+    }//GEN-LAST:event_drop_filter_dayOfWeekItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JComboBox drop_filter_dayOfWeek;
     private javax.swing.JComboBox drop_filter_location;
     private DefaultComboBoxModel locationModel;
     private javax.swing.JComboBox drop_filter_openingHours;
@@ -474,7 +520,9 @@ public class Query extends javax.swing.JFrame
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JLabel openAtDayLabel;
     private javax.swing.JLabel openAtLabel1;
+    private javax.swing.JLabel openAtTimeLabel;
     private javax.swing.JLabel orLabel;
     private javax.swing.JButton ownerButton;
     private javax.swing.JLabel prizeRangeLabel;
@@ -496,10 +544,16 @@ public class Query extends javax.swing.JFrame
     public void loadView ()
     {
         //Loads the view with all the appropriate buttons and the appropriate menu and the restaurants.
+        dropDownInitiation = true;
         defaultMenuItems();
         populateSessionButtons();
-        dropDownInitiation = true;
         populateDropDowns();
+        restaurantsToView();
+    }
+    
+    public void reloadView()
+    {
+        populateSessionButtons();
         restaurantsToView();
     }
     
@@ -671,15 +725,17 @@ public class Query extends javax.swing.JFrame
         String priceMax = "" + rangeSlider1.getUpperValue();
         String location = drop_filter_location.getSelectedItem().toString();
         String time = drop_filter_openingHours.getSelectedItem().toString();
+        String dayName = drop_filter_dayOfWeek.getSelectedItem().toString();
         String searchTxt = searchTextField.getText().trim();
         if (searchTxt.equals("Search by name, type or area"))
                 searchTxt = "";
-        System.out.println ("SearchTxt = " + searchTxt);
         
         int intPriceMin = Integer.parseInt(priceMin);
         int intPriceMax = Integer.parseInt(priceMax);
         
-        filteredRestaurants = controllerListener.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
+        System.out.println ("so far printed: " + dayName);
+        
+        filteredRestaurants = controllerListener.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, dayName, searchTxt);
     }
     /*
     private void populateRestaurantList ()

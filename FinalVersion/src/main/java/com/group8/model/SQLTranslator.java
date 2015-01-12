@@ -49,13 +49,13 @@ public abstract class SQLTranslator
                         sqlQuery += searchTxt + "%' and ";
                 //}
                 
-                if(typeOfFood.equalsIgnoreCase("All")){
+                if(typeOfFood.equalsIgnoreCase("Any")){
 			// do nothing
 		}else{
 			sqlQuery += "Type='"+typeOfFood +"' AND ";
 		}
 		
-		if(location.equalsIgnoreCase("ALL")){
+		if(location.equalsIgnoreCase("Any")){
 			// do nothing
 		}else{
 			sqlQuery += "Area='"+location +"' AND ";

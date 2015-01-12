@@ -22,7 +22,7 @@ public abstract class RestaurantDAO
     //                  ***************************
     
     // Modified by Sergiu
-    public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String searchTxt)
+    public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String dayName, String searchTxt)
     {
         String sql = SQLTranslator.translateFindRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
         ResultSet rs = DBHandler.query( sql);
