@@ -116,7 +116,7 @@ public class RestaurantSchedule {
     }
 
     boolean isOpen(int day, int seconds) {
-        System.out.println("The day is " + day + " and the seconds are: " + seconds + ". Returning flase by default.");
+        System.out.println("The day is " + day + " and the seconds are: " + seconds);
         
         // If both are any return true
         if(day == seconds && day == -1){
@@ -172,7 +172,7 @@ public class RestaurantSchedule {
             int previousDayStop = getSeconds(previousDay, 1);
             
             if(seconds < previousDayStop){
-                System.out.println("Case 9");
+                System.out.println("Case 666");
                 return true;
             }
         }
@@ -185,15 +185,14 @@ public class RestaurantSchedule {
         int start = getSeconds(day, 0);
         int stop = getSeconds(day, 1);
         
-        if(seconds > start && seconds < stop){
-            System.out.println("Case 10");
+        if(seconds >= start && seconds < stop){
+            System.out.println("Case 10. TRUE. seconds is " + seconds + " start is " + start + " stop is " + stop );
             return true;
         }
-        else{
-            System.out.println("Case 11");
+        else {
+            System.out.println("Case 11. FALSE. seconds is " + seconds + " start is " + start + " stop is " + stop );
             return false;
         }
-            
     }
     
     private boolean isPreviousDayExtending(int currentDay){

@@ -30,9 +30,10 @@ public abstract class RestaurantDAO
         List<Restaurant> restaurants = RsToRL(rs);
         //DBHandler.terminateDB();
         
+        System.out.println("I am about to filter out the restaurants by the day and time filters applied");
         List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayName);
         
-        return restaurants;
+        return filteredRestaurants;
     }
 
     // Modified by Sergiu
@@ -349,10 +350,9 @@ public abstract class RestaurantDAO
     }
 
     private static boolean isRestaurantOpen(Restaurant r, String time, String dayOfWeek) {
-        /*int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
-        
+        int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
         int seconds = r.getSchedule().parseTimeStringToSeconds(time);
-        return r.getSchedule().isOpen(day,seconds);*/
-        return true;
+        System.out.println("Checking restaurant" + r.getName() + " if is open:");
+        return r.getSchedule().isOpen(day,seconds);
     }
 }

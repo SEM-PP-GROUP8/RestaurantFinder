@@ -183,7 +183,6 @@ public class RestaurantEditController {
                         model.addElement(r);
                 }
             }
-            
             restaurantEditView.getRestaurantSearchableList().getRestaurantList().setModel(model);
         }
         else { // it already has a model, so let's refresh it. Remove all items and add them again
