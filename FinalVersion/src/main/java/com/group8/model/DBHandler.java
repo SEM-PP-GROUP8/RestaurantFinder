@@ -38,6 +38,7 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        terminateDB();
         return false;
     }
 
@@ -54,7 +55,7 @@ public abstract class DBHandler
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        DBHandler.terminateDB();
+        terminateDB();
         return id;
     }
     
@@ -82,6 +83,7 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        terminateDB();
         return false;
         
     }
@@ -221,7 +223,7 @@ public abstract class DBHandler
             ex.printStackTrace();
         
         }
-        
+        terminateDB();
         return userName;
         
     }
