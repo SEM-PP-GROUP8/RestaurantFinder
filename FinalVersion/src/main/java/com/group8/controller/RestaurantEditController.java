@@ -172,7 +172,8 @@ public class RestaurantEditController {
         if (restaurantEditView.getRestaurantSearchableList().getRestaurantList().getModel().getSize() == 0){
 
             model = new DefaultListModel();
-                
+            if(temporaryRestaurant != null)
+                model.addElement(temporaryRestaurant);
 
             if(existingRestaurants != null){
                 for(Restaurant r : existingRestaurants){
@@ -181,10 +182,6 @@ public class RestaurantEditController {
                     else if(r.getName().toLowerCase().contains(listSearchKey.toLowerCase()))
                         model.addElement(r);
                 }
-            }
-
-            if(temporaryRestaurant != null){
-                model.addElement(temporaryRestaurant);
             }
             
             restaurantEditView.getRestaurantSearchableList().getRestaurantList().setModel(model);
@@ -195,6 +192,8 @@ public class RestaurantEditController {
             model.removeAllElements();
             // Lets start adding fresh ones:
             // Add the temporary one first!
+            if(temporaryRestaurant != null)
+                model.addElement(temporaryRestaurant);
             
             // Now let's add the others and keep track of the search key
             for(Restaurant r : existingRestaurants){
@@ -203,12 +202,8 @@ public class RestaurantEditController {
                 else if(r.getName().toLowerCase().contains(listSearchKey.toLowerCase()))
                     model.addElement(r);
             }
-            
-            if(temporaryRestaurant != null){
-                model.addElement(temporaryRestaurant);
-            }
             // Apparently when don't have to re-ad the model, it just syncs by itself.
-
+            
         }
     }
     
