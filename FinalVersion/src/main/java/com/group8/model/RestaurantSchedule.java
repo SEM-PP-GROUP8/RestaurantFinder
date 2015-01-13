@@ -116,7 +116,7 @@ public class RestaurantSchedule {
     }
 
     boolean isOpen(int day, int seconds) {
-        System.out.println("The day is " + day + " and the seconds are: " + seconds + ". Returning flase by default.");
+        System.out.println("The day is " + day + " and the seconds are: " + seconds);
         
         // If both are any return true
         if(day == seconds && day == -1){

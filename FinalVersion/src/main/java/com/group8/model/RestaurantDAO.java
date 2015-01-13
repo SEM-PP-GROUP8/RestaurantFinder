@@ -30,9 +30,10 @@ public abstract class RestaurantDAO
         List<Restaurant> restaurants = RsToRL(rs);
         //DBHandler.terminateDB();
         
+        System.out.println("I am about to filter out the restaurants by the day and time filters applied");
         List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayName);
         
-        return restaurants;
+        return filteredRestaurants;
     }
 
     // Modified by Sergiu
