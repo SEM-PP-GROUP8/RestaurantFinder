@@ -28,7 +28,7 @@ public abstract class RestaurantDAO
         String sql = SQLTranslator.translateFindRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
         ResultSet rs = DBHandler.query( sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         
         List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayName);
         
@@ -41,7 +41,7 @@ public abstract class RestaurantDAO
         String sql = SQLTranslator.translateAllRestaurants();
         ResultSet rs = DBHandler.query(sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         return restaurants;
     }
 
@@ -72,7 +72,7 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         
         // 
         if(savedID == -1)
@@ -99,7 +99,7 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        DBHandler.terminateDB();
+       // DBHandler.terminateDB();
         return false;
     }
     
@@ -126,7 +126,7 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         
         return (count != 0);
     }
@@ -137,7 +137,7 @@ public abstract class RestaurantDAO
         String sql = SQLTranslator.translateFindRestaurantByLogin(UserId);
         ResultSet rs = DBHandler.query(sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         return restaurants;
     }
     
@@ -218,7 +218,7 @@ public abstract class RestaurantDAO
             return null;
         }
 
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
 
         return schedule;
     }
@@ -262,7 +262,7 @@ public abstract class RestaurantDAO
             }
         }
 
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
 
         return restaurants;
     }
@@ -288,7 +288,7 @@ public abstract class RestaurantDAO
             e.printStackTrace();
         }
         
-        DBHandler.terminateDB();
+       // DBHandler.terminateDB();
         
         return restaurantID;
     }

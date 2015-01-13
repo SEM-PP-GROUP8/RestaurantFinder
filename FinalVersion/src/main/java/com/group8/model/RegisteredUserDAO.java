@@ -18,7 +18,7 @@ public abstract class RegisteredUserDAO
         rs = DBHandler.query( sql);
 
         RegisteredUser currentUser = RsToRu(rs);
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         return currentUser;
     }
 

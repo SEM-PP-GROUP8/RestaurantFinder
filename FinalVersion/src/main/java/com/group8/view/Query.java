@@ -5,6 +5,7 @@
  */
 package com.group8.view;
 import com.group8.controller.ControllerListener;
+import com.group8.model.DBHandler;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import com.group8.model.Model;
@@ -74,6 +75,11 @@ public class Query extends javax.swing.JFrame
         setTitle("Welcome to RestSearch");
         setBounds(new java.awt.Rectangle(200, 50, 800, 620));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -504,6 +510,10 @@ public class Query extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_drop_filter_dayOfWeekItemStateChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        DBHandler.terminateDB();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

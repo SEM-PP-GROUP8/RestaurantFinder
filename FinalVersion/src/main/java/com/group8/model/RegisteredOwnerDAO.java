@@ -19,7 +19,7 @@ public class RegisteredOwnerDAO
         rs = DBHandler.query( sql);
 
         RegisteredOwner currentOwner = RsToRo (rs);
-        DBHandler.terminateDB();
+        //DBHandler.terminateDB();
         return currentOwner;
     }
 

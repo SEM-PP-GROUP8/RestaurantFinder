@@ -54,6 +54,9 @@ public class Controller implements ControllerListener
         this.userView = userView;
         //KIKE _ OWNER
         this.ownerView = ownerView;
+        
+        //
+        DBHandler.initializeDB();
     }
     
     //                  ***************************

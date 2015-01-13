@@ -38,7 +38,7 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        terminateDB();
+       // terminateDB();
         return false;
     }
 
@@ -55,7 +55,7 @@ public abstract class DBHandler
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        terminateDB();
+        //terminateDB();
         return id;
     }
     
@@ -83,7 +83,7 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        terminateDB();
+        //terminateDB();
         return false;
         
     }
@@ -92,7 +92,7 @@ public abstract class DBHandler
     //                  **      DB Functions     **
     //                  ***************************
     
-    private static void initializeDB()
+    public static void initializeDB()
     {
         try 
         {
@@ -129,6 +129,7 @@ public abstract class DBHandler
     {
         try 
         {
+            System.out.println ("Closing connection");
             connection.close();
         } 
         catch (SQLException e) 
@@ -152,7 +153,7 @@ public abstract class DBHandler
 
     protected static ResultSet update(String updateString)
     {
-        initializeDB();	
+        //initializeDB();	
 	ResultSet rs = null;
 	try 
         {
@@ -174,13 +175,13 @@ public abstract class DBHandler
             e.printStackTrace();
 	}
         commit();
-        terminateDB();     
+        //terminateDB();     
 	return rs;
     }
     
     protected static ResultSet query(String queryString)
     {
-        initializeDB();	
+        //initializeDB();	
 	ResultSet rs = null;
 	try 
         {
@@ -223,7 +224,7 @@ public abstract class DBHandler
             ex.printStackTrace();
         
         }
-        terminateDB();
+       // terminateDB();
         return userName;
         
     }
