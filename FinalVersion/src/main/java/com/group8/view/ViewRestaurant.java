@@ -29,7 +29,6 @@ public class ViewRestaurant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        descriptionMouseListener = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         descriptionValueExpand = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -96,17 +95,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        descriptionMouseListener.setToolTipText("");
-        descriptionMouseListener.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                descriptionMouseListenerMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                descriptionMouseListenerMouseEntered(evt);
-            }
-        });
-        getContentPane().add(descriptionMouseListener, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 155, 110));
-
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(160, 110));
         jScrollPane4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jScrollPane4MouseExited(evt);
@@ -116,9 +105,8 @@ public class ViewRestaurant extends javax.swing.JFrame {
         descriptionValueExpand.setEditable(false);
         descriptionValueExpand.setColumns(20);
         descriptionValueExpand.setLineWrap(true);
-        descriptionValueExpand.setRows(5);
         descriptionValueExpand.setWrapStyleWord(true);
-        descriptionValueExpand.setPreferredSize(new java.awt.Dimension(160, 110));
+        descriptionValueExpand.setAutoscrolls(false);
         jScrollPane4.setViewportView(descriptionValueExpand);
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 160, 110));
@@ -481,20 +469,12 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_commentTextAreaFocusGained
 
     private void descriptionValueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionValueMouseEntered
-        
+        setDescriptionValueExpandVisible(true);
     }//GEN-LAST:event_descriptionValueMouseEntered
 
     private void jScrollPane4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane4MouseExited
-        
-    }//GEN-LAST:event_jScrollPane4MouseExited
-
-    private void descriptionMouseListenerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionMouseListenerMouseExited
         setDescriptionValueExpandVisible(false);
-    }//GEN-LAST:event_descriptionMouseListenerMouseExited
-
-    private void descriptionMouseListenerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionMouseListenerMouseEntered
-        setDescriptionValueExpandVisible(true);
-    }//GEN-LAST:event_descriptionMouseListenerMouseEntered
+    }//GEN-LAST:event_jScrollPane4MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -521,7 +501,6 @@ public class ViewRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel day7Value;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JLabel descriptionMouseListener;
     private javax.swing.JTextArea descriptionValue;
     private javax.swing.JTextArea descriptionValueExpand;
     private javax.swing.JLabel detailsLabel;

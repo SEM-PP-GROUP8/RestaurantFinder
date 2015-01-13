@@ -357,6 +357,7 @@ public class Controller implements ControllerListener
         viewRestaurantView.setTelephoneValue("" + selectedRestaurant.getTelephone());
         viewRestaurantView.setDescriptionValueExpand(selectedRestaurant.getDescription());
         viewRestaurantView.setDescriptionValueExpandVisible(false);
+        System.out.println(selectedRestaurant.getDescription());
         
         // Added by Sergiu. Fill the schedule day#value labels with data
         loadScheduleData(viewRestaurantView,selectedRestaurant);
