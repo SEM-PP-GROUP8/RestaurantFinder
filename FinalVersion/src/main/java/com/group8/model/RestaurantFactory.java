@@ -8,7 +8,7 @@ public class RestaurantFactory {
         if("Existing".equalsIgnoreCase(restaurantObjectType) || "ToBeSaved".equalsIgnoreCase(restaurantObjectType) )
             return new Restaurant(id, ownerID, name, type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice,  schedule);
         else if ("Temporary".equalsIgnoreCase(restaurantObjectType))
-            return new Restaurant(id, ownerID, name, type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice,  schedule, true);
+            return new Restaurant(id, ownerID, "Unsaved Restaurant", type, street, area, city, zipCode, imageURL, telephone, description, minPrice, maxPrice,  schedule, true);
         else
             return null;
     }
