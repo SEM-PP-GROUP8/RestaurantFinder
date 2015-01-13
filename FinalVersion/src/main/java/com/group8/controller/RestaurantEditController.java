@@ -172,8 +172,11 @@ public class RestaurantEditController {
         if (restaurantEditView.getRestaurantSearchableList().getRestaurantList().getModel().getSize() == 0){
 
             model = new DefaultListModel();
-            if(temporaryRestaurant != null)
+            if(temporaryRestaurant != null){
+                temporaryRestaurant.setName("BLABLABLA");
                 model.addElement(temporaryRestaurant);
+            }
+                
 
             if(existingRestaurants != null){
                 for(Restaurant r : existingRestaurants){
