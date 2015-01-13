@@ -196,8 +196,6 @@ public class RestaurantEditController {
             model.removeAllElements();
             // Lets start adding fresh ones:
             // Add the temporary one first!
-            if(temporaryRestaurant != null)
-                model.addElement(temporaryRestaurant);
             
             // Now let's add the others and keep track of the search key
             for(Restaurant r : existingRestaurants){
@@ -206,8 +204,13 @@ public class RestaurantEditController {
                 else if(r.getName().toLowerCase().contains(listSearchKey.toLowerCase()))
                     model.addElement(r);
             }
-            // Apparently when don't have to re-ad the model, it just syncs by itself.
             
+            if(temporaryRestaurant != null){
+                temporaryRestaurant.setName("BLABLABLA");
+                model.addElement(temporaryRestaurant);
+            }
+            // Apparently when don't have to re-ad the model, it just syncs by itself.
+
         }
     }
     
