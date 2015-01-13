@@ -172,7 +172,7 @@ public class RestaurantSchedule {
             int previousDayStop = getSeconds(previousDay, 1);
             
             if(seconds < previousDayStop){
-                System.out.println("Case 9");
+                System.out.println("Case 666");
                 return true;
             }
         }
@@ -186,7 +186,7 @@ public class RestaurantSchedule {
         int stop = getSeconds(day, 1);
         
         if(seconds >= start && seconds <= stop){
-            System.out.println("Case 10");
+            System.out.println("Case 10. seconds is " + seconds + " start is " + start + " stop is " + stop  );
             return true;
         }
         else{
