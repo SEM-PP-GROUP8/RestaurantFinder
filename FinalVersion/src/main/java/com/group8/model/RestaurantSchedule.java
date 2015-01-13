@@ -185,7 +185,7 @@ public class RestaurantSchedule {
         int start = getSeconds(day, 0);
         int stop = getSeconds(day, 1);
         
-        if(seconds >= start && seconds <= stop){
+        if(seconds >= start && seconds < stop){
             System.out.println("Case 10. TRUE. seconds is " + seconds + " start is " + start + " stop is " + stop );
             return true;
         }
