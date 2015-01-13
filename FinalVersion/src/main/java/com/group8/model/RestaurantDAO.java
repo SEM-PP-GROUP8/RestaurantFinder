@@ -352,7 +352,7 @@ public abstract class RestaurantDAO
     private static boolean isRestaurantOpen(Restaurant r, String time, String dayOfWeek) {
         int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
         int seconds = r.getSchedule().parseTimeStringToSeconds(time);
-        
+        System.out.println("Checking restaurant" + r.getName() + " if is open:");
         return r.getSchedule().isOpen(day,seconds);
     }
 }
