@@ -172,10 +172,6 @@ public class RestaurantEditController {
         if (restaurantEditView.getRestaurantSearchableList().getRestaurantList().getModel().getSize() == 0){
 
             model = new DefaultListModel();
-            if(temporaryRestaurant != null){
-                temporaryRestaurant.setName("BLABLABLA");
-                model.addElement(temporaryRestaurant);
-            }
                 
 
             if(existingRestaurants != null){
@@ -185,6 +181,11 @@ public class RestaurantEditController {
                     else if(r.getName().toLowerCase().contains(listSearchKey.toLowerCase()))
                         model.addElement(r);
                 }
+            }
+
+            if(temporaryRestaurant != null){
+                temporaryRestaurant.setName("BLABLABLA");
+                model.addElement(temporaryRestaurant);
             }
             
             restaurantEditView.getRestaurantSearchableList().getRestaurantList().setModel(model);
