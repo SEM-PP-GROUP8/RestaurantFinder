@@ -184,7 +184,6 @@ public class RestaurantEditController {
             }
 
             if(temporaryRestaurant != null){
-                temporaryRestaurant.setName("BLABLABLA");
                 model.addElement(temporaryRestaurant);
             }
             
@@ -206,7 +205,6 @@ public class RestaurantEditController {
             }
             
             if(temporaryRestaurant != null){
-                temporaryRestaurant.setName("BLABLABLA");
                 model.addElement(temporaryRestaurant);
             }
             // Apparently when don't have to re-ad the model, it just syncs by itself.
