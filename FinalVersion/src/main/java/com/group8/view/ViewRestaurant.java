@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
 
 public class ViewRestaurant extends javax.swing.JFrame {
@@ -96,11 +96,6 @@ public class ViewRestaurant extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(160, 110));
-        jScrollPane4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jScrollPane4MouseExited(evt);
-            }
-        });
 
         descriptionValueExpand.setEditable(false);
         descriptionValueExpand.setColumns(20);
@@ -118,6 +113,11 @@ public class ViewRestaurant extends javax.swing.JFrame {
         commentTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 commentTextAreaFocusGained(evt);
+            }
+        });
+        commentTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                commentTextAreaMouseEntered(evt);
             }
         });
         commentTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -400,6 +400,11 @@ public class ViewRestaurant extends javax.swing.JFrame {
         restaurantDetailsBackground.setBackground(new java.awt.Color(255, 255, 255));
         restaurantDetailsBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         restaurantDetailsBackground.setOpaque(true);
+        restaurantDetailsBackground.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                restaurantDetailsBackgroundMouseEntered(evt);
+            }
+        });
         getContentPane().add(restaurantDetailsBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 175, 210, 415));
 
         restaurantPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -419,6 +424,11 @@ public class ViewRestaurant extends javax.swing.JFrame {
         getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 100, -1));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/retina_wood_@2X.png"))); // NOI18N
+        backgroundLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backgroundLabelMouseEntered(evt);
+            }
+        });
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         detailsLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -472,9 +482,17 @@ public class ViewRestaurant extends javax.swing.JFrame {
         setDescriptionValueExpandVisible(true);
     }//GEN-LAST:event_descriptionValueMouseEntered
 
-    private void jScrollPane4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane4MouseExited
+    private void restaurantDetailsBackgroundMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantDetailsBackgroundMouseEntered
         setDescriptionValueExpandVisible(false);
-    }//GEN-LAST:event_jScrollPane4MouseExited
+    }//GEN-LAST:event_restaurantDetailsBackgroundMouseEntered
+
+    private void backgroundLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundLabelMouseEntered
+        setDescriptionValueExpandVisible(false);
+    }//GEN-LAST:event_backgroundLabelMouseEntered
+
+    private void commentTextAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_commentTextAreaMouseEntered
+        setDescriptionValueExpandVisible(false);
+    }//GEN-LAST:event_commentTextAreaMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
