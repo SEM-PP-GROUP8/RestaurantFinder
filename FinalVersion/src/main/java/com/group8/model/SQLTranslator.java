@@ -233,17 +233,28 @@ public abstract class SQLTranslator
         public static String translateAddUser (String username, String password)
         {
             
-            sqlQuery = "INSERT INTO Users (username, password) VALUES";
+            sqlQuery = "INSERT INTO Users (Username, Password) VALUES";
             
-            sqlQuery += "('" + username + "', '" + password + "') ;";
+            sqlQuery += " ('" + username + "', '" + password + "') ;";
             
             return sqlQuery;
         }
         
-        public static String translateCheckUsername(String username) 
+        public static String translateAddOwner (String username, String password)
         {
             
-            sqlQuery ="SELECT * FROM Users WHERE Username='"+ username +"';";
+            sqlQuery = "INSERT INTO Owners (Username, Password) VALUES";
+            
+            sqlQuery += " ('" + username + "', '" + password + "') ;";
+            
+            return sqlQuery;
+            
+        }
+        
+        public static String translateCheckUsername(String username, String table) 
+        {
+            
+            sqlQuery ="SELECT * FROM " + table + " WHERE Username='"+ username +"';";
             return sqlQuery;
 	}
         /*END NEW*/

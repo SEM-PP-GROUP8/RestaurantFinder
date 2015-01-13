@@ -59,18 +59,24 @@ public abstract class DBHandler
         return id;
     }
     
-    /*New*/
     public static void addUser (String username, String password)
     {
         String sql = SQLTranslator.translateAddUser(username, password);
         update(sql);
     }
     
-    public static boolean checkUsername(String username) 
+    public static void addOwner (String username, String password)
+    {
+        String sql = SQLTranslator.translateAddOwner(username, password);
+        update(sql);
+    }
+    
+    public static boolean checkUsername(String username, String table) 
     {
         
-        String queryString = SQLTranslator.translateCheckUsername (username);
-        ResultSet rs = query(queryString);		
+        String queryString = SQLTranslator.translateCheckUsername (username, table);
+        ResultSet rs = query(queryString);
+        
         try 
         {
             if(rs.next())
@@ -78,12 +84,11 @@ public abstract class DBHandler
                 return true;
             }
         } 
-        catch (SQLException e) 
+        catch (Exception ex)
         {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            ex.printStackTrace();
         }
-        //terminateDB();
+
         return false;
         
     }

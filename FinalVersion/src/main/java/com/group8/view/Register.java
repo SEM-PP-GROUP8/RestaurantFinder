@@ -35,7 +35,7 @@ public class Register extends javax.swing.JFrame {
         passwordRepeatText = new javax.swing.JPasswordField();
         cancelButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        ownerCheckbox = new javax.swing.JCheckBox();
         logoLabel = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
 
@@ -45,11 +45,11 @@ public class Register extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 620));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 onWindowClosing(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,16 +138,16 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 90, 30));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jCheckBox1.setText("Restaurant Owner");
-        jCheckBox1.setContentAreaFilled(false);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        ownerCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ownerCheckbox.setForeground(new java.awt.Color(102, 102, 102));
+        ownerCheckbox.setText("Restaurant Owner");
+        ownerCheckbox.setContentAreaFilled(false);
+        ownerCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                ownerCheckboxActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+        getContentPane().add(ownerCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
 
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/logo.jpg"))); // NOI18N
         getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 100, -1));
@@ -207,12 +207,12 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordRepeatTextKeyPressed
 
     private void passwordRepeatTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRepeatTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_passwordRepeatTextActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void ownerCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerCheckboxActionPerformed
+
+    }//GEN-LAST:event_ownerCheckboxActionPerformed
  
     private void registerAction()
     {
@@ -222,16 +222,25 @@ public class Register extends javax.swing.JFrame {
         String password = String.valueOf(passwordText.getPassword());
         String passwordRepeat = String.valueOf(passwordRepeatText.getPassword());
         
-        // If the username exists in the database
-        if(!DBHandler.checkUsername(username)) 
+        // If the username does not exists in the database
+        if(!DBHandler.checkUsername(username, "Users") && !DBHandler.checkUsername(username, "Owners")) 
         {
             
             // If the entered passwords match
             if(password.equals(passwordRepeat))
             {
                 
-                // Add user to database and prompt message to user
-                DBHandler.addUser(username, password);
+                // Add owner
+                if(ownerCheckbox.isSelected())
+                    DBHandler.addOwner(username, password);
+
+                
+                // Add user
+                else
+                    DBHandler.addUser(username, password);
+                
+                
+                // Prompt message to user
                 JOptionPane.showMessageDialog(this, "You are now registered. Click ok to continue.", 
                                                 "Information Message", JOptionPane.INFORMATION_MESSAGE);
             
@@ -281,8 +290,8 @@ public class Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JCheckBox ownerCheckbox;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel passwordRepeatLabel;
     private javax.swing.JPasswordField passwordRepeatText;
