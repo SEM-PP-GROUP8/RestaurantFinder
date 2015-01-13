@@ -61,7 +61,10 @@ public class Restaurant {
   
     @Override
     public String toString(){
-       return this.name;
+       if(isTemporary())
+           return "Unsaved Restaurant";
+       else
+           return this.name;
     }
     
 
