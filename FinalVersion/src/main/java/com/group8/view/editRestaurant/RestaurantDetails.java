@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.group8.view.editRestaurant;
 
 import com.group8.controller.RestaurantEditController;
@@ -11,10 +5,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- *
- * @author john
- */
 public class RestaurantDetails extends javax.swing.JPanel {
 
     public JTextField getMaxPriceTextField() {
@@ -43,12 +33,12 @@ public class RestaurantDetails extends javax.swing.JPanel {
         this.ownerIDTextField = ownerIDTextField;
     }
     
-    public JTextField getAreaTextField() {
-        return areaTextField;
+    public JComboBox getAreaComboBox() {
+        return areaComboBox;
     }
 
-    public void setAreaTextField(JTextField areaTextField) {
-        this.areaTextField = areaTextField;
+    public void setAreaComboBox(JComboBox areaCombobox) {
+        this.areaComboBox = areaCombobox;
     }
 
     public JTextField getCityTextField() {
@@ -143,11 +133,11 @@ public class RestaurantDetails extends javax.swing.JPanel {
         typeLabel = new javax.swing.JLabel();
         streetLabel = new javax.swing.JLabel();
         areaLabel = new javax.swing.JLabel();
+        areaComboBox = new javax.swing.JComboBox();
         cityLabel = new javax.swing.JLabel();
         zipCodeLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         streetTextField = new javax.swing.JTextField();
-        areaTextField = new javax.swing.JTextField();
         cityTextField = new javax.swing.JTextField();
         zipCodeTextField = new javax.swing.JTextField();
         telephoneTextField = new javax.swing.JTextField();
@@ -209,6 +199,12 @@ public class RestaurantDetails extends javax.swing.JPanel {
         areaLabel.setPreferredSize(new java.awt.Dimension(80, 30));
         add(areaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
+        areaComboBox.setMaximumSize(new java.awt.Dimension(205, 30));
+        areaComboBox.setMinimumSize(new java.awt.Dimension(205, 30));
+        areaComboBox.setName("area"); // NOI18N
+        areaComboBox.setPreferredSize(new java.awt.Dimension(205, 30));
+        add(areaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 160, 205, -1));
+
         cityLabel.setText("City:");
         cityLabel.setMaximumSize(new java.awt.Dimension(80, 15));
         cityLabel.setMinimumSize(new java.awt.Dimension(80, 15));
@@ -232,12 +228,6 @@ public class RestaurantDetails extends javax.swing.JPanel {
         streetTextField.setName("street"); // NOI18N
         streetTextField.setPreferredSize(new java.awt.Dimension(205, 30));
         add(streetTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 125, 205, -1));
-
-        areaTextField.setMaximumSize(new java.awt.Dimension(205, 30));
-        areaTextField.setMinimumSize(new java.awt.Dimension(205, 30));
-        areaTextField.setName("area"); // NOI18N
-        areaTextField.setPreferredSize(new java.awt.Dimension(205, 30));
-        add(areaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 160, 205, -1));
 
         cityTextField.setMaximumSize(new java.awt.Dimension(205, 30));
         cityTextField.setMinimumSize(new java.awt.Dimension(205, 30));
@@ -284,13 +274,11 @@ public class RestaurantDetails extends javax.swing.JPanel {
         jScrollPane1.setMaximumSize(new java.awt.Dimension(200, 84));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(200, 84));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 84));
-        jScrollPane1.setSize(new java.awt.Dimension(200, 84));
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setRows(5);
         descriptionTextArea.setWrapStyleWord(true);
-        descriptionTextArea.setLocation(new java.awt.Point(105, 335));
         descriptionTextArea.setMaximumSize(new java.awt.Dimension(15, 80));
         descriptionTextArea.setMinimumSize(new java.awt.Dimension(15, 80));
         descriptionTextArea.setName("description"); // NOI18N
@@ -316,7 +304,6 @@ public class RestaurantDetails extends javax.swing.JPanel {
         maxPriceTextField.setMinimumSize(new java.awt.Dimension(95, 30));
         maxPriceTextField.setName("maxPrice"); // NOI18N
         maxPriceTextField.setPreferredSize(new java.awt.Dimension(95, 30));
-        maxPriceTextField.setSize(new java.awt.Dimension(95, 30));
         add(maxPriceTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 428, -1, 30));
 
         minPriceTextField.setMaximumSize(new java.awt.Dimension(95, 30));
@@ -330,14 +317,13 @@ public class RestaurantDetails extends javax.swing.JPanel {
         typeLabel2.setMaximumSize(new java.awt.Dimension(5, 30));
         typeLabel2.setMinimumSize(new java.awt.Dimension(5, 30));
         typeLabel2.setPreferredSize(new java.awt.Dimension(5, 30));
-        typeLabel2.setSize(new java.awt.Dimension(5, 30));
         add(typeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 428, 5, 30));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox areaComboBox;
     private javax.swing.JLabel areaLabel;
-    private javax.swing.JTextField areaTextField;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField cityTextField;
     private javax.swing.JLabel descriptionLabel;

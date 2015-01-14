@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.group8.model;
 
 import java.awt.Component;
@@ -26,10 +20,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-/**
- *
- * @author john
- */
 public class ComponentValidator {
 
     private String error = "";
@@ -179,12 +169,10 @@ public class ComponentValidator {
         else if (c instanceof JComboBox){
             this.userInputValue = ((JComboBox) c).getSelectedItem().toString();
         }
-        else if (c instanceof JTextArea){
+        else if (c instanceof JTextArea){           
             this.userInputValue = ((JTextArea) c).getText();
-        }
-        
+        }      
         this.userInputValue = this.userInputValue.trim();
-        
         this.valid = validateDetails();
     }
     

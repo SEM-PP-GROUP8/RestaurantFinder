@@ -1,5 +1,6 @@
 package com.group8.controller;
 
+import com.group8.model.Model;
 import com.group8.model.Restaurant;
 import com.group8.model.RestaurantDAO;
 import com.group8.model.RestaurantEditViewDataValidator;
@@ -83,7 +84,7 @@ public class RestaurantEditController {
         
         restaurantEditView.getRestaurantDetails2().getNameTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getTypeComboBox().setEnabled(enabled);
-        restaurantEditView.getRestaurantDetails2().getAreaTextField().setEnabled(enabled);
+        restaurantEditView.getRestaurantDetails2().getAreaComboBox().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getCityTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getStreetTextField().setEnabled(enabled);
         restaurantEditView.getRestaurantDetails2().getZipCodeTextField().setEnabled(enabled);
@@ -118,7 +119,6 @@ public class RestaurantEditController {
         
         restaurantEditView.getRestaurantDetails2().getOwnerIDTextField().setText("");
         restaurantEditView.getRestaurantDetails2().getNameTextField().setText("");
-        restaurantEditView.getRestaurantDetails2().getAreaTextField().setText("");
         restaurantEditView.getRestaurantDetails2().getCityTextField().setText("");
         restaurantEditView.getRestaurantDetails2().getStreetTextField().setText("");
         restaurantEditView.getRestaurantDetails2().getZipCodeTextField().setText("");
@@ -349,7 +349,7 @@ public class RestaurantEditController {
             RestaurantDAO.addRestaurant(toBeSaved); // Save the restaurant
             loadMessage("Restaurant " + toBeSaved.getName() + " has been saved in the database!");
             buildPersistentData(); // We need to rebuild the data
-            initialView(); // load the initial view    
+            removeTemporaryRestaurant(); // This removes the temporary restaurant and load the initial view    
         }
     }
 
@@ -388,7 +388,16 @@ public class RestaurantEditController {
         restaurantEditView.getRestaurantDetails2().getTypeComboBox().setModel(model);
         restaurantEditView.getRestaurantDetails2().getTypeComboBox().setSelectedItem(r.getType());
         
-        restaurantEditView.getRestaurantDetails2().getAreaTextField().setText(r.getArea());
+        //Populates the restaurant location ComboBox and select the restaurant's area
+         DefaultComboBoxModel areaModel = new DefaultComboBoxModel();
+        for (int i = 1; i < Model.locationArray.length; i++)
+        {
+            areaModel.addElement(Model.locationArray[i]);
+        }
+        restaurantEditView.getRestaurantDetails2().getAreaComboBox().setModel(areaModel);
+        restaurantEditView.getRestaurantDetails2().getAreaComboBox().setSelectedItem(r.getArea());
+        
+        
         restaurantEditView.getRestaurantDetails2().getCityTextField().setText(r.getCity());
         restaurantEditView.getRestaurantDetails2().getStreetTextField().setText(r.getStreet());
         restaurantEditView.getRestaurantDetails2().getZipCodeTextField().setText(String.valueOf(r.getZipCode()));

@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.group8.model;
 
 import com.group8.view.editRestaurant.RestaurantEditView;
 import java.awt.Component;
-import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -24,10 +14,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-/**
- *
- * @author john
- */
 public class RestaurantEditViewDataValidator {
 
     private ArrayList errorMessages = new ArrayList<String>();
@@ -120,7 +106,7 @@ public class RestaurantEditViewDataValidator {
             String ownerID = ((JTextField) detailsMap.get("ownerID")).getText();
             String name = ((JTextField) detailsMap.get("name")).getText();
             String type = ((JComboBox) detailsMap.get("type")).getSelectedItem().toString();
-            String area = ((JTextField) detailsMap.get("area")).getText();
+            String area = ((JComboBox) detailsMap.get("area")).getSelectedItem().toString();
             String city = ((JTextField) detailsMap.get("city")).getText();
             String street = ((JTextField) detailsMap.get("street")).getText();
             String zipCode = ((JTextField) detailsMap.get("zipCode")).getText();
@@ -221,9 +207,11 @@ public class RestaurantEditViewDataValidator {
         Component ownerID = restaurantEditView.getRestaurantDetails2().getOwnerIDTextField();
         Component name = restaurantEditView.getRestaurantDetails2().getNameTextField();
         Component type = restaurantEditView.getRestaurantDetails2().getTypeComboBox();
-        Component area = restaurantEditView.getRestaurantDetails2().getAreaTextField();
+        
         Component city = restaurantEditView.getRestaurantDetails2().getCityTextField();
         Component street = restaurantEditView.getRestaurantDetails2().getStreetTextField();
+        Component area = restaurantEditView.getRestaurantDetails2().getAreaComboBox();
+        
         Component zipCode = restaurantEditView.getRestaurantDetails2().getZipCodeTextField();
         Component imageURL = restaurantEditView.getRestaurantDetails2().getImageURLTextField();
         Component telephone = restaurantEditView.getRestaurantDetails2().getTelephoneTextField();
@@ -235,10 +223,10 @@ public class RestaurantEditViewDataValidator {
         
         map.put(ownerID.getName(), ownerID);
         map.put(name.getName(), name);
-        map.put(type.getName(), type);
-        map.put(area.getName(), area);
+        map.put(type.getName(), type);       
         map.put(city.getName(), city);
         map.put(street.getName(), street);
+        map.put(area.getName(), area);     
         map.put(zipCode.getName(), zipCode);
         map.put(imageURL.getName(), imageURL);
         map.put(telephone.getName(), telephone);
