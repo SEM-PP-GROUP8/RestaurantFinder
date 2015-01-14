@@ -260,12 +260,11 @@ public abstract class RestaurantDAO
                     int closed = rs.getInt("closed");
                     int nonstop = rs.getInt("nonstop");
                     
+                    // Needs to be GMT+1 because the DB is on swedish time.
                     TimeZone.setDefault(TimeZone.getTimeZone("GMT+1"));
                     
                     int start = startTime.toLocalTime().toSecondOfDay();
                     int stop = stopTime.toLocalTime().toSecondOfDay();
-                    
-                    System.out.println(r.getName() + " START: " + start);
 
                     r.getSchedule().setSeconds(start, i, 0);
                     r.getSchedule().setSeconds(stop, i, 1);
