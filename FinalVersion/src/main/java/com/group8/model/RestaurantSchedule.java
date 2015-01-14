@@ -189,6 +189,11 @@ public class RestaurantSchedule {
             System.out.println("Case 10. TRUE. seconds is " + seconds + " start is " + start + " stop is " + stop );
             return true;
         }
+        //what kike added
+        else if ((start>=stop)&&(seconds >= start)) {
+            System.out.println("Case Kike. TRUE. seconds is " + seconds + " start is " + start + " stop is " + stop );
+            return true;
+        }
         else {
             System.out.println("Case 11. FALSE. seconds is " + seconds + " start is " + start + " stop is " + stop );
             return false;
@@ -201,7 +206,7 @@ public class RestaurantSchedule {
         
         int start = getSeconds(previousDay, 0);
         int stop = getSeconds(previousDay, 1);
-        return (start > stop);
+        return (start >= stop);
     }
 
     private boolean isPreviousDayClosed(int currentDay) {
