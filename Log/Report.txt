@@ -23,15 +23,16 @@ Background
 With many types of resources in the area, with plenty of seafood from the coast, fresh vegetables form the south and mushrooms from the northeast it is not weird that Gothenburg is rich in its food culture. There are more than 650 restaurants in the Gothenburg city area and over 300 more restaurants in the surrounding areas, so Gothenburg is definitely a restaurant rich city.  There are four exclusive Michelin stars awarded restaurants. There are plenty of streets that are food and entertainment oriented and the culture incentivizes you to enjoy them. With the classis Swedish fika, the brunch, lunch and dinner, restaurants and cafes have a big influence in the social life of the Gothenburg inhabitants.
 Purpose
 The purpose of the project is to have a more centralized and simple way to find the type of restaurant you want to visit at a specific point in time.  The application will help the customer find a restaurant based on different parameters. It will also provide a way to rate them and to store those reviews in order to remember which restaurants they have visited and what they thought about it. From the restaurant owner point of view, the application will help the owner to see first hand what customers thought about their experience and to modify the information provided along with the restaurant.  The application is targeted for restaurant owner who want to reach their customers in a better way and for people who want a tool to find the right restaurant experience they were looking for.
+	
 	Material – Hampus?
-Netbeans 
-Stackoverflow
-Java docs
-Github (the end)
-Facebook
-Maven
-Dropbox
-Email
+Several tools were used to help with the development of the project, with the main tool for developing the application being netbeans. This IDE was chosen mostly because of the GUI building feature, but proved useful in other areas as well, like the support for maven, which was used to organize imported packages.
+
+Because of the lack of experience in software development, educational and informational sources such as stackoverflow and java documentation, proved to be highly valuable. Without either of these, the development of the application would not have been as successful.
+
+For communication, facebook was the main tool. The possibility to create groups and chatting was of create use, but since facebook contains a lot of content unrelated to the group, it was not optimal to use. The other only communicational tools, was email and texting, which was not used very much.
+
+Facebook and email, along with dropbox for a short period of time, was the tools used for version control through most of the development. At first this method was working, but after a while it became very messy. In the end of the development, in the debugging phase, the group decided to use github, which had a large effect on the productivity. Github helpt not only with version control, but with the commitment amongst team members.
+	
 	Method- Sergiu?
 
 Spring
