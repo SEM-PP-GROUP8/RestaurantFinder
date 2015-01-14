@@ -251,6 +251,8 @@ public abstract class RestaurantDAO
             {
                 while(rs.next()){
 
+                    System.out.println(r.getName() + " START: " + rs.getTime("start").toLocalTime().toSecondOfDay());
+                    
                     int i = rs.getInt("dayOfWeekID");
                     int start = rs.getTime("start").toLocalTime().toSecondOfDay();
                     int stop = rs.getTime("stop").toLocalTime().toSecondOfDay();
