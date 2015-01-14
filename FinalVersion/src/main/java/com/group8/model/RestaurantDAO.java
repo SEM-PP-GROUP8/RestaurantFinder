@@ -3,8 +3,10 @@ package com.group8.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 public abstract class RestaurantDAO 
 {
@@ -250,14 +252,20 @@ public abstract class RestaurantDAO
             try 
             {
                 while(rs.next()){
-
-                    System.out.println(r.getName() + " START: " + rs.getTime("start").toLocalTime().toSecondOfDay());
                     
                     int i = rs.getInt("dayOfWeekID");
-                    int start = rs.getTime("start").toLocalTime().toSecondOfDay();
-                    int stop = rs.getTime("stop").toLocalTime().toSecondOfDay();
+                    
+                    Time startTime = rs.getTime("start");
+                    Time stopTime = rs.getTime("stop");
                     int closed = rs.getInt("closed");
                     int nonstop = rs.getInt("nonstop");
+                    
+                    TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+                    
+                    int start = startTime.toLocalTime().toSecondOfDay();
+                    int stop = stopTime.toLocalTime().toSecondOfDay();
+                    
+                    System.out.println(r.getName() + " START: " + start);
 
                     r.getSchedule().setSeconds(start, i, 0);
                     r.getSchedule().setSeconds(stop, i, 1);
