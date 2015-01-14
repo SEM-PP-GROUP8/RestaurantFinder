@@ -9,13 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
 
 public class ViewRestaurant extends javax.swing.JFrame {
 
     private ControllerListener controllerListener;
-    private boolean shouldResetText = true;
     private List<Review> reviews;
     private Restaurant currentRestaurant;
     
@@ -439,7 +437,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void commentTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commentTextAreaKeyTyped
-        shouldResetText = false;
+
     }//GEN-LAST:event_commentTextAreaKeyTyped
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -447,13 +445,16 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
-        if(controllerListener.canAddReview()) {
+        
+        // If the current user is allowed to add a review
+        if(controllerListener.canAddReview())
             controllerListener.addReview();
-            shouldResetText = true;
-        } else {
+        
+        // If the user is not allowed to add a review
+        else
             JOptionPane.showMessageDialog(this, "You have already posted a review on this restaurant.", 
                                                 "Error Message", JOptionPane.ERROR_MESSAGE);
-        }
+
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -469,9 +470,11 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void reviewTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewTableMouseClicked
-        if(reviewTable.getSelectedRow() >= 0) {
+        
+        // If the selected review is valid(is in the list)
+        if(reviewTable.getSelectedRow() >= 0)
             controllerListener.reviewItemChanged(reviewTable.getSelectedRow());
-        }
+
     }//GEN-LAST:event_reviewTableMouseClicked
 
     private void commentTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_commentTextAreaFocusGained
@@ -483,15 +486,24 @@ public class ViewRestaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_descriptionValueMouseEntered
 
     private void restaurantDetailsBackgroundMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantDetailsBackgroundMouseEntered
+        
+        // When the mouse leaves descriptionValueExpand
         setDescriptionValueExpandVisible(false);
+        
     }//GEN-LAST:event_restaurantDetailsBackgroundMouseEntered
 
     private void backgroundLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundLabelMouseEntered
+        
+        // When the mouse leaves descriptionValueExpand
         setDescriptionValueExpandVisible(false);
+        
     }//GEN-LAST:event_backgroundLabelMouseEntered
 
     private void commentTextAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_commentTextAreaMouseEntered
+        
+        // When the mouse leaves descriptionValueExpand
         setDescriptionValueExpandVisible(false);
+        
     }//GEN-LAST:event_commentTextAreaMouseEntered
 
 
@@ -557,6 +569,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     
     
     /*SETTERS*/
+    
     public void setAreaValue(String value) {
         this.areaValue.setText(value);
     }
@@ -620,6 +633,7 @@ public class ViewRestaurant extends javax.swing.JFrame {
     
 
     /*GETTERS*/
+    
     public DefaultComboBoxModel getGradeModel() {
         return gradeModel;
     }
@@ -644,6 +658,70 @@ public class ViewRestaurant extends javax.swing.JFrame {
         return (DefaultTableModel) reviewTable.getModel();
     }
     
+
+    
+    /*OTHER METHODS*/
+    
+    /**
+     * @return An object representing the restaurant that is currently being viewed.
+     */
+    public Restaurant getCurrentRestaurant() {
+        return currentRestaurant;
+    }
+    
+    /**
+     * @param index The index of the review.
+     * 
+     * @return The review at the specified index.
+     */
+    public Review getReview(int index) {
+        return reviews.get(index);
+    }
+    
+    /**
+     * @param currentRestaurant The restaurant to set as current.
+     */
+    public void setCurrentRestaurant(Restaurant currentRestaurant) {
+        this.currentRestaurant = currentRestaurant;
+    }
+    
+    /**
+     * Change the state of commentTextArea to editable or not editable. 
+     * 
+     * @param state The required state of commentTextArea, set true for editable and false for not editable.
+     */
+    public void setCommentTextAreaState(Boolean state) {
+        this.commentTextArea.setEditable(state);
+    }
+    
+    /**
+     * Change the state of deleteButton to enabled or not enabled.
+     * 
+     * @param state The required state of commentTextArea, set true for enabled and false for not enabled.
+     */
+    public void setDeleteButtonState(Boolean state) {
+        this.deleteButton.setEnabled(state);
+    }
+    
+    
+    /**
+     * Change the visibility state of descriptionValueExpand;
+     * 
+     * @param visiblility The required visibility state of descriptionValueExpand, set true for visible and false for not visible.
+     */
+    public void setDescriptionValueExpandVisible(boolean visiblility) {
+        this.jScrollPane4.setVisible(visiblility);
+    }
+    
+    /**
+     * Change the state of fullReviewArea to editable or not editable. 
+     * 
+     * @param state The required state of fullReviewArea, set true for editable and false for not editable.
+     */
+    public void setFullReviewAreaState(Boolean state) {
+        this.fullReviewArea.setEditable(state);
+    }
+    
     /**
      * Added by Sergiu.
      * @return An array of JLabels which contains all the day#value labels for the controller to set values from the RestaurnatSchedule
@@ -653,43 +731,29 @@ public class ViewRestaurant extends javax.swing.JFrame {
         return jLabels;
     }
     
-    /*OTHER SETTERS AND GETTERS*/
-    public Restaurant getCurrentRestaurant() {
-        return currentRestaurant;
-    }
-    
-    public Review getReview(int index) {
-        return reviews.get(index);
-    }
-    
-    public void setCurrentRestaurant(Restaurant currentRestaurant) {
-        this.currentRestaurant = currentRestaurant;
-    }
-    
-    public void setCommentTextAreaState(Boolean state) {
-        this.commentTextArea.setEditable(state);
-    }
-    
-    public void setDeleteButtonState(Boolean state) {
-        this.deleteButton.setEnabled(state);
-    }
-    
-    public void setDescriptionValueExpandVisible(boolean visible) {
-        this.jScrollPane4.setVisible(visible);
-    }
-    
-    public void setFullReviewAreaState(Boolean state) {
-        this.fullReviewArea.setEditable(state);
-    }
-    
+    /**
+     * Change the state of sendButton to enabled or not enabled.
+     * 
+     * @param state The required state of sendButton, set true for enabled and false for not enabled.
+     */
     public void setSendButtonState(Boolean state) {
         this.sendButton.setEnabled(state);
     }
-        
+    
+    /**
+     * Change the state of updateButton to enabled or not enabled.
+     * 
+     * @param state The required state of updateButton, set true for enabled and false for not enabled.
+     */
     public void setUpdateButtonState(Boolean state) {
         this.updateButton.setEnabled(state);
     }
     
+    /**
+     * Pass in the controller in use.
+     * 
+     * @param controllerListener The controller to be used.
+     */
     public void setControllerListener(ControllerListener controllerListener) {
         this.controllerListener = controllerListener;
     }
