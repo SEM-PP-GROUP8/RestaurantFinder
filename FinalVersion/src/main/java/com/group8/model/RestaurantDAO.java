@@ -260,7 +260,7 @@ public abstract class RestaurantDAO
                     int closed = rs.getInt("closed");
                     int nonstop = rs.getInt("nonstop");
                     
-                    TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+                    TimeZone.setDefault(TimeZone.getTimeZone("GMT+1"));
                     
                     int start = startTime.toLocalTime().toSecondOfDay();
                     int stop = stopTime.toLocalTime().toSecondOfDay();
