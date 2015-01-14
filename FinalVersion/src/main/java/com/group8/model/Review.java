@@ -10,13 +10,22 @@ public class Review
     String date;
     int grade;
     
-    //Variables not required when constructing an instance of this class. These variables are used
-    // when presenting the information to a registered user or an owner.
+    /*
+    Variables not required when constructing an instance of this class. These variables are used
+    when presenting the information to a registered user or an owner.
+    */
     String restName;
     String userName;
 
-    //Constructor when creating a new review on a specific restaurant the username and the restaurant 
-    //name are not necessary.
+    /**
+     * Constructor when creating a new review on a specific restaurant the username and the restaurant 
+     * name are not necessary.
+     * @param restID
+     * @param userID
+     * @param review
+     * @param grade
+     * @param date 
+     */
     public Review(int restID, int userID, String review, int grade, String date) 
     {
         this.restID = restID;

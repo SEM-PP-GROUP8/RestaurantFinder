@@ -10,16 +10,18 @@ public class RegisteredOwnerDAO
     //                      ********** Queries **********
     //                      *****************************
     
-    //Fetches the data for a specific owner based on his ownerID. It calls the method to convert
-    // the resultSet into a RegisteredOwner.
+    /**
+     * Fetches the data for a specific owner based on his ownerID. It calls the method to convert
+     * the resultSet into a RegisteredOwner.
+     * @param ownerID
+     * @return a RegisterOwner type.
+     */
     public static RegisteredOwner fetchOwnerByID (int ownerID)
     {
         ResultSet rs = null;
         String sql = SQLTranslator.translateFindOwnerByID (ownerID);
         rs = DBHandler.query( sql);
-
         RegisteredOwner currentOwner = RsToRo (rs);
-        //DBHandler.terminateDB();
         return currentOwner;
     }
 
@@ -27,8 +29,11 @@ public class RegisteredOwnerDAO
     //                      ********** Updates **********
     //                      *****************************  
 
-    //Updates the owner personal information based on the information given by the owner in the 
-    // program. It recieves the information packaged in a RegisteredOwner class.
+    /**
+     * Updates the owner personal information based on the information given by the owner in the 
+     * program. It receives the information packaged in a RegisteredOwner class.
+     * @param owner A RegisteredOwner type.
+     */
     public static void updateOwnerDetails(RegisteredOwner owner) 
     {
         String sqlUpdate = SQLTranslator.translateUpdateOwnerDetails (owner);
@@ -36,8 +41,13 @@ public class RegisteredOwnerDAO
         DBHandler.update(sqlUpdate);
     }
 
-    //Updates the password of an owner based on his ID. It receives the ownerID the new
-    // passowrd and the table to insert it into.
+    /**
+     * Updates the password of an owner based on his ID. It receives the ownerID the new
+     * password and the table to insert it into.
+     * @param id
+     * @param password
+     * @param table 
+     */
     public static void updatePassword(int id, String password, String table) 
     {
         String sqlUpdate = SQLTranslator.translateUpdatePassword (id, password, table);
@@ -49,9 +59,13 @@ public class RegisteredOwnerDAO
     //                      ********** Helpers **********
     //                      *****************************
     
-    //This is a helper method. It transfers the information on the resultSet recieved from the DB query
-    // to a registered owner. It checks if the variables are null (variables are not demanded) then it 
-    // sets them to a default value.
+    /**
+     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * to a registered owner. It checks if the variables are null (variables are not demanded) then it 
+     * sets them to a default value.
+     * @param rs The resultSet to go through and transform to a RegisteredOwner type.
+     * @return the RegisteredOwner.
+     */
      private static RegisteredOwner RsToRo(ResultSet rs) 
     {
         RegisteredOwner currentOwner = null;

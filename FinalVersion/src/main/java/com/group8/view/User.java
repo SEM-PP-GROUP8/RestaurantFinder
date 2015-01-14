@@ -372,7 +372,6 @@ public class User extends javax.swing.JFrame
         {
             sendErrorMSG ("You have to select a Review First.","Error!");
         }
-        
     }//GEN-LAST:event_deleteReviewButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -411,19 +410,24 @@ public class User extends javax.swing.JFrame
     private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Main method to load all the important things related to the view. It cleans everything from 
+     * the view (sets default) and then it loads the view and fills the info for the view.
+     */
     public void loadView ()
     {
-        //Main method to load all the important things related to the view. It cleans everything from 
-        // the view (sets default) and then it loads the view and fills the info for the view.
         setDefaultViewValues();
         setDefaultPassValues ();
         changePasswordView(false);
         setValues ();
     }
     
+    /**
+     * Method to handle whether the user wants the regular view or wants the change password view.
+     * @param option 
+     */
     private void changePasswordView(boolean option)
     {
-        //Method to handle whether the user wants the regular view or wants the change password view.
         cancelEditPassButton.setVisible(option);
         currentPassLabel.setVisible(option);
         currentPassText.setVisible(option);
@@ -453,10 +457,12 @@ public class User extends javax.swing.JFrame
         deleteReviewButton.setVisible(!option);
     }
     
+    /**
+     * This method fills all the appropriate fields with the personal information of the user.
+     * It also calls the method to update the table with the right info.
+     */
     private void setValues ()
     {
-        //This method fills all the appropriate fields with the personal information of the user.
-        //It also calls the method to update the table with the right info.
         if (Session.isUser())
         {
             RegisteredUser currentUser = controllerListener.fetchUserDetails (Session.getId());
@@ -471,11 +477,13 @@ public class User extends javax.swing.JFrame
         }
     }
     
+    /**
+     * Mehtod updates the table with the appropriate reviews related to the user. It updates
+     * the list related to the current form and then it loads from that list. It also calls a 
+     * method to justify the columns the desired way.
+     */
     private void updateTable ()
     {
-        //Mehtod updates the table with the appropriate reviews related to the user. It updates
-        // the list related to the current form and then it loads from that list. It also calls a 
-        // method to justify the columns the desired way.
         reviews = controllerListener.getReviewsByUserID(Session.getId());
         //populates the restaurant list with the list in the variable.
         try
@@ -497,10 +505,12 @@ public class User extends javax.swing.JFrame
         justifyColumns();
     }
     
+    /**
+     * This method deals with the design of the JTable. How the columns will show their information
+     * and what type of justification they will have when presenting the information.
+     */
     private void justifyColumns()
     {
-        //This method deals with the design of the JTable. How the columns will show their information
-        // and what type of justification they will have when presenting the information.
         DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
         centerRender.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
         
@@ -514,16 +524,17 @@ public class User extends javax.swing.JFrame
         reviewTable.getColumn("Grade").setCellRenderer( centerRender );
         reviewTable.getColumn("Review").setCellRenderer( leadingRender );
         
-        
         reviewTable.getColumnModel().getColumn(0).setPreferredWidth(100);
         reviewTable.getColumnModel().getColumn(1).setPreferredWidth(200);
         reviewTable.getColumnModel().getColumn(2).setPreferredWidth(50);
         reviewTable.getColumnModel().getColumn(3).setPreferredWidth(320);
     }
     
+    /**
+     * Sets the default values (or null) on all the user fields.
+     */
     private void setDefaultViewValues ()
     {
-        //Sets the default values (or null) on all the user fields.
         currentUserLabel.setText("");
         surnameText.setText("");
         familyNameText.setText("");
@@ -533,17 +544,22 @@ public class User extends javax.swing.JFrame
         reviewModel.setRowCount(0);
     }
     
+    /**
+     * Sets the default values (or null) on all the password related fields.
+     */
     private void setDefaultPassValues ()
     {
-        //Sets the default values (or null) on all the password related fields.
         currentPassText.setText("");
         newPassText.setText("");
         repeatPassText.setText("");
     }
     
+    /**
+     * This method populates the "Area" Dropdown with predesigned information.
+     * @param area 
+     */
     private void populateAreaCombo(String area) 
     {
-        //This method populates the "Area" Dropdown with predesigned information.
         int areaPossibilities = Model.typeFoodArray.length;
         int selectedOption = 0;
         areaCombo.removeAllItems();
@@ -557,10 +573,12 @@ public class User extends javax.swing.JFrame
         areaCombo.setSelectedIndex(selectedOption);
     }
     
+    /**
+     * Method to update the user information on the database with the information provided by the  
+     * user on the fields.
+     */
     private void updateUser ()
     {
-        //Method to update the user information on the database with the information provided by the  
-        // user on the fields.
         if (Session.isUser())
         {
             String username = currentUserLabel.getText().trim();
@@ -584,10 +602,13 @@ public class User extends javax.swing.JFrame
         }
     }
     
+    /**
+     * Method to verify if the user has provided the right password, and that the new password
+     * provided also complies with the required info (size, and matches to the repeated password).
+     * @return 
+     */
     private boolean checkPasswordChange() 
     {
-        //Method to verify if the user has provided the right password, and that the new password
-        // provided also complies with the required info (size, and matches to the repeated password).
         if (DBHandler.checkCredentials(currentUserLabel.getText(), String.valueOf(currentPassText.getPassword()), "Users"))
         {
             String newPass = String.valueOf(newPassText.getPassword()).trim();
@@ -625,12 +646,17 @@ public class User extends javax.swing.JFrame
         }
     }   
     
+    /**
+     * Method to check whether all the information provided complies with the required information
+     * structure. Checks the length of all the fields provided and compares them with the max 
+     * allowed length. Then it checks that the phone number is only integers. It makes a list of 
+     * errors to show to the user.
+     * @param user
+     * @return 
+     */
     private boolean personalValuesComply(RegisteredUser user) 
     {
-        //Method to check whether all the information provided complies with the required information
-        // structure. Checks the length of all the fields provided and compares them with the max 
-        // allowed length. Then it checks that the phone number is only integers. It makes a list of 
-        // errors to show to the user.
+        //The string of errors is done in HTML form to be able to do breaklines.
         String errorMsg = "<html>";
         if (user.getSurname().length() > user.getSurnameLength())
             errorMsg += "Surname can not be longer than " +  user.getSurnameLength() + " characters. <br>";
@@ -663,33 +689,56 @@ public class User extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Checks that the length of the password complies the structure required.
+     * @param newPass
+     * @return 
+     */
     private boolean passwordValuesComply(String newPass) 
     {
-        //Checks that the length of the password complies the structure required.
         return newPass.length() <= 20;
     }
     
+    /**
+     * Sends an error message with a specific message and a specific title.
+     * @param msg
+     * @param title 
+     */
     private void sendErrorMSG (String msg, String title)
-    {//Sends an error msg with a specific msg and a specific title
+    {
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
     }
     
+    /**
+     * Sends a questions message with a specific message and a specific title.
+     * @param msg
+     * @param title
+     * @return 
+     */
     private int  sendQuestionMSG (String msg, String title)
-    {//Sends a questions msg with a specific msg and a specific title
+    {
         Object[] options = { "Yes", "No" };
         int answer = JOptionPane.showOptionDialog(null, msg, title,
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
         return answer;
     }
     
+    /**
+     * Sends a success message with a specific message and a specific title.
+     * @param msg
+     * @param title 
+     */
     private void sendSuccesfulMSG (String msg, String title)
-    {//Sends a success msg with a specific msg and a specific title.
+    {
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
     }   
     
+    /**
+     * Sets the control listener required to communicate the view to the controller.
+     * @param controllerListener 
+     */
     public void setControllerListener(ControllerListener controllerListener) 
     {
-        //Sets the control listener required to communicate the view to the controller.
         this.controllerListener = controllerListener;
     }
 }

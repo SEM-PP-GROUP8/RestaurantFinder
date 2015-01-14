@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group8.model;
 
-/**
- *
- * @author enriquecordero
- */
 public class RegisteredOwner 
 {
     // These variables represent the maximum character length allowed to each variable.
@@ -28,8 +19,16 @@ public class RegisteredOwner
     String email;
     String phone;
 
-    //Constructor. It takes in all the variables since the program sets them to default values in case
-    // the owner has not specified them.
+    /**
+     * Constructor. It takes in all the variables since the VIEW sets them to default values in case
+     * the owner has not specified them.
+     * @param id
+     * @param userName
+     * @param surname
+     * @param familyName
+     * @param email
+     * @param phone 
+     */
     public RegisteredOwner(int id, String userName, String surname, String familyName, String email, String phone) {
         this.id = id;
         this.userName = userName;

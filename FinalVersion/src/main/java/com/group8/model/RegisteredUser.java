@@ -24,8 +24,18 @@ public class RegisteredUser
     private String area;
     private String city;
 
-    //Constructor. It takes in all the variables since the program sets them to default values in case
-    // the user has not specified them.
+    /**
+     * Constructor. It takes in all the variables since the View sets them to default values in case
+     * the user has not specified them.
+     * @param id
+     * @param userName
+     * @param surname
+     * @param familyName
+     * @param emial
+     * @param phone
+     * @param area
+     * @param city 
+     */
     public RegisteredUser(int id, String userName, String surname, String familyName, String emial, String phone, String area, String city) {
         this.id = id;
         this.userName = userName;

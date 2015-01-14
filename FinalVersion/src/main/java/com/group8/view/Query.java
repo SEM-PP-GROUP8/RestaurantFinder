@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group8.view;
+
 import com.group8.controller.ControllerListener;
 import com.group8.model.DBHandler;
-import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import com.group8.model.Model;
 import com.group8.model.Restaurant;
@@ -16,14 +11,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author enriquecordero
- */
 public class Query extends javax.swing.JFrame 
 {
+    //Variable to control the itemStateChanged listener of the dropdowns.
     private boolean dropDownInitiation = false;
+    //Variable that onnects the view to the controller.
     private ControllerListener controllerListener;
+    //The Restaurant List to be viewed on the table.
     private List<Restaurant> filteredRestaurants;
 
     public Query() 
@@ -168,11 +162,6 @@ public class Query extends javax.swing.JFrame
         searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 searchTextFieldFocusGained(evt);
-            }
-        });
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
             }
         });
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -373,7 +362,7 @@ public class Query extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        /*NEW - Hampus*/
+        //Calls the ViewRestaurant view to see the details of the currently selected restaurant in the table.
         if (controllerListener!=null && restaurantTable.getSelectedRow()>=0)
         {
             Restaurant selectedRestaurant = filteredRestaurants.get(restaurantTable.getSelectedRow());
@@ -382,20 +371,19 @@ public class Query extends javax.swing.JFrame
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        /*NEW*/
+        //Calls the Register view to be able to register a new account.
         if (controllerListener!=null)
         {
             controllerListener.registerButtonClicked();
         }
-        /*END NEW*/
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        //Calls the Login view to be able to log in as a registered user, owner or admin.
         if (controllerListener!=null)
         {
             controllerListener.loginButtonClicked();
         }
-        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -413,20 +401,29 @@ public class Query extends javax.swing.JFrame
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
+        /*
+        Calls the User view which presents the user with his profile. Here he can edit his information
+        or he can decide to change his password.
+        */
         controllerListener.userButtonClicked();
     }//GEN-LAST:event_userButtonActionPerformed
 
     private void restaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantButtonActionPerformed
+        /*
+        Calls the RestaurantEditView which allows an owner or an admin to modify information about a restaurant
+        or to add a new restaurant.
+        */
         controllerListener.restaurantsButtonClicked();
-
     }//GEN-LAST:event_restaurantButtonActionPerformed
-/**/
+
     private void drop_filter_locationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_locationItemStateChanged
-        //Every time the dropdown filters get changed then it should modify the list.
-        //First it checks that its the actual choice event (drop downs have two events: one
-        // to deselct the currently selected and another one to select a new item) so that it
-        // does not execute twice. Then it checks its not initializing the values. Then it calls
-        // the appropriate methods.
+        /*
+        Every time the dropdown filters get changed then it should modify the list.
+        First it checks that its the actual choice event (drop downs have two events: one
+        to deselct the currently selected and another one to select a new item) so that it
+        does not execute twice. Then it checks its not initializing the values. Then it calls
+        the appropriate methods.
+        */
         if (evt.getStateChange()==1)
         {
             if (!dropDownInitiation)
@@ -437,11 +434,13 @@ public class Query extends javax.swing.JFrame
     }//GEN-LAST:event_drop_filter_locationItemStateChanged
 
     private void drop_filter_openingHoursItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_openingHoursItemStateChanged
-        //Every time the dropdown filters get changed then it should modify the list.
-        //First it checks that its the actual choice event (drop downs have two events: one
-        // to deselct the currently selected and another one to select a new item) so that it
-        // does not execute twice. Then it checks its not initializing the values. Then it calls
-        // the appropriate methods.
+        /*
+        Every time the dropdown filters get changed then it should modify the list.
+        First it checks that its the actual choice event (drop downs have two events: one
+        to deselct the currently selected and another one to select a new item) so that it
+        does not execute twice. Then it checks its not initializing the values. Then it calls
+        the appropriate methods.
+        */
         if (evt.getStateChange()==1)
         {
             if (!dropDownInitiation)
@@ -451,22 +450,25 @@ public class Query extends javax.swing.JFrame
         }
     }//GEN-LAST:event_drop_filter_openingHoursItemStateChanged
 
-    //kevin
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // Calls the function to filter the restaurant list according to all the filters.
         restaurantsToView ();
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+        //When the search txt field is clicked on it will reinitialize its value to "";
         searchTextField.setText("");
         restaurantsToView ();
     }//GEN-LAST:event_searchTextFieldFocusGained
    
     private void drop_filter_typeOfFoodItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_typeOfFoodItemStateChanged
-        //Every time the dropdown filters get changed then it should modify the list.
-        //First it checks that its the actual choice event (drop downs have two events: one
-        // to deselct the currently selected and another one to select a new item) so that it
-        // does not execute twice. Then it checks its not initializing the values. Then it calls
-        // the appropriate methods.
+        /*
+        Every time the dropdown filters get changed then it should modify the list.
+        First it checks that its the actual choice event (drop downs have two events: one
+        to deselct the currently selected and another one to select a new item) so that it
+        does not execute twice. Then it checks its not initializing the values. Then it calls
+        the appropriate methods.
+        */
         if (evt.getStateChange()==1)
         {
             if (!dropDownInitiation)
@@ -477,23 +479,31 @@ public class Query extends javax.swing.JFrame
     }//GEN-LAST:event_drop_filter_typeOfFoodItemStateChanged
 
     private void ownerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerButtonActionPerformed
+        /*
+        Calls the Owner view which presents the owner with his profile. Here he can edit his information
+        or he can decide to change his password.
+        */
         controllerListener.ownerButtonClicked();
     }//GEN-LAST:event_ownerButtonActionPerformed
 
     private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
+        /*
+        Every time a key is pressed in the text field it tries to recognize if its the enter button.
+        in case it is then it will emulate the searh button by calling the appropriate function to filter
+        the restaurants.
+        */
         if(searchTextField.getText()!=""){
             if(evt.getKeyCode() == KeyEvent.VK_ENTER)
                 restaurantsToView();
         }
     }//GEN-LAST:event_searchTextFieldKeyPressed
 
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextFieldActionPerformed
-
     private void rangeSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rangeSlider1MouseReleased
-         restaurantNewModel.setRowCount(0);
-         restaurantsToView();
+        /*
+        Every time a person releases the mouse in the range slider to change something it will recaulculate
+        which restaurants it should show.
+        */
+        restaurantsToView();
     }//GEN-LAST:event_rangeSlider1MouseReleased
 
     private void drop_filter_dayOfWeekItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_drop_filter_dayOfWeekItemStateChanged
@@ -512,6 +522,7 @@ public class Query extends javax.swing.JFrame
     }//GEN-LAST:event_drop_filter_dayOfWeekItemStateChanged
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //When the main window is closed then the program is closed and therefore the DBConnection is terminated.
         DBHandler.terminateDB();
     }//GEN-LAST:event_formWindowClosing
 
@@ -550,70 +561,33 @@ public class Query extends javax.swing.JFrame
     private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 
-    
+    /**
+     * Loads the view with all the appropriate buttons and the appropriate menu and the restaurants.
+     * This is the initial load of the view.
+     */
     public void loadView ()
     {
-        //Loads the view with all the appropriate buttons and the appropriate menu and the restaurants.
         dropDownInitiation = true;
-        defaultMenuItems();
         populateSessionButtons();
         populateDropDowns();
         restaurantsToView();
     }
     
+    /**
+     * This method reloads the view buttons according to the session and reloads the restaurants according
+     * to any changes that might have occurred.
+     */
     public void reloadView()
     {
         populateSessionButtons();
         restaurantsToView();
     }
     
-    /*private void menuItemHandler (int option) 
-    {   
-        //If any of the menu items is clicked then it tries to switch between the view in the menu.
-        defaultMenuItems();
-        switch (option)
-        {
-            case 1:
-                typeOfFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem_clicked.png")));
-                menuArrow1.setVisible(true);
-                drop_filter_typeOfFood.setVisible(true);
-                break;
-            case 2:
-                prizeRangeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem_clicked.png")));
-                menuArrow2.setVisible(true);
-                drop_filter_priceRangeMin.setVisible(true);
-                drop_filter_priceRangeMax.setVisible(true);
-                label_filter_to.setVisible(true); 
-                break;
-            case 3:
-                locationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem_clicked.png")));
-                menuArrow3.setVisible(true);
-                drop_filter_location.setVisible(true);
-                break;
-            case 4:
-                openAtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/menuitem_clicked.png")));
-                menuArrow4.setVisible(true);
-                drop_filter_openingHours.setVisible(true);
-                
-                drop_filter_openingHours.setSelectedIndex(Model.setCurrentOpeningHour());
-                break;
-        }
-    }*/
-
-
-    private void defaultMenuItems ()
-    {
-        drop_filter_typeOfFood.setVisible(true);
-        //drop_filter_priceRangeMin.setVisible(true);
-        //drop_filter_priceRangeMax.setVisible(true);
-        //label_filter_to.setVisible(true); 
-        drop_filter_location.setVisible(true);
-        drop_filter_openingHours.setVisible(true);
-    }
-    
+    /**
+     * Populates the buttons according to the right session. Owners, users and admins all have specific buttons.
+     */
     private void populateSessionButtons ()
     {
-        //Populates the buttons according to the right session.
         ownerButton.setVisible(false);
         userButton.setVisible(false);
         restaurantButton.setVisible(false);             
@@ -646,8 +620,10 @@ public class Query extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Populates all the dropdowns in the view.
+     */
     private void populateDropDowns ()
-    //Populates all the dropdowns in the view.
     {
         //Populates the Type of Food DropDown
         int typeFoodPossibilities = Model.typeFoodArray.length;
@@ -676,60 +652,14 @@ public class Query extends javax.swing.JFrame
         }
         drop_filter_openingHours.setSelectedIndex(0);
         dropDownInitiation = false;
-        
-        //populateMinDropDown (0);
-        //dropDownInitiation = true;
-        //populateMaxDropDown (0);
     }
-    /*
-    private void populateMinDropDown (int indexChosen)
-    //Populates the minPrice dropdown depending on the chosen max.
-    {
-        int currentIndex = 0;
-        int totalNumberPossibilities = Model.priceRangeMinArray.length - indexChosen;
-        
-        if (!dropDownInitiation)
-        {
-            currentIndex = drop_filter_priceRangeMin.getSelectedIndex();
-            dropDownInitiation = true;
-        }
-        
-        //Populates the minimum price DropDown
-        drop_filter_priceRangeMin.removeAllItems();
-        for (int x=0; x<totalNumberPossibilities;x++)
-        {
-            minPriceModel.addElement(Model.priceRangeMinArray[x]);
-        }
-        //Selects the item that was previously selected.
-        drop_filter_priceRangeMin.setSelectedIndex(currentIndex);
-        dropDownInitiation = false;
-    }
-    
-    private void populateMaxDropDown (int indexChosen)
-    //Populates the maxPrice dropdown depending on the chosen min.
-    {
-        int currentIndex = 0;
-        int totalNumberPossibilities = Model.priceRangeMaxArray.length - indexChosen;
-        if (!dropDownInitiation)
-        {
-            currentIndex = drop_filter_priceRangeMax.getSelectedIndex();
-            dropDownInitiation = true;
-        }
-        //Populates the minimum price DropDown
-        drop_filter_priceRangeMax.removeAllItems();
-        for (int x=0; x<totalNumberPossibilities;x++)
-        {
-            maxPriceModel.addElement(Model.priceRangeMaxArray[x]);
-        }
-        //Selects the item that was previously selected.
-        drop_filter_priceRangeMax.setSelectedIndex(currentIndex);
-        dropDownInitiation = false;
-    }
-    */
-    
+
+    /**
+     * Loads the appropriate restaurant list into the variable according to the filters.
+     */
     private void loadRestaurantList ()
     {
-        //Loads the appropriate restaurant list into the variable.
+        //Loads the data from the txt fields into variables.
         String typeOfFood = drop_filter_typeOfFood.getSelectedItem().toString();
         String priceMin = "" + rangeSlider1.getValue();
         String priceMax = "" + rangeSlider1.getUpperValue();
@@ -738,70 +668,59 @@ public class Query extends javax.swing.JFrame
         String dayName = drop_filter_dayOfWeek.getSelectedItem().toString();
         String searchTxt = searchTextField.getText().trim();
         if (searchTxt.equals("Search by name, type or area"))
-                searchTxt = "";
-        
+                searchTxt = "";        
         int intPriceMin = Integer.parseInt(priceMin);
         int intPriceMax = Integer.parseInt(priceMax);
-        
-        System.out.println ("so far printed: " + dayName);
-        
+
+        //Creates a list of restaurants and stores it into the variable.
         filteredRestaurants = controllerListener.fetchRestaurantByFilters(typeOfFood, intPriceMin, intPriceMax, location, time, dayName, searchTxt);
     }
-    /*
-    private void populateRestaurantList ()
-    {
-        //populates the restaurant list with the list in the variable.
-        try
-        {
-            restaurantModel.clear();
-            for (Restaurant current : filteredRestaurants) 
-            {
-                String restaurant = current.getName();
-                restaurant = restaurant + " - " + current.getArea();
-                restaurantModel.addElement(restaurant);
-            }
-        }
-        catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
-        }
-        if (restaurantModel.isEmpty())
-        {
-            restaurantModel.addElement("No Matches.");
-        }
-    }
-    */
+
+    /**
+     * Populates the restaurant table with the list in the variable.
+     */
     private void populateRestaurantTable()
     {
-        //populates the restaurant table with the list in the variable
         try
         {
+            //Deletes all the items in the table
             restaurantNewModel.setRowCount(0);
-            for (Restaurant current : filteredRestaurants)  
+            //Checks if the list is empty
+            if (filteredRestaurants.isEmpty())
             {
-                String restaurant = current.getName();
-                String area = current.getArea();
-                String type = current.getType().toString();
-                restaurantNewModel.addRow(new Object[]{restaurant, type, area});
+                restaurantNewModel.addRow(new Object[]{"No","Restaurant", "Matches."});
+            }
+            else
+            {
+                //Goes through each item in the list and inserts a new row in the table with the information.
+                for (Restaurant current : filteredRestaurants)  
+                {
+                    String restaurant = current.getName();
+                    String area = current.getArea();
+                    String type = current.getType().toString();
+                    restaurantNewModel.addRow(new Object[]{restaurant, type, area});
+                }
             }
         }
         catch (Exception e)
         {
             JOptionPane.showMessageDialog(this, "Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
-        }
-        if (filteredRestaurants.isEmpty())
-        {
-            restaurantNewModel.addRow(new Object[]{"No","Restaurant", "Matches."});
         }
     }
     
+    /**
+     * Process to load the restaurants to view.
+     */
     public void restaurantsToView ()
     {
-        //Loads the restaurants to view.
         loadRestaurantList();
         populateRestaurantTable();
     }
     
+    /**
+     * Sets the control listener required to communicate the view to the controller.
+     * @param controllerListener 
+     */
     public void setControllerListener(ControllerListener controllerListener) {
         this.controllerListener = controllerListener;
     }

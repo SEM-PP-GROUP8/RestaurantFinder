@@ -5,16 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 
 
 public abstract class DBHandler 
 {
+    //The important information about the database to make the connection.
     private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     private final static String DB_USERNAME = "sql457184";
     private final static String DB_URL = "jdbc:mysql://sql4.freesqldatabase.com/" + DB_USERNAME;
     private final static String DB_PASSWORD = "kV1%xI3*";
+    //The prepared statement and the connection used to do querys updates and connection to the DB.
     private static PreparedStatement stmt;
     private static Connection connection = null;
 
@@ -22,6 +23,13 @@ public abstract class DBHandler
     //                  ** Session Query Functions **
     //                  *****************************
     
+    /**
+     * The method checks if a specific username and password match in a specific table.
+     * @param username
+     * @param password
+     * @param table
+     * @return True or false depending if the username and password exists in the table.
+     */
     public static boolean checkCredentials(String username, String password, String table) 
     {
         String queryString = SQLTranslator.translateCredentials (username, password, table);
@@ -38,10 +46,16 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-       // terminateDB();
         return false;
     }
 
+    /**
+     * The method retrieves the Id of a specific user with a specific password from a specific table.
+     * @param username
+     * @param password
+     * @param table
+     * @return the id of the specific user.
+     */
     public static int getCredentialsID(String username,String password, String table) 
     {
         String queryString = SQLTranslator.translateCredentials (username, password, table);
@@ -55,22 +69,37 @@ public abstract class DBHandler
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        //terminateDB();
         return id;
     }
     
+    /**
+     * Adds a user to the DB.
+     * @param username
+     * @param password 
+     */
     public static void addUser (String username, String password)
     {
         String sql = SQLTranslator.translateAddUser(username, password);
         update(sql);
     }
     
+    /**
+     * Adds an owner to the DB.
+     * @param username
+     * @param password 
+     */
     public static void addOwner (String username, String password)
     {
         String sql = SQLTranslator.translateAddOwner(username, password);
         update(sql);
     }
     
+    /**
+     * Method checks if a specific username is already in use in a specific table.
+     * @param username
+     * @param table
+     * @return true or false depending if a username exists in that table.
+     */
     public static boolean checkUsername(String username, String table) 
     {
         
@@ -97,6 +126,9 @@ public abstract class DBHandler
     //                  **      DB Functions     **
     //                  ***************************
     
+    /**
+     * Initializes the connection to the Database.
+     */
     public static void initializeDB()
     {
         try 
@@ -116,8 +148,8 @@ public abstract class DBHandler
         } 
         catch (SQLException e) 
         {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         try 
         {
@@ -130,11 +162,13 @@ public abstract class DBHandler
         }
     }
 	
+    /**
+     * Terminates the connection to the Database.
+     */
     public static void terminateDB()
     {
         try 
         {
-            System.out.println ("Closing connection");
             connection.close();
         } 
         catch (SQLException e) 
@@ -144,6 +178,9 @@ public abstract class DBHandler
         }
     }
 	
+    /**
+     * Commits a specific event stored in the connection.
+     */
     private static void commit()
     {
         try 
@@ -156,10 +193,12 @@ public abstract class DBHandler
         }
     }
 
-    protected static ResultSet update(String updateString)
+    /**
+     * Does the update of a specific SQL statement.
+     * @param updateString
+     */
+    protected static void update(String updateString)
     {
-        //initializeDB();	
-	ResultSet rs = null;
 	try 
         {
             stmt = connection.prepareStatement(updateString);
@@ -179,19 +218,20 @@ public abstract class DBHandler
             // TODO Auto-generated catch block
             e.printStackTrace();
 	}
-        commit();
-        //terminateDB();     
-	return rs;
+        commit();   
     }
     
+    /**
+     * Does a query with the provided sql statement.
+     * @param queryString
+     * @return the resultSet product of the query in the database.
+     */
     protected static ResultSet query(String queryString)
-    {
-        //initializeDB();	
+    {	
 	ResultSet rs = null;
 	try 
         {
             stmt = connection.prepareStatement(queryString);
-		
         } 
         catch (SQLException e) 
         {
@@ -211,8 +251,11 @@ public abstract class DBHandler
 	return rs;
     }
     
-    /*NEW - Hampus*/
-    // Get a username based on the logged in users id
+    /**
+     * Get a username based on the logged in users id
+     * @param userId
+     * @return the username
+     */
     public static String getUsername(int userId) {
         
         String sql = SQLTranslator.translateGetUsername(userId);
@@ -227,10 +270,7 @@ public abstract class DBHandler
         } catch(SQLException ex) {
             
             ex.printStackTrace();
-        
         }
-       // terminateDB();
-        return userName;
-        
+        return userName;     
     }
 }

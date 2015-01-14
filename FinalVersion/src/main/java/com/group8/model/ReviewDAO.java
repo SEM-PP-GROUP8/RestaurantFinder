@@ -10,20 +10,31 @@ public class ReviewDAO
     //                      ********** Updates **********
     //                      *****************************
     
-    // Adds a review to the database
+    /**
+     * Adds a review to the database
+     * @param review 
+     */
     public static void addReview (Review review)
     {
         String sql = SQLTranslator.translateAddReview(review);
         DBHandler.update(sql);
     }
     
-    // Deletes a review from the database depending on the userID and restID
+    /**
+     * Deletes a review from the database depending on the userID and restID
+     * @param restID
+     * @param userID 
+     */
     public static void deleteReview (int restID, int userID)
     {
         String sql = SQLTranslator.translateDeleteReview(restID, userID);
         DBHandler.update(sql);
     }
     
+    /**
+     * Updates a specific review with the received information.
+     * @param review 
+     */
     public static void updateReview(Review review) {
         
         String sql = SQLTranslator.translateUpdateReview(review);
@@ -35,7 +46,12 @@ public class ReviewDAO
     //                      ********** Queries **********
     //                      *****************************
     
-    // Boolean response on whether or not a review has been made from that user to that restaurant
+    /**
+     * Boolean response on whether or not a review has been made from that user to that restaurant
+     * @param restID
+     * @param userID
+     * @return 
+     */
     public static boolean alreadyReviewed (int restID, int userID)
     {
         String sql = SQLTranslator.translateAlreadyReviewed(restID, userID);
@@ -55,7 +71,11 @@ public class ReviewDAO
         return false;
     }
     
-    // Method that returns a review List that belong to a specific user.
+    /**
+     * Method that returns a review List that belong to a specific user.
+     * @param userID
+     * @return 
+     */
     public static List<Review> fetchUserReviews (int userID)
     {
         String sql = SQLTranslator.translateFetchUserReview(userID);
@@ -73,9 +93,11 @@ public class ReviewDAO
         return list;
     }
     
-    
-    
-    // Method that returns a review List that belong to a specific restaurant.
+    /**
+     * Method that returns a review List that belong to a specific restaurant.
+     * @param restID
+     * @return 
+     */
     public static List<Review> fetchRestReviews (int restID)
     {
         String sql = SQLTranslator.translateFetchRestReview(restID);
@@ -97,7 +119,11 @@ public class ReviewDAO
     //                      ********** Helpers **********
     //                      *****************************    
     
-    // Helper method that transforms a resultSet into a review List.
+    /**
+     * Helper method that transforms a resultSet into a review List.
+     * @param rs The resultSet to transfer to the review list.
+     * @param reviews 
+     */
     private static void RsToRL(ResultSet rs, List<Review> reviews)
     {
         try
@@ -118,8 +144,12 @@ public class ReviewDAO
         }
     }
 
-    // Method that returns the name of a specific restaurant. This is to add it to the review List-
-    // When a user views what restaurants he has reviewed it is better if he can see the restaurant name.
+    /**
+     * Method that returns the name of a specific restaurant. This is to add it to the review List-
+     * When a user views what restaurants he has reviewed it is better if he can see the restaurant name.
+     * @param restID
+     * @return 
+     */
     private static String findRestaurantName(int restID)
     {
         String name = "";
@@ -139,8 +169,12 @@ public class ReviewDAO
         return name;
     }
     
-    // Method that returns the username of a specific user. This is to add it to the review List-
-    // When a user views what reviews a restaurant has it is better if he can see the users username.
+    /**
+     * Method that returns the username of a specific user. This is to add it to the review List-
+     * When a user views what reviews a restaurant has it is better if he can see the users username.
+     * @param userID
+     * @return 
+     */
     private static String findUserName(int userID) 
     {
         String name = "";

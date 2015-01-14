@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group8.model;
 
 
@@ -11,38 +6,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author enriquecordero
- */
 public abstract class RestaurantDAO 
 {
     //                  ***************************
     //                  **    Query Functions    **
     //                  ***************************
-    
-    // Modified by Sergiu
 
+    /**
+     * Method to create a list of restaurants depending on the given filters.
+     * @param typeOfFood
+     * @param intPriceMin
+     * @param intPriceMax
+     * @param location
+     * @param time
+     * @param dayName
+     * @param searchTxt
+     * @return 
+     */
     public static List<Restaurant> fetchRestaurantByFilters (String typeOfFood,int intPriceMin,int intPriceMax,String location,String time, String dayName, String searchTxt)
     {
         String sql = SQLTranslator.translateFindRestaurantByFilters (typeOfFood, intPriceMin, intPriceMax, location, time, searchTxt);
         ResultSet rs = DBHandler.query( sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        //DBHandler.terminateDB();
-        
-        System.out.println("I am about to filter out the restaurants by the day and time filters applied");
-        List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayName);
-        
+        List <Restaurant> filteredRestaurants = filterRestaurantsByTimeDay(restaurants, time, dayName);       
         return filteredRestaurants;
     }
 
-    // Modified by Sergiu
+    /**
+     * Method to fetch all the restaurants in the database.
+     * @return 
+     */
     public static List<Restaurant> fetchAllRestaurants ()
     {        
         String sql = SQLTranslator.translateAllRestaurants();
         ResultSet rs = DBHandler.query(sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        //DBHandler.terminateDB();
         return restaurants;
     }
 
@@ -60,8 +58,7 @@ public abstract class RestaurantDAO
     {
         String sql = SQLTranslator.translateRestaurantWithIDExists (rest);
         ResultSet rs = DBHandler.query(sql);
-        int savedID = -1;
-        
+        int savedID = -1; 
         try
         {
             if(rs.next())
@@ -73,9 +70,6 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        //DBHandler.terminateDB();
-        
-        // 
         if(savedID == -1)
             return false;
         // If the same, then we are updating so no problem
@@ -85,6 +79,11 @@ public abstract class RestaurantDAO
         return true;
     }
     
+    /**
+     * Checks whether or not a specific restaurant already exists.
+     * @param rest
+     * @return 
+     */
     public static boolean restaurantExists (Restaurant rest)
     {
         String sql = SQLTranslator.translateRestaurantExists (rest);
@@ -100,7 +99,6 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-       // DBHandler.terminateDB();
         return false;
     }
     
@@ -127,12 +125,14 @@ public abstract class RestaurantDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        //DBHandler.terminateDB();
-        
         return (count != 0);
     }
     
-    //Modified by Sergiu
+    /**
+     * Fetch all the restaurants from a sepcific owner.
+     * @param UserId The id of the specific owner.
+     * @return List of restaurants belonging to that owner.
+     */
     public static List<Restaurant> fetchRestaurantsByLogin(int UserId)
     {
         String sql = SQLTranslator.translateFindRestaurantByLogin(UserId);
@@ -146,7 +146,10 @@ public abstract class RestaurantDAO
     //                  **    Update Functions   **
     //                  ***************************
 
-    // Changed by Sergiu
+    /**
+     * Adds a specific restaurant to the database.
+     * @param rest 
+     */
     public static void addRestaurant (Restaurant rest)
     {
         String sql = SQLTranslator.translateAddRestaurant(rest);
@@ -154,7 +157,10 @@ public abstract class RestaurantDAO
         addRestaurantSchedule(rest);
     }
     
-    // Changed by Sergiu
+    /**
+     * Updates a specific restaurant in the database.
+     * @param rest The restaurant to update.
+     */
     public static void updateRestaurant (Restaurant rest)
     {
         String sqlUpdate = SQLTranslator.translateUpdateRestaurant(rest);
@@ -162,7 +168,10 @@ public abstract class RestaurantDAO
         updateRestaurantSchedule(rest);
     }
 
-    // Changed by Sergiu
+    /**
+     * Deletes a specific restaurant from the database.
+     * @param rest Restaurant to delete.
+     */
     public static void deleteRestaurant (Restaurant rest)
     {
         String sql = SQLTranslator.translateDeleteRecord(rest.getId(), "Restaurant");
@@ -218,9 +227,6 @@ public abstract class RestaurantDAO
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return null;
         }
-
-        //DBHandler.terminateDB();
-
         return schedule;
     }
     
@@ -262,9 +268,6 @@ public abstract class RestaurantDAO
                 return null;
             }
         }
-
-        //DBHandler.terminateDB();
-
         return restaurants;
     }
     
@@ -288,9 +291,6 @@ public abstract class RestaurantDAO
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-       // DBHandler.terminateDB();
-        
         return restaurantID;
     }
     

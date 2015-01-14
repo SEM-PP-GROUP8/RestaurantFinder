@@ -9,8 +9,12 @@ public abstract class RegisteredUserDAO
     //                      ********** Queries **********
     //                      *****************************
     
-    //Fetches the information from a user given the userID from the DB. Returns the information
-    // collected in a RegisteredUser class.
+    /**
+     * Fetches the information from a user given the userID from the DB. Returns the information
+     * collected in a RegisteredUser class.
+     * @param userID
+     * @return Returns a RegisteredUser type.
+     */
     public static RegisteredUser fetchUserByID (int userID)
     {
         ResultSet rs = null;
@@ -18,7 +22,6 @@ public abstract class RegisteredUserDAO
         rs = DBHandler.query( sql);
 
         RegisteredUser currentUser = RsToRu(rs);
-        //DBHandler.terminateDB();
         return currentUser;
     }
 
@@ -26,16 +29,24 @@ public abstract class RegisteredUserDAO
     //                      ********** Updates **********
     //                      *****************************    
     
-    //Recieves the information through a Registered User.
-    //The method will update the user information in the DB with the recieved information.
+    /**
+     * Recieves the information through a Registered User.
+     * The method will update the user information in the DB with the recieved information.
+     * @param user Type RegisteredUser.
+     */
     public static void updateUserDetails(RegisteredUser user) 
     {
         String sqlUpdate = SQLTranslator.translateUpdateUserDetails (user);
         DBHandler.update(sqlUpdate);
     }
 
-    //Receives the userID the password and the table where the changes will happen.
-    //The method updates the passowrd to a new password.
+    /**
+     * Receives the userID the password and the table where the changes will happen.
+     * The method updates the passowrd to a new password.
+     * @param id
+     * @param password
+     * @param table 
+     */
     public static void updatePassword(int id, String password, String table) 
     {
         String sqlUpdate = SQLTranslator.translateUpdatePassword (id, password, table);
@@ -46,9 +57,13 @@ public abstract class RegisteredUserDAO
     //                      ********** Helpers **********
     //                      *****************************
     
-    //This is a helper method. It transfers the information on the resultSet recieved from the DB query
-    // to a registered user. It checks if the variables are null (variables are not demanded) then it 
-    // sets them to a default value.
+    /**
+     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * to a registered user. It checks if the variables are null (variables are not demanded) then it 
+     * sets them to a default value.
+     * @param rs ResultSet to go through and transform into a RegisteredUser type.
+     * @return a RegisterUser type.
+     */
     private static RegisteredUser RsToRu(ResultSet rs) 
     {
         RegisteredUser currentUser = null;
