@@ -347,6 +347,8 @@ public class Query extends javax.swing.JFrame
         });
         restaurantTable.setName(""); // NOI18N
         restaurantTable.setOpaque(false);
+        restaurantTable.setShowVerticalLines(false);
+        restaurantTable.setUpdateSelectionOnSort(false);
         restaurantNewModel = (DefaultTableModel) restaurantTable.getModel();
         jScrollPane1.setViewportView(restaurantTable);
         restaurantTable.getAccessibleContext().setAccessibleName("");
@@ -361,7 +363,7 @@ public class Query extends javax.swing.JFrame
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         //Calls the ViewRestaurant view to see the details of the currently selected restaurant in the table.
-        if (controllerListener!=null && restaurantTable.getSelectedRow()>=0)
+        if (controllerListener!=null && restaurantTable.getSelectedRow()>=0 && !filteredRestaurants.isEmpty())
         {
             Restaurant selectedRestaurant = filteredRestaurants.get(restaurantTable.getSelectedRow());
             controllerListener.viewButtonClicked(selectedRestaurant);
