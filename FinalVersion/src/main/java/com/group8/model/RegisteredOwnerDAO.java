@@ -1,6 +1,8 @@
 package com.group8.model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 //Factory for registered owner
 public class RegisteredOwnerDAO 
@@ -23,6 +25,20 @@ public class RegisteredOwnerDAO
         rs = DBHandler.query( sql);
         RegisteredOwner currentOwner = RsToRo (rs);
         return currentOwner;
+    }
+    
+    /**
+     * This method fetches all the owners from the database.
+     * @return a list of RegisteredOwner containing all the owners in the DB.
+     */
+    public static List<RegisteredOwner> getAllOwners() 
+    {
+        ResultSet rs = null;
+        String sql = SQLTranslator.fetchAllOwners();
+        rs = DBHandler.query( sql);
+
+        List<RegisteredOwner> allOwners = RsToRoL(rs);
+        return allOwners;
     }
 
     //                      *****************************
@@ -55,6 +71,16 @@ public class RegisteredOwnerDAO
         DBHandler.update(sqlUpdate);
     }
     
+    /**
+     * This method deletes a specific owner from the database.
+     * @param id 
+     */
+    public static void deleteOwner(int id) 
+    {
+        String sql = SQLTranslator.translateDeleteOwner(id);
+        DBHandler.update(sql);
+    }
+    
     //                      *****************************
     //                      ********** Helpers **********
     //                      *****************************
@@ -66,7 +92,7 @@ public class RegisteredOwnerDAO
      * @param rs The resultSet to go through and transform to a RegisteredOwner type.
      * @return the RegisteredOwner.
      */
-     private static RegisteredOwner RsToRo(ResultSet rs) 
+    private static RegisteredOwner RsToRo(ResultSet rs) 
     {
         RegisteredOwner currentOwner = null;
         try
@@ -95,5 +121,43 @@ public class RegisteredOwnerDAO
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         return currentOwner;
+    }
+
+    /**
+     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * to a registered owner list. It checks if the variables are null (variables are not demanded) then it 
+     * sets them to a default value.
+     * @param rs The resultSet to go through and transform to a RegisteredOwner type.
+     * @return the RegisteredOwner list.
+     */
+    private static List <RegisteredOwner> RsToRoL(ResultSet rs) 
+    {
+        List <RegisteredOwner> allOwners = new ArrayList<RegisteredOwner>();
+        try
+        {
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                String userName = rs.getString("Username");
+                String surname = rs.getString("Surname");
+                if (rs.wasNull())
+                    surname = "";
+                String familyName = rs.getString("Famname");
+                if (rs.wasNull())
+                    familyName = "";
+                String email = rs.getString("Email");
+                if (rs.wasNull())
+                    email = "";
+                String phone = rs.getString("Phone");
+                if (rs.wasNull())
+                    phone = "";
+                allOwners.add(new RegisteredOwner (id, userName, surname, familyName, email, phone));
+            }
+        }
+        catch (Exception e)
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        return allOwners;
     }
 }

@@ -263,7 +263,6 @@ public class Query extends javax.swing.JFrame
         userButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         userButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         userButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        userButton.setLabel("My profile");
         userButton.setName(""); // NOI18N
         userButton.setPreferredSize(new java.awt.Dimension(140, 30));
         userButton.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +275,6 @@ public class Query extends javax.swing.JFrame
         ownerButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         ownerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ownerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ownerButton.setLabel("My profile");
         ownerButton.setMaximumSize(new java.awt.Dimension(123, 39));
         ownerButton.setMinimumSize(new java.awt.Dimension(123, 39));
         ownerButton.setName(""); // NOI18N
@@ -588,13 +586,6 @@ public class Query extends javax.swing.JFrame
      */
     private void populateSessionButtons ()
     {
-        ownerButton.setVisible(false);
-        userButton.setVisible(false);
-        restaurantButton.setVisible(false);             
-        loginButton.setVisible(false);
-        orLabel.setVisible(false);
-        registerButton.setVisible(false);
-        logoutButton.setVisible(false);
         switch (Session.getType())
         {
             case "Admins":
@@ -602,20 +593,37 @@ public class Query extends javax.swing.JFrame
                 userButton.setVisible(true);
                 restaurantButton.setVisible(true);
                 logoutButton.setVisible(true);
+                userButton.setText("Users");
+                ownerButton.setText("Owners");
+                loginButton.setVisible(false);
+                orLabel.setVisible(false);
+                registerButton.setVisible(false);
                 break;
             case "Users":
                 userButton.setVisible(true);
                 logoutButton.setVisible(true);
+                userButton.setText("My Profile");
+                loginButton.setVisible(false);
+                orLabel.setVisible(false);
+                registerButton.setVisible(false);
                 break;
             case "Owners":
                 restaurantButton.setVisible(true); 
                 ownerButton.setVisible(true);
                 logoutButton.setVisible(true);
+                ownerButton.setText("My Profile");
+                loginButton.setVisible(false);
+                orLabel.setVisible(false);
+                registerButton.setVisible(false);
                 break;
             default:
                 loginButton.setVisible(true);
                 orLabel.setVisible(true);
                 registerButton.setVisible(true);
+                ownerButton.setVisible(false);
+                userButton.setVisible(false);
+                restaurantButton.setVisible(false); 
+                logoutButton.setVisible(false);
                 break;
         }
     }

@@ -580,5 +580,19 @@ public class Controller implements ControllerListener
         queryView.setLocationRelativeTo(null);
         queryView.setVisible(true);
     }
+
+    @Override
+    public List<RegisteredUser> getAllUsers() 
+    {
+        List<RegisteredUser> allUsers = RegisteredUserDAO.getAllUsers();
+        return allUsers;
+    }
+
+    @Override
+    public List<RegisteredOwner> getAllOwners() 
+    {
+        List<RegisteredOwner> allOwners = RegisteredOwnerDAO.getAllOwners();
+        return allOwners;
+    }
     
 }

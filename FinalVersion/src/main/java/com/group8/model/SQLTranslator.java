@@ -544,4 +544,28 @@ public abstract class SQLTranslator
 
             return sqlQuery;
     }
+
+    static String translateDeleteUser(int userID) 
+    {
+        sqlQuery = "Delete from Users where ID = " + userID + ";";
+        return sqlQuery;
+    }
+
+    static String fetchAllUsers() 
+    {
+        sqlQuery = "Select * from Users;";
+        return sqlQuery;
+    }
+
+    static String translateDeleteOwner(int id) 
+    {
+        sqlQuery = "Delete from Owners where ID = " + id + ";";
+        return sqlQuery;
+    }
+
+    static String fetchAllOwners() 
+    {
+        sqlQuery = "Select * from Owners;";
+        return sqlQuery;
+    }
 }

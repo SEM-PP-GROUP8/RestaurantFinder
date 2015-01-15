@@ -3,14 +3,19 @@ package com.group8.view;
 import com.group8.controller.ControllerListener;
 import com.group8.model.DBHandler;
 import com.group8.model.RegisteredOwner;
+import com.group8.model.RegisteredOwnerDAO;
 import com.group8.model.Session;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class Owner extends javax.swing.JFrame 
 {
     //Variable that connects the view to the controller
     private ControllerListener controllerListener;
+    List <RegisteredOwner> owners;
 
     public Owner() 
     {
@@ -48,6 +53,9 @@ public class Owner extends javax.swing.JFrame
         repeatPassText = new javax.swing.JPasswordField();
         savePassButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        allOwnersPane = new javax.swing.JScrollPane();
+        allOwnersTable = new javax.swing.JTable();
+        deleteOwnerButton = new javax.swing.JButton();
         logoLabel = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
 
@@ -113,9 +121,8 @@ public class Owner extends javax.swing.JFrame
         getContentPane().add(ownerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 40));
 
         currentOwnerLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        currentOwnerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         currentOwnerLabel.setPreferredSize(new java.awt.Dimension(140, 40));
-        getContentPane().add(currentOwnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 40));
+        getContentPane().add(currentOwnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 440, 40));
 
         editPassButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         editPassButton.setText("Edit Password");
@@ -202,6 +209,32 @@ public class Owner extends javax.swing.JFrame
         });
         getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 100, -1));
 
+        allOwnersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Username"
+            }
+        ));
+        allOwnersTable.setAutoscrolls(false);
+        ownersModel = (DefaultTableModel) allOwnersTable.getModel();
+        allOwnersPane.setViewportView(allOwnersTable);
+
+        getContentPane().add(allOwnersPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 660, 430));
+
+        deleteOwnerButton.setText("Delete");
+        deleteOwnerButton.setPreferredSize(new java.awt.Dimension(110, 40));
+        deleteOwnerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteOwnerButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteOwnerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, 40));
+
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/logo.jpg"))); // NOI18N
         getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 100, -1));
 
@@ -265,13 +298,39 @@ public class Owner extends javax.swing.JFrame
         controllerListener.exitOwnerView();
     }//GEN-LAST:event_formWindowClosing
 
+    private void deleteOwnerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOwnerButtonActionPerformed
+        //Asks the admin for verification on deleting the user. If admin agrees then 
+        //it deletes the user and sends a success msg. It also updates the table.
+        
+        int index = allOwnersTable.getSelectedRow();
+        if (index >= 0)
+        {
+            int answer = sendQuestionMSG ("Are you sure you want to delete the Owner?", "Delete?");
+            if (answer == 0)
+            {
+                RegisteredOwner current = owners.get(index);
+                RegisteredOwnerDAO.deleteOwner(current.getId());
+                updateOwnersTable();
+                sendSuccesfulMSG ("The Owner was succesfully deleted.", "Success!");
+            }
+        }
+        else
+        {
+            sendErrorMSG ("You have to select an Owner First.","Error!");
+        }
+    }//GEN-LAST:event_deleteOwnerButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane allOwnersPane;
+    private javax.swing.JTable allOwnersTable;
+    DefaultTableModel ownersModel;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton cancelEditPassButton;
     private javax.swing.JLabel currentOwnerLabel;
     private javax.swing.JLabel currentPassLabel;
     private javax.swing.JPasswordField currentPassText;
+    private javax.swing.JButton deleteOwnerButton;
     private javax.swing.JButton editPassButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
@@ -298,10 +357,20 @@ public class Owner extends javax.swing.JFrame
      */
     public void loadView ()
     {
-        setDefaultViewValues();
-        setDefaultPassValues ();
+        if (Session.isOwner())
+        {
+            setDefaultViewValues();
+            setDefaultPassValues ();
+            setValues();
+        }
+        if (Session.isAdmin())
+        {
+            currentOwnerLabel.setText("Administrator");
+            justifyColumns ("Owners");
+            updateOwnersTable();
+        }
         changePasswordView(false);
-        setValues();
+        
     }
     
     /**
@@ -310,27 +379,51 @@ public class Owner extends javax.swing.JFrame
      */
     private void changePasswordView(boolean option)
     {
-        cancelEditPassButton.setVisible(option);
-        currentPassLabel.setVisible(option);
-        currentPassText.setVisible(option);
-        newPassLabel.setVisible(option);
-        newPassText.setVisible(option);
-        repeatPassLabel.setVisible(option);
-        repeatPassText.setVisible(option);
-        savePassButton.setVisible(option);
-        if (option)
+        boolean normalView;
+        boolean changePass;
+        boolean isAdmin;
+        if (Session.isOwner())
+        {
+            changePass = option;
+            normalView = !option;
+            isAdmin = false;
+        }
+        else if (Session.isAdmin())
+        {
+            changePass = false;
+            normalView = false;
+            isAdmin = true;
+        }
+        else
+        {
+            changePass = false;
+            normalView = false;
+            isAdmin = false;
+        }
+        cancelEditPassButton.setVisible(changePass);
+        currentPassLabel.setVisible(changePass);
+        currentPassText.setVisible(changePass);
+        newPassLabel.setVisible(changePass);
+        newPassText.setVisible(changePass);
+        repeatPassLabel.setVisible(changePass);
+        repeatPassText.setVisible(changePass);
+        savePassButton.setVisible(changePass);
+        if (changePass)
             currentPassText.grabFocus();
         
-        editPassButton.setVisible(!option);
-        surnameLabel.setVisible(!option);
-        surnameText.setVisible(!option);
-        familyNameLabel.setVisible(!option);
-        familyNameText.setVisible(!option);
-        emailLabel.setVisible(!option);
-        emailText.setVisible(!option);
-        phoneLabel.setVisible(!option);
-        phoneText.setVisible(!option);
-        updateInfoButton.setVisible(!option);
+        editPassButton.setVisible(normalView);
+        surnameLabel.setVisible(normalView);
+        surnameText.setVisible(normalView);
+        familyNameLabel.setVisible(normalView);
+        familyNameText.setVisible(normalView);
+        emailLabel.setVisible(normalView);
+        emailText.setVisible(normalView);
+        phoneLabel.setVisible(normalView);
+        phoneText.setVisible(normalView);
+        updateInfoButton.setVisible(normalView);
+        
+        allOwnersPane.setVisible(isAdmin);
+        deleteOwnerButton.setVisible(isAdmin);
     }
 
     /**
@@ -435,6 +528,46 @@ public class Owner extends javax.swing.JFrame
             return false;
         }
     }   
+    
+    private void updateOwnersTable ()
+    {
+        owners = controllerListener.getAllOwners();
+        try
+        {
+            ownersModel.setRowCount(0);
+            for (RegisteredOwner current : owners) 
+            {
+                int id = current.getId();
+                String name = current.getUserName();
+                ownersModel.addRow(new Object[]{id, name});
+            }
+            justifyColumns("users");
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Owners: Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    /**
+     * This method deals with the design of the JTable. How the columns will show their information
+     * and what type of justification they will have when presenting the information.
+     */
+    private void justifyColumns(String table)
+    {
+        DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
+        centerRender.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        
+        DefaultTableCellRenderer leadingRender = new DefaultTableCellRenderer();
+        leadingRender.setHorizontalAlignment(DefaultTableCellRenderer.LEADING);
+        if (table.equals("Owners"))
+        {
+            ((DefaultTableCellRenderer)allOwnersTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+            allOwnersTable.getColumn("ID").setCellRenderer(centerRender);
+            allOwnersTable.getColumn("Username").setCellRenderer( centerRender );
+        }
+    }
+    
     /**
      * Method to check whether all the information provided complies with the required information
      * structure. Checks the length of all the fields provided and compares them with the max 

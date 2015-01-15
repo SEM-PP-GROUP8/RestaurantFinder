@@ -4,15 +4,16 @@ import com.group8.model.RegisteredUser;
 import com.group8.controller.ControllerListener;
 import com.group8.model.DBHandler;
 import com.group8.model.Model;
-import com.group8.model.RestaurantDAO;
+import com.group8.model.RegisteredUserDAO;
 import com.group8.model.Review;
 import com.group8.model.ReviewDAO;
 import com.group8.model.Session;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +25,7 @@ public class User extends javax.swing.JFrame
     
     //List of review to view on the table. This variable updates itself everytime there is a change.
     List<Review> reviews;
+    List<RegisteredUser> users;
 
     public User() 
     {
@@ -62,6 +64,7 @@ public class User extends javax.swing.JFrame
         reviewPane = new javax.swing.JScrollPane();
         reviewTable = new javax.swing.JTable();
         deleteReviewButton = new javax.swing.JButton();
+        deleteUserButton = new javax.swing.JButton();
         currentPassLabel = new javax.swing.JLabel();
         currentPassText = new javax.swing.JPasswordField();
         newPassLabel = new javax.swing.JLabel();
@@ -69,6 +72,8 @@ public class User extends javax.swing.JFrame
         repeatPassLabel = new javax.swing.JLabel();
         repeatPassText = new javax.swing.JPasswordField();
         savePassButton = new javax.swing.JButton();
+        allUsersPane = new javax.swing.JScrollPane();
+        allUsersTable = new javax.swing.JTable();
         logoLabel = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
 
@@ -166,9 +171,8 @@ public class User extends javax.swing.JFrame
         getContentPane().add(userNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 40));
 
         currentUserLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        currentUserLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         currentUserLabel.setPreferredSize(new java.awt.Dimension(140, 40));
-        getContentPane().add(currentUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 40));
+        getContentPane().add(currentUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 440, 40));
 
         editPassButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         editPassButton.setText("Edit Password");
@@ -231,7 +235,7 @@ public class User extends javax.swing.JFrame
 
         getContentPane().add(reviewPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 670, 190));
 
-        deleteReviewButton.setText("Delete");
+        deleteReviewButton.setText("Delete Review");
         deleteReviewButton.setPreferredSize(new java.awt.Dimension(100, 40));
         deleteReviewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +243,15 @@ public class User extends javax.swing.JFrame
             }
         });
         getContentPane().add(deleteReviewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 550, 100, -1));
+
+        deleteUserButton.setText("Delete User");
+        deleteUserButton.setPreferredSize(new java.awt.Dimension(100, 40));
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 300, 100, -1));
 
         currentPassLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         currentPassLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -286,6 +299,39 @@ public class User extends javax.swing.JFrame
             }
         });
         getContentPane().add(savePassButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 80, -1));
+
+        allUsersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Username"
+            }
+        ));
+        allUsersTable.setAutoscrolls(false);
+        usersModel = (DefaultTableModel) allUsersTable.getModel();
+        allUsersPane.setViewportView(allUsersTable);
+        allUsersTable.getSelectionModel().addListSelectionListener
+        (
+            new ListSelectionListener()
+            {
+                public void valueChanged(ListSelectionEvent event)
+                {
+                    int viewRow = allUsersTable.getSelectedRow();
+                    if (viewRow < 0)
+                    {
+                        //Selection got filtered away.
+                        System.out.println ("Weird error");
+                    }
+                    else
+                    {
+                        updateTable(users.get(viewRow).getId());
+                    }
+                }
+            }
+        );
+
+        getContentPane().add(allUsersPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 670, 220));
 
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/logo.jpg"))); // NOI18N
         getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 100, -1));
@@ -364,8 +410,11 @@ public class User extends javax.swing.JFrame
             {
                 Review current = reviews.get(index);
                 ReviewDAO.deleteReview(current.getRestID(), current.getUserID());
-                updateTable();
-                sendSuccesfulMSG ("Your review was succesfully deleted.", "Success!");
+                if (Session.isUser())
+                    updateTable(Session.getId());
+                else if (Session.isAdmin())
+                    updateTable(users.get(allUsersTable.getSelectedRow()).getId());
+                sendSuccesfulMSG ("The review was succesfully deleted.", "Success!");
             }
         }
         else
@@ -374,7 +423,32 @@ public class User extends javax.swing.JFrame
         }
     }//GEN-LAST:event_deleteReviewButtonActionPerformed
 
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
+        //Asks the admin for verification on deleting the user. If admin agrees then 
+        //it deletes the user and sends a success msg. It also updates the table.
+        
+        int index = allUsersTable.getSelectedRow();
+        if (index >= 0)
+        {
+            int answer = sendQuestionMSG ("Are you sure you want to delete the User?", "Delete?");
+            if (answer == 0)
+            {
+                RegisteredUser current = users.get(index);
+                RegisteredUserDAO.deleteUser(current.getId());
+                updateUserTable();
+                sendSuccesfulMSG ("The User was succesfully deleted.", "Success!");
+            }
+        }
+        else
+        {
+            sendErrorMSG ("You have to select a User First.","Error!");
+        }
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane allUsersPane;
+    private javax.swing.JTable allUsersTable;
+    DefaultTableModel usersModel;
     private javax.swing.JComboBox areaCombo;
     private DefaultComboBoxModel areaModel;
     private javax.swing.JLabel areaLabel;
@@ -387,6 +461,7 @@ public class User extends javax.swing.JFrame
     private javax.swing.JPasswordField currentPassText;
     private javax.swing.JLabel currentUserLabel;
     private javax.swing.JButton deleteReviewButton;
+    private javax.swing.JButton deleteUserButton;
     private javax.swing.JButton editPassButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
@@ -416,10 +491,20 @@ public class User extends javax.swing.JFrame
      */
     public void loadView ()
     {
-        setDefaultViewValues();
-        setDefaultPassValues ();
+        justifyColumns ("Reviews");
+        if (Session.isUser())
+        {
+            setDefaultViewValues();
+            setDefaultPassValues ();
+            setValues ();
+        }
+        if (Session.isAdmin())
+        {
+            justifyColumns ("Users");
+            currentUserLabel.setText("Administrator");
+            updateUserTable();
+        }
         changePasswordView(false);
-        setValues ();
     }
     
     /**
@@ -428,33 +513,62 @@ public class User extends javax.swing.JFrame
      */
     private void changePasswordView(boolean option)
     {
-        cancelEditPassButton.setVisible(option);
-        currentPassLabel.setVisible(option);
-        currentPassText.setVisible(option);
-        newPassLabel.setVisible(option);
-        newPassText.setVisible(option);
-        repeatPassLabel.setVisible(option);
-        repeatPassText.setVisible(option);
-        savePassButton.setVisible(option);
-        if (option)
-            currentPassText.grabFocus();
-        
-        editPassButton.setVisible(!option);
-        surnameLabel.setVisible(!option);
-        surnameText.setVisible(!option);
-        familyNameLabel.setVisible(!option);
-        familyNameText.setVisible(!option);
-        emailLabel.setVisible(!option);
-        emailText.setVisible(!option);
-        phoneLabel.setVisible(!option);
-        phoneText.setVisible(!option);
-        areaLabel.setVisible(!option);
-        areaCombo.setVisible(!option);
-        cityLabel.setVisible(!option);
-        cityText.setVisible(!option);
-        updateInfoButton.setVisible(!option);
-        reviewPane.setVisible(!option);
-        deleteReviewButton.setVisible(!option);
+        boolean normalView;
+        boolean changePass;
+        boolean isAdmin;
+        if (Session.isUser())
+        {
+            changePass = option;
+            normalView = !option;
+            isAdmin = false;
+        }
+        else if (Session.isAdmin())
+        {
+            changePass = false;
+            normalView = false;
+            isAdmin = true;
+        }
+        else
+        {
+            changePass = false;
+            normalView = false;
+            isAdmin = false;
+        }
+            //If the option is to change password
+            cancelEditPassButton.setVisible(changePass);
+            currentPassLabel.setVisible(changePass);
+            currentPassText.setVisible(changePass);
+            newPassLabel.setVisible(changePass);
+            newPassText.setVisible(changePass);
+            repeatPassLabel.setVisible(changePass);
+            repeatPassText.setVisible(changePass);
+            savePassButton.setVisible(changePass);
+            deleteReviewButton.setVisible(changePass);
+            if (changePass)
+                currentPassText.grabFocus();
+
+            //if the option is to go to the normal view (not change password)
+            editPassButton.setVisible(normalView);
+            surnameLabel.setVisible(normalView);
+            surnameText.setVisible(normalView);
+            familyNameLabel.setVisible(normalView);
+            familyNameText.setVisible(normalView);
+            emailLabel.setVisible(normalView);
+            emailText.setVisible(normalView);
+            phoneLabel.setVisible(normalView);
+            phoneText.setVisible(normalView);
+            areaLabel.setVisible(normalView);
+            areaCombo.setVisible(normalView);
+            cityLabel.setVisible(normalView);
+            cityText.setVisible(normalView);
+            updateInfoButton.setVisible(normalView);
+            
+            reviewPane.setVisible(normalView || isAdmin);
+            deleteReviewButton.setVisible(normalView || isAdmin);
+            
+            //If its an admin
+            allUsersPane.setVisible(isAdmin);
+            deleteUserButton.setVisible(isAdmin);
     }
     
     /**
@@ -473,7 +587,7 @@ public class User extends javax.swing.JFrame
             phoneText.setText(currentUser.getPhone());
             populateAreaCombo(currentUser.getArea());
             cityText.setText(currentUser.getCity());
-            updateTable ();
+            updateTable (Session.getId());
         }
     }
     
@@ -482,10 +596,9 @@ public class User extends javax.swing.JFrame
      * the list related to the current form and then it loads from that list. It also calls a 
      * method to justify the columns the desired way.
      */
-    private void updateTable ()
+    private void updateTable (int userID)
     {
-        reviews = controllerListener.getReviewsByUserID(Session.getId());
-        //populates the restaurant list with the list in the variable.
+        reviews = controllerListener.getReviewsByUserID(userID);
         try
         {
             reviewModel.setRowCount(0);
@@ -500,34 +613,66 @@ public class User extends javax.swing.JFrame
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(this, "Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Reviews: Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
         }
-        justifyColumns();
+        justifyColumns("reviews");
+    }
+    
+    /**
+     * Mehtod updates the table with all the users. It updates
+     * the list related to the current form and then it loads from that list. It also calls a 
+     * method to justify the columns the desired way.
+     */
+    private void updateUserTable ()
+    {
+        users = controllerListener.getAllUsers();
+        try
+        {
+            usersModel.setRowCount(0);
+            for (RegisteredUser current : users) 
+            {
+                int id = current.getId();
+                String name = current.getUserName();
+                usersModel.addRow(new Object[]{id, name});
+            }
+            justifyColumns("users");
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Users: Problem with the Database!", "Program error", JOptionPane.ERROR_MESSAGE);
+        }
+        reviewModel.setRowCount(0);
     }
     
     /**
      * This method deals with the design of the JTable. How the columns will show their information
      * and what type of justification they will have when presenting the information.
      */
-    private void justifyColumns()
+    private void justifyColumns(String table)
     {
         DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
         centerRender.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
         
         DefaultTableCellRenderer leadingRender = new DefaultTableCellRenderer();
         leadingRender.setHorizontalAlignment(DefaultTableCellRenderer.LEADING);
-        
-        ((DefaultTableCellRenderer)reviewTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-        
-        reviewTable.getColumn("Date").setCellRenderer(centerRender);
-        reviewTable.getColumn("Restaurant").setCellRenderer( centerRender );
-        reviewTable.getColumn("Grade").setCellRenderer( centerRender );
-        reviewTable.getColumn("Review").setCellRenderer( leadingRender );
-        
-        reviewTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-        reviewTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-        reviewTable.getColumnModel().getColumn(2).setPreferredWidth(50);
-        reviewTable.getColumnModel().getColumn(3).setPreferredWidth(320);
+        if (table.equals("reviews"))
+        {
+            ((DefaultTableCellRenderer)reviewTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+            reviewTable.getColumn("Date").setCellRenderer(centerRender);
+            reviewTable.getColumn("Restaurant").setCellRenderer( centerRender );
+            reviewTable.getColumn("Grade").setCellRenderer( centerRender );
+            reviewTable.getColumn("Review").setCellRenderer( leadingRender );
+            reviewTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            reviewTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            reviewTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+            reviewTable.getColumnModel().getColumn(3).setPreferredWidth(320);
+        }
+        if (table.equals("users"))
+        {
+            ((DefaultTableCellRenderer)allUsersTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+            allUsersTable.getColumn("ID").setCellRenderer(centerRender);
+            allUsersTable.getColumn("Username").setCellRenderer(centerRender);
+        }
     }
     
     /**

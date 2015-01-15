@@ -61,4 +61,8 @@ public interface ControllerListener
     public void reviewUpdateButtonPressed();
     public boolean canAddReview();
 
+    public List<RegisteredUser> getAllUsers();
+
+    public List<RegisteredOwner> getAllOwners();
+
 }

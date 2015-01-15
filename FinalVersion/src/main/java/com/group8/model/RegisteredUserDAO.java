@@ -1,6 +1,8 @@
 package com.group8.model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 //Factory for the Registered User
 public abstract class RegisteredUserDAO 
@@ -23,6 +25,20 @@ public abstract class RegisteredUserDAO
 
         RegisteredUser currentUser = RsToRu(rs);
         return currentUser;
+    }
+    
+    /**
+     * This method fetches all the users from the database.
+     * @return a list of RegisteredUsers containing all the users in the DB.
+     */
+    public static List<RegisteredUser> getAllUsers() 
+    {
+        ResultSet rs = null;
+        String sql = SQLTranslator.fetchAllUsers();
+        rs = DBHandler.query( sql);
+
+        List<RegisteredUser> allUsers = RsToRuL(rs);
+        return allUsers;
     }
 
     //                      *****************************
@@ -51,6 +67,16 @@ public abstract class RegisteredUserDAO
     {
         String sqlUpdate = SQLTranslator.translateUpdatePassword (id, password, table);
         DBHandler.update(sqlUpdate);
+    }
+    
+    /**
+     * This method deletes a specific user from the database.
+     * @param userID 
+     */
+    public static void deleteUser (int userID)
+    {
+        String sql = SQLTranslator.translateDeleteUser(userID);
+        DBHandler.update(sql);
     }
     
     //                      *****************************
@@ -99,5 +125,50 @@ public abstract class RegisteredUserDAO
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         return currentUser;
+    }
+    
+    /**
+     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * to a registered user list. It checks if the variables are null (variables are not demanded) then it 
+     * sets them to a default value.
+     * @param rs
+     * @return 
+     */
+    private static List <RegisteredUser> RsToRuL(ResultSet rs) 
+    {
+        List <RegisteredUser> allUsers = new ArrayList<RegisteredUser>();
+        try
+        {
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                String userName = rs.getString("Username");
+                String surname = rs.getString("Surname");
+                if (rs.wasNull())
+                    surname = "";
+                String familyName = rs.getString("Famname");
+                if (rs.wasNull())
+                    familyName = "";
+                String email = rs.getString("Email");
+                if (rs.wasNull())
+                    email = "";
+                String phone = rs.getString("Phone");
+                if (rs.wasNull())
+                    phone = "";
+                String area = rs.getString("Area");
+                if (rs.wasNull())
+                    area = "";
+                String city = rs.getString("City");
+                if (rs.wasNull())
+                    city = "";
+                RegisteredUser newUser = new RegisteredUser (id, userName, surname, familyName, email, phone, area, city);
+                allUsers.add(newUser);
+            }
+        }
+        catch (Exception e)
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        return allUsers;
     }
 }
