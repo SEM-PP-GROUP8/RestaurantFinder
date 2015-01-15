@@ -7,13 +7,13 @@ Abstract
 
 Table of contents
 INTRODUCTION	1
-BACKGROUND – KIKE?	1
-PURPOSE – KIKE?	1
-MATERIAL – HAMPUS?	1
+BACKGROUND ?KIKE?	1
+PURPOSE ?KIKE?	1
+MATERIAL ?HAMPUS?	1
 METHOD- SERGIU?	1
-BODY/RESULT – ALL?	2
-CONCLUSION AND DISSCUSION – ALL?	3
-SOURCES – KEVIN?	4
+BODY/RESULT ?ALL?	2
+CONCLUSION AND DISSCUSION ?ALL?	3
+SOURCES ?KEVIN?	4
 
 
  
@@ -24,7 +24,7 @@ With many types of resources in the area, with plenty of seafood from the coast,
 Purpose
 The purpose of the project is to have a more centralized and simple way to find the type of restaurant you want to visit at a specific point in time.  The application will help the customer find a restaurant based on different parameters. It will also provide a way to rate them and to store those reviews in order to remember which restaurants they have visited and what they thought about it. From the restaurant owner point of view, the application will help the owner to see first hand what customers thought about their experience and to modify the information provided along with the restaurant.  The application is targeted for restaurant owner who want to reach their customers in a better way and for people who want a tool to find the right restaurant experience they were looking for.
 	
-	Material – Hampus?
+	Material ?Hampus?
 Several tools were used to help with the development of the project, with the main tool for developing the application being netbeans. This IDE was chosen mostly because of the GUI building feature, but proved useful in other areas as well, like the support for maven, which was used to organize imported packages. Maven did, however, make it difficult for the group to make an executable file of the program, so time was spent on fixing this, which the group did not expect. The GUI  building feature also proved to have some negative features. The auto generated code, for instance, was sometimes hard to manage due to the lack of editing support.
 
 Because of the lack of experience in software development, educational and informational sources such as stackoverflow and java documentation, proved to be highly valuable. Without either of these, the development of the application would not have been as successful. Stackoverflow, along with other websites such as youtube and various forums, were especially important due to the amount of experience amongst the people contributing their knowledge.
@@ -44,14 +44,14 @@ Scrum
 
 
  
-Body/result – ALL?
+Body/result ?ALL?
 
 Initial thoughts on software process
 Our initial choice of a software process was agile, due to the fact that the developing team was inexperienced. 
 Due to the fact that the team was inexperienced, the risk of requirements and design changes was pretty high. In order to minimize it, agile was the adequate choice as a software process. Incremental approach was proposed as a common technique of development for all members, but each member could tailor their own process when working on the scheduled tasks.
 A team leader has not been chosen since none of us possessed enough knowledge to take this responsibility. 
 
-Problem – cause – solution discussions section:
+Problem ?cause ?solution discussions section:
 
 Structure: Problem, cause (What caused the problem), solution (which was applied, or should have been applied).
 
@@ -59,7 +59,7 @@ Any or all of the subparts (problem/cause/solution) should be detailed.
 [SERGIU START]
 -	The scheduled tasks were too broad. The tasks should have been more specific so they can be assigned to team members and be monitored more easily.
 -	The project plan was not updated after the beta project. There was no schedule after we did the beta presentation. This activity should have been an assigned responsibility.
--	Revision control was very difficult. We used facebook. We decided pretty late to use github. We decided late because we were scared of integrating one more tool into our process and having to invest more time in training. We should have used it from the very beginning because even with the time spent on learning to use github, we still could have saved a lot of time that was wasted “manual” version control and bug fixes that were caused by it.
+-	Revision control was very difficult. We used facebook. We decided pretty late to use github. We decided late because we were scared of integrating one more tool into our process and having to invest more time in training. We should have used it from the very beginning because even with the time spent on learning to use github, we still could have saved a lot of time that was wasted “manual?version control and bug fixes that were caused by it.
 Mention version control on the database.
 -	Test driven development was non-existent. This lead to a lot of hours wasted on testing the software for bugs. 
 -	Dividing work proved impossible. We were lacking an architectural pattern. We chose MVC
@@ -70,7 +70,7 @@ Mention version control on the database.
 a.	What did we miss out exactly?
 b.	We needed more prototyping
 c.	We needed an iterative-incremental approach
--	A lot of work was invested for developing simple functionality. The use of netbeans’ window builder and spring framework were proposed for minimizing boiler plate coding.
+-	A lot of work was invested for developing simple functionality. The use of netbeans?window builder and spring framework were proposed for minimizing boiler plate coding.
 
 -	Tools that were identified to increase productivity were not used. Training proved challenging and time consuming. They were identified late in the project. They should have been identified right from the start so that there would be enough time for training.
 [HAMPUS STOP]
@@ -83,13 +83,14 @@ c.	We needed an iterative-incremental approach
 [KIKE STOP]
 
 [KEVIN START]
+going to starting working on it :)
 -	We had difficulty choosing a database system. SQLite was recommended. Inexperience. We chose mysql because:
 o	We wanted it to be remote
 o	More documentation out there
 o	More relevant career wise
 o	Some of the members had previous experience with mysql
 
--	GUI was not consistent between different platforms, particularly OSX vs Windows. Caused by the operating systems’ way of displaying graphical elements. Certain components had to be changed from the initial design specification.
+-	GUI was not consistent between different platforms, particularly OSX vs Windows. Caused by the operating systems?way of displaying graphical elements. Certain components had to be changed from the initial design specification.
 -	Issue with merging window builder generated code and resolving version control conflict. Solution: we decided to make sure we’re not working on the same components at the same time, otherwise we had to use another text editor than netbeans, as netbeans does not allow to modify generated code by window builder.
 -	We avoided the concept of a stakeholder. The project requirements were broad. We think the scrum framework should be enforced by the course from the beginning. It will force us to treat our teacher and supervisor as a stakeholders and also force us to involve the stakeholders in the development process. Also the requirements would be a bit more refined and guessing requirements would be minimized.
 [KEVIN STOP]
@@ -110,11 +111,11 @@ what you did
 how you did it
 
  
-Conclusion and disscusion – ALL?
+Conclusion and disscusion ?ALL?
 
 - what major problems you faced
 - how you overcame these
 - how would we do it differently?
  
-Sources – Kevin?
+Sources ?Kevin?
 
