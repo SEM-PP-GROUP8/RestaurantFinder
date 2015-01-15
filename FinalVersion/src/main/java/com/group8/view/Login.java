@@ -37,6 +37,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login as a User, Restaurant Owner or an Administrator");
         setBounds(new java.awt.Rectangle(200, 50, 800, 620));
         setMinimumSize(new java.awt.Dimension(800, 620));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 onWindowClosing(evt);

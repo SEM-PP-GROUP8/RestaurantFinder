@@ -63,6 +63,7 @@ public class Owner extends javax.swing.JFrame
         setTitle("Personal Information");
         setLocation(new java.awt.Point(200, 50));
         setPreferredSize(new java.awt.Dimension(800, 620));
+        setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

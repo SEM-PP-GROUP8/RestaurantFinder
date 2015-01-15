@@ -51,13 +51,6 @@
             <version>4.1.2.RELEASE</version>
         </dependency>
         
-        <!-- Absolute layout for Jframe -->
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        
         <!-- SQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
