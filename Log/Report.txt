@@ -57,20 +57,31 @@ Structure: Problem, cause (What caused the problem), solution (which was applied
 
 Any or all of the subparts (problem/cause/solution) should be detailed.
 
-- The scheduled tasks were too broad. The tasks should have been more specific so they can be assigned to team members and be monitored more easily.
-- The project plan was not updated after the beta project. There was no schedule after we did the beta presentation. This activity should have been an assigned responsibility.
-- Revision control was very difficult. We used facebook. We decided pretty late to use github. We decided late because we were scared of integrating one more tool into our process and having to invest more time in training. We should have used it from the very beginning because even with the time spent on learning to use github, we still could have saved a lot of time that was wasted “manual” version control and bug fixes that were caused by it.
-- Test driven development was non-existent. This lead to a lot of hours wasted on testing the software for bugs. 
-- We lacked a team leader
-- We needed a more specific and tailored software process to follow.
-	a.	What did we miss out exactly?
-	b.	We needed more prototyping
-	c.	We needed an iterative-incremental approach
-- Dividing work proved impossible. We were lacking an architectural pattern. We chose MVC
-- A lot of work was invested for developing simple functionality. The use of netbeans’ window builder and spring framework were proposed for minimizing boiler plate coding.
-- Tools that were identified to increase productivity were not used. Training proved challenging and time consuming. They were identified late in the project. They should have been identified right from the start so that there would be enough time for training.
-- Dependency handling proved difficult. [give examples for when we needed solution for automatic dependency handling]. [explain that Maven was used]
-- Sprint workflow inspired from SCRUM was introduced later in the project. [why was it needed?] [examples of cases when it could have been used]
+-	The scheduled tasks were too broad. The tasks should have been more specific so they can be assigned to team members and be monitored more easily.
+-	The project plan was not updated after the beta project. There was no schedule after we did the beta presentation. This activity should have been an assigned responsibility.
+-	Revision control was very difficult. We used facebook. We decided pretty late to use github. We decided late because we were scared of integrating one more tool into our process and having to invest more time in training. We should have used it from the very beginning because even with the time spent on learning to use github, we still could have saved a lot of time that was wasted “manual” version control and bug fixes that were caused by it.
+Mention version control on the database.
+-	Test driven development was non-existent. This lead to a lot of hours wasted on testing the software for bugs. 
+-	We lacked a team leader. 
+-	We needed a more specific and tailored software process to follow.
+a.	What did we miss out exactly?
+b.	We needed more prototyping
+c.	We needed an iterative-incremental approach
+-	Dividing work proved impossible. We were lacking an architectural pattern. We chose MVC
+-	A lot of work was invested for developing simple functionality. The use of netbeans’ window builder and spring framework were proposed for minimizing boiler plate coding.
+-	Tools that were identified to increase productivity were not used. Training proved challenging and time consuming. They were identified late in the project. They should have been identified right from the start so that there would be enough time for training.
+-	Dependency handling proved difficult. [give examples for when we needed solution for automatic dependency handling]. [explain that Maven was used]
+-	Sprint workflow inspired from SCRUM was introduced later in the project. [why was it needed?] [examples of cases when it could have been used]
+-	Database sharing. Solution was having it hosted.
+-	We were not sure about the right language to use for developing the application. WE chose java because blablabla
+-	We had difficulty choosing a database system. SQLite was recommended. Inexperience. We chose mysql because:
+o	We wanted it to be remote
+o	More documentation out there
+o	More relevant career wise
+o	Some of the members had previous experience with mysql
+-	GUI was not consistent between different platforms, particularly OSX vs Windows. Caused by the operating systems’ way of displaying graphical elements. Certain components had to be changed from the initial design specification.
+-	Issue with merging window builder generated code and resolving version control conflict. Solution: we decided to make sure we’re not working on the same components at the same time, otherwise we had to use another text editor than netbeans, as netbeans does not allow to modify generated code by window builder.
+-	We avoided the concept of a stakeholder. The project requirements were broad. We think the scrum framework should be enforced by the course from the beginning. It will force us to treat our teacher and supervisor as a stakeholders and also force us to involve the stakeholders in the development process. Also the requirements would be a bit more refined and guessing requirements would be minimized.
 	
 STORYLINE OF GROUP TASK DIVISION AND THE GROUP LOGS
 Pre-Beta Version
