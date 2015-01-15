@@ -92,8 +92,12 @@ When there are so many modules being worked on at the same time using different 
 Maven was chosen as the tool to manage the dependencies both because it is highly used in real life workplaces but also because it is already integrated in Netbeans.  Maven allowed that with a click of a button all the necessary dependencies, both the right library but also the specific version, where downloaded into the project file. 
 
 -	Sprint workflow inspired from SCRUM was introduced later in the project. [why was it needed?] [examples of cases when it could have been used]
-Sprint workflow inspired from SCRUM was introduced later in the projectAfter the beta version was presented the group agreed that the software process we were using was ineffective. Communication was not at its best within the group, the division of labor proved to be difficult and the tasks assigned where too general. Because of its highly agile structure, and its recurrent meetings Scrum seemed the perfect choice as a software process. The team decided to meet twice a week, on Mondays and on Thursdays around noon and have a meeting for two hours to talk about the increment during the week and to see if new tasks could be handed out.  The sprint would be measured on a weekly basis (Mondays) and the progress and challenges discussed during the sprint. 	This software process increased the productivity significantly since there was a much better and faster division of tasks. Also it helped the members of the group to support each other on difficulties they were facing. Most importantly changes on the structure of the program could be addressed in a timely manner and therefore it saved a lot of time that could have been wasted on unnecessary coding.
+Sprint workflow inspired from SCRUM was introduced later in the project
+After the beta version was presented the group agreed that the software process we were using was ineffective. Communication was not at its best within the group, the division of labor proved to be difficult and the tasks assigned where too general. Because of its highly agile structure, and its recurrent meetings Scrum seemed the perfect choice as a software process. The team decided to meet twice a week, on Mondays and on Thursdays around noon and have a meeting for two hours to talk about the increment during the week and to see if new tasks could be handed out.  The sprint would be measured on a weekly basis (Mondays) and the progress and challenges discussed during the sprint. 
+	This software process increased the productivity significantly since there was a much better and faster division of tasks. Also it helped the members of the group to support each other on difficulties they were facing. Most importantly changes on the structure of the program could be addressed in a timely manner and therefore it saved a lot of time that could have been wasted on unnecessary coding.
 -	Database sharing. Solution was having it hosted.
+//following line is put by kev. May be it's the most suitable position for this paragraph, feel free to modify or even throw it away.
+Our decission support system is designed for various class of public users, the customer and business owner, to use at anytime. The data should be public accessible, instead of being stored locally. So we decided to use a database that is hosted in the Internet, which enables effecient access by multi-party and ensures the data independecy at the same time.
 -	We were not sure about the right language to use for developing the application. WE chose java because blablabla
 [KIKE STOP]
 
@@ -122,8 +126,16 @@ Final Version
 
 
 
-what you did
-how you did it
+what you did and how you did it
+
+[What we did for DB] 
+And we enriched our knowledge pool by referrencing some source of knowledge and technique. Because the ideas that delivered in lecture are core but limited for certain further area. It was helpful for beginners but time consuming.
+
+Our group designed a simple ER relation. We firstly figured out the entity with corresponding attributes and told the relationship between entities record them down by drawing a diagram using a drawing tool called draw.io. And then transfer the model to real tables by apply converting patterns. The primary schema of our early database was done.
+
+In final version, the restructure of a database with more complex feature was needed. So we found some tool and tried to design a more complete database. The first design tool we used was mysql workbench. But unfortunately, we got an issue on connecting to server. We even posted some question in serveral comunity asking for help, but none of them solved our problem. Then we turned to PowerDesigner, which worked. After testing, we integrated the changes to the previous schema hence make it meet the requirement of new system.
+
+
 
  
 Conclusion and disscusion ?ALL?
