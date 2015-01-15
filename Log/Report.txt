@@ -135,6 +135,26 @@ Our group designed a simple ER relation. We firstly figured out the entity with 
 
 In final version, the restructure of a database with more complex feature was needed. So we found some tool and tried to design a more complete database. The first design tool we used was mysql workbench. But unfortunately, we got an issue on connecting to server. We even posted some question in serveral comunity asking for help, but none of them solved our problem. Then we turned to PowerDesigner, which worked. After testing, we integrated the changes to the previous schema hence make it meet the requirement of new system.
 
+[What worked]
+Some technique we noticed in the initialization of this project was successfully adopted.
+One of them is trigger in database. We noticed that if a restaurant is deleted, the related comments should also be deleted at the same time. So we adopt triggers to excute cascaded operation, which is to ensure the referrence dependency.
+
+[what not work]
+Some feature we prepared for our database were not adopted.
+
+-Index was not applied in our system, since the scale of data would not be very large, the benifit bring by index was limited. Considering that the speed of query is acceptable, we didn¡¯t build extra index on our database. But when the scale of database increase to a lage level, it should be take into consideration.
+
+-Stored procedure is another feature we prepared but not applied, since the requirement to data manipulation of this system is not high. But we will take it into consideration if any of the following is required. If we are required to optimize the excute efficiency of database, since the stored procedure is precompiled, the efficiency will be obviously promoted. If it¡¯s a database of a mobile app. Stored procedure can significantly reduce the data flow, since it just pass parameters instead of the whole sql statement. And if the data security is crucial, we can use it to prevent attact from inserting sql statement.
+
+
+[What will we do in future]
+Technique-thinking, next time if a relatively big database project with complete relationship is required, I would like to consider the following tools and technique.
+
+When it goes to a complex relation and more constrains exist, a intuitionistic image is neccessary for validating the structure and constrains. So I would like to use one relation design tool instead of excute sql statement one by one.
+ 
+For the attributes where most qurey happen, index even combined index will be crucial enough to take into account. Index will indeed advance the efficiency of querying but will cosume more time for updating value, since new index have to be built on corresponding attributs. 
+
+What¡¯s more, for tables where most adding of value and updating happens, for instance the table which store user registing information, stored procedure will make sense. But this will make the maintainence little bit hard.
 
 
  
