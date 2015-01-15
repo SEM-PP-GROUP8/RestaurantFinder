@@ -74,14 +74,15 @@ Division of work was naive in the beginning. With a not-so-detailed list of requ
 The separation of concerns that MVC enforces enabled the team to distribute work by views, thus each member had to work on a specific view, developing its controller and models. If work was affecting common components (such as data related classes, main controller) the team would have to get together and talk about an appropriate solution.
 [SERGIU STOP]
 [HAMPUS START]
--	We lacked a team leader. 
--	We needed a more specific and tailored software process to follow.
-a.	What did we miss out exactly?
-b.	We needed more prototyping
-c.	We needed an iterative-incremental approach
--	A lot of work was invested for developing simple functionality. The use of netbeans?window builder and spring framework were proposed for minimizing boiler plate coding.
+One big problem that the group faced, was the lack of leadership. No one in the group felt qualified to take that responsibility, and throughout the whole development, no leader roll was present. This made decisions hard to make, and lead to an unorganized development team. In the beginning, each individual went their separate way, and made their own decisions. By the time the beta version was due, the team decided to organize itself by having weekly meetings, which helped a lot with organizing the team.
 
--	Tools that were identified to increase productivity were not used. Training proved challenging and time consuming. They were identified late in the project. They should have been identified right from the start so that there would be enough time for training.
+The lack of leadership, amongst other factors, left the group without any software process to follow. Instead a very open schedule, with long milestones, was followed. After a while this method of organizing the work, became very ineffective, and by the end of the development, the team decided to apply scrum as a software process. There was, however, not any scrum master present, due to the same reason as there was no leader from the begging. Although it was not followed completely, it had a large effect on the productivity, and most of the sprints involved had a successful outcome. It was by this time that the weekly meetings were applied, which also increased productivity. A more fitting solution would have been to apply scrum from the beginning of the project, and tailor it more to fit the team.
+
+Using a proper software process, would have solved a lot of the problems that the team faced. Scrum would have applied the need for an iterative-incremental approach, and would have organized the work much better. Applying training in sprints, for instance, would have allowed team members to discover several set backs and difficulties within training, and it would also have made the team have roughly the same amount of information about a specific topic. Instead of applying the training in sprints, the individual team members had to organize the training themselves, making training and development occur in parallel, which made difficulties within training harder to discovered.
+
+While this training method left a lot of discovered tools unused, some tools were highly useful. Netbeans was a tool that proved to be highly useful. Netbeans minimized a lot of repetitive programming, by generating code with quick and easy shortcuts. Within netbeans, spring was used, which helped with organizing the different classes, and therefore supported the minimization of repetitive programming even further.
+
+Another problem was the lack of prototyping. All of the development occurred directly, without any sort of prototype, and in a lot of cases, certain areas of the code would have to be changed in order to fulfill requests from other team members. If a prototype were put in use in these cases, the requests would have been taken in to account before any real development occurred. Prototypes could also have been shown to stakeholders to get additional requirements, been reviewed by the individual developer to see flaws in the design and give an early overview so other parts of the software can be developed.
 [HAMPUS STOP]
 
 [KIKE START]
@@ -159,6 +160,10 @@ What¡¯s more, for tables where most adding of value and updating happens, for in
 
  
 Conclusion and disscusion ?ALL?
+
+[ABOUT THE PROJECT PLAN, TRANSLATOR AND INITIAL ASSIGNMENTS]
+The initial project plan was not largely influenced by the four tasks that were handed out in the beginning of the course. Instead google and the literature from parallel courses, was the main source for creating the project plan. The four tasks were, however, helpful in gaining an overview of different software engineering related elements. This helped with making better discussions within the group, and helped the individual members understand each other better.
+The four assignments, along with the second presentation, were also good preparation for the collaboration with other teams. These preparations, allowed the teams to practice the soliciting and sharing of requirements, which was handled in much the same way with the translator. It did, however, not make the collaboration go completely smoothly, and by the end of the development, little to no communication occurred.
 
 - what major problems you faced
 - how you overcame these
