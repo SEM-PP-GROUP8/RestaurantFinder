@@ -105,7 +105,6 @@ public abstract class RestaurantDAO
     }
     
     /**
-     * Added by Sergiu
      * @param name The name of the restaurant to check if it exists
      * @return true if it exists
      */
@@ -180,7 +179,6 @@ public abstract class RestaurantDAO
         DBHandler.update(sql);
     }
     
-    // Added by Sergiu
     public static void addRestaurantSchedule (Restaurant rest){
         
         int autoIncrementedID = fetchRecentlyAddedRestaurantID(rest.getOwnerID(),rest.getName());
@@ -190,7 +188,7 @@ public abstract class RestaurantDAO
         String sql = SQLTranslator.translateAddRestaurantSchedule(rest);
         DBHandler.update(sql);
     }
-    // Added by Sergiu
+    
     public static void updateRestaurantSchedule (Restaurant rest){
         
         String[] sqlArr = SQLTranslator.translateUpdateRestaurantSchedule(rest);
@@ -200,7 +198,7 @@ public abstract class RestaurantDAO
             DBHandler.update(sql);
         }
     }
-    // Added by Sergiu
+
     private static RestaurantSchedule getRestaurantSchedule(int restaurantID){        
 
         RestaurantSchedule schedule = new RestaurantSchedule();
@@ -233,7 +231,6 @@ public abstract class RestaurantDAO
     }
     
     /**
-     * Added by Sergiu
      * Given a list of restaurants, for each restaurant we get the ID. For each id we get the schedule from the DB. 
      * For each schedule taken from DB we update the Restaurant object's schedule.
      * We return back a list of restaurants with updated schedules.
@@ -281,7 +278,6 @@ public abstract class RestaurantDAO
     }
     
     /**
-     * Added by Sergiu
      * Should be used when adding the schedule of a newly created restaurant
      * @param ownerID Owner ID
      * @param name Restaurant Name
@@ -361,7 +357,6 @@ public abstract class RestaurantDAO
     private static boolean isRestaurantOpen(Restaurant r, String time, String dayOfWeek) {
         int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
         int seconds = r.getSchedule().parseTimeStringToSeconds(time);
-        System.out.println("Checking restaurant" + r.getName() + " if is open:");
         return r.getSchedule().isOpen(day,seconds);
     }
 }

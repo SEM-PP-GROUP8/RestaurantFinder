@@ -10,10 +10,6 @@ import com.group8.controller.RestaurantEditController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author john
- */
 public class RestaurantSchedule extends javax.swing.JPanel {
 
     

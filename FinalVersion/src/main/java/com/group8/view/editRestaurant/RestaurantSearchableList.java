@@ -14,10 +14,6 @@ import javax.swing.JList;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author john
- */
 public class RestaurantSearchableList extends javax.swing.JPanel {
 
     private RestaurantEditController controller;

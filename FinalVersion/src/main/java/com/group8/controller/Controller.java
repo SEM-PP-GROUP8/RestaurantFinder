@@ -32,13 +32,9 @@ public class Controller implements ControllerListener
     public Query queryView;
     public Model model;
     public Register registerView;
-    /*NEW - Hampus*/
     public ViewRestaurant viewRestaurantView;
-    //KIKE _ USER
     public User userView;
-    //KIKE _ OWMER
     public Owner ownerView;
-    //Sergiu restaurant edit controller
     public RestaurantEditController reController;
 
     //Constructor - Makes the dependency with the views and the model.
@@ -48,11 +44,8 @@ public class Controller implements ControllerListener
         this.queryView = queryView;
         this.model = model;
         this.registerView = registerView;
-        /*NEW - Hampus*/
         this.viewRestaurantView = viewRestaurantView;
-        //KIKE _ USER
         this.userView = userView;
-        //KIKE _ OWNER
         this.ownerView = ownerView;
         
         //
@@ -242,10 +235,6 @@ public class Controller implements ControllerListener
     {
         RegisteredUserDAO.updatePassword (id, password, table);
     }
-    
-    
-    
-    // Kike _ OWNER
 
     @Override
     //Controller link to close the current ownerView and open the queryView.
@@ -300,10 +289,6 @@ public class Controller implements ControllerListener
     {
         return ReviewDAO.fetchUserReviews(id);
     }
-
-    
-    
-    /*NEW - Hampus*/
     
     // Method being called when a restaurant is to be viewed --- viewRestaurantView
     @Override
@@ -357,9 +342,8 @@ public class Controller implements ControllerListener
         viewRestaurantView.setTelephoneValue("" + selectedRestaurant.getTelephone());
         viewRestaurantView.setDescriptionValueExpand(selectedRestaurant.getDescription());
         viewRestaurantView.setDescriptionValueExpandVisible(false);
-        System.out.println(selectedRestaurant.getDescription());
         
-        // Added by Sergiu. Fill the schedule day#value labels with data
+        // Fill the schedule day#value labels with data
         loadScheduleData(viewRestaurantView,selectedRestaurant);
         
         setReviews(selectedRestaurant);
@@ -552,7 +536,6 @@ public class Controller implements ControllerListener
     }
 
     /**
-     * Added by Sergiu.
      * Loads schedule data to the view
      * @param viewRestaurantView The ViewRestaurant View
      * @param selectedRestaurant The selected Restaurant

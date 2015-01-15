@@ -26,22 +26,14 @@ public interface ControllerListener
     public void exitRegisterView();
     public void registerButtonClicked();
     
-    //KIKE _ USER
     public RegisteredUser fetchUserDetails(int id);
     public void userButtonClicked();
     public void exitUserView();
     public void updateUserDetails(RegisteredUser user);
     public List<Review> getReviewsByUserID(int id);
    
-    
-    //KIKE _ Both User and Owner
     public void updatePassword(int id, String password, String table);
     
-    
-    
-    
-    //Kike _ OWNER
-
     public void exitOwnerView();
 
     public RegisteredOwner fetchOwnerDetails(int id);
@@ -50,9 +42,6 @@ public interface ControllerListener
 
     public void ownerButtonClicked();
 
-    
-    /*NEW - Hampus*/
-    // ViewRestaurant View
     public void viewButtonClicked(Restaurant selectedRestaurant);
     public void exitViewRestaurantView();
     public void reviewItemChanged(int reviewList);
@@ -64,5 +53,4 @@ public interface ControllerListener
     public List<RegisteredUser> getAllUsers();
 
     public List<RegisteredOwner> getAllOwners();
-
 }

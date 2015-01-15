@@ -53,7 +53,6 @@ public class RegisteredOwnerDAO
     public static void updateOwnerDetails(RegisteredOwner owner) 
     {
         String sqlUpdate = SQLTranslator.translateUpdateOwnerDetails (owner);
-        System.out.println ("SQL update: " + sqlUpdate);
         DBHandler.update(sqlUpdate);
     }
 
@@ -67,7 +66,6 @@ public class RegisteredOwnerDAO
     public static void updatePassword(int id, String password, String table) 
     {
         String sqlUpdate = SQLTranslator.translateUpdatePassword (id, password, table);
-        System.out.println ("SQL update: " + sqlUpdate);
         DBHandler.update(sqlUpdate);
     }
     

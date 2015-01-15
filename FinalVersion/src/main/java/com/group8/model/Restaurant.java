@@ -1,9 +1,5 @@
 package com.group8.model;
 
-/**
- *
- * @author john
- */
 public class Restaurant {
 
     private int id;

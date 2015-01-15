@@ -9,18 +9,11 @@ package com.group8.view.editRestaurant;
 import com.group8.controller.RestaurantEditController;
 import javax.swing.JButton;
 
-/**
- *
- * @author john
- */
 public class RestaurantEditView extends javax.swing.JFrame {
     
     private RestaurantEditController controller = null;
     
     
-    /**
-     * Creates new form SergiuEditRestaurant2
-     */
     public RestaurantEditView() {
         initComponents();
     }

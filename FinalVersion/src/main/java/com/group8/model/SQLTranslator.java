@@ -211,7 +211,6 @@ public abstract class SQLTranslator
     }
 
     /**
-     * Added By Sergiu
      * 
      * @param ownerID The owner ID
      * @param name the Name of the restaurant
@@ -277,7 +276,6 @@ public abstract class SQLTranslator
     static String translateFindUserByID(int userID) 
     {
         sqlQuery = "Select * From Users WHERE ID=" + userID + ";";
-        System.out.println ("sql finduserbyid: " + sqlQuery);
         return sqlQuery;
     }
 
@@ -324,7 +322,6 @@ public abstract class SQLTranslator
     static String translateFindOwnerByID(int ownerID) 
     {
         sqlQuery = "Select * From Owners WHERE ID=" + ownerID + ";";
-        System.out.println ("sql findownerbyid: " + sqlQuery);
         return sqlQuery;
     }
 
@@ -392,7 +389,6 @@ public abstract class SQLTranslator
     static String translateDeleteReview(int restID, int userID) 
     {
         sqlQuery = "Delete from Reviews where Restaurant= " + restID + " and User= " + userID + ";";
-        System.out.println ("review delete: " + sqlQuery);
         return sqlQuery;
     }
 
@@ -448,7 +444,6 @@ public abstract class SQLTranslator
     }
     
     /**
-     * Added by Sergiu
      * Generates the SQL string for getting the restaurant schedule given the restaurant ID
      * @param restaurantID The restaurant's id
      * @return returns the SQL string 
@@ -459,7 +454,6 @@ public abstract class SQLTranslator
     }
     
     /**
-     * Added by Sergiu
      * Adds restaurant schedule
      * @param r Restaurant object that contains the schedule
      * @return The SQL string
@@ -501,7 +495,6 @@ public abstract class SQLTranslator
     }
     
     /**
-     * Added by Sergiu
      * Updates the Restaurant Schedule
      * @param r Restaurant object with Schedule
      * @return Returns the SQL string
@@ -533,7 +526,6 @@ public abstract class SQLTranslator
     }
     
     /**
-     * Added by Sergiu
      * @param rest
      * @return 
      */

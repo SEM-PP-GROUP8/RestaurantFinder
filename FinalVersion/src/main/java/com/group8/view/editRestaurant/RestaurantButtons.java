@@ -9,10 +9,6 @@ package com.group8.view.editRestaurant;
 import com.group8.controller.RestaurantEditController;
 import javax.swing.JButton;
 
-/**
- *
- * @author john
- */
 public class RestaurantButtons extends javax.swing.JPanel {
 
     public JButton getDiscardButton() {

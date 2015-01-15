@@ -94,13 +94,9 @@ public class ComponentValidator {
                         int startSeconds = (int) date.getTime() / 1000;
                         date = sdf.parse("1970-01-01 " + stop);
                         int stopSeconds = (int) date.getTime() / 1000;
-                        
-                        
-                        
+
                         date = sdf.parse("1970-01-01 " + extendedTimeLimit);
                         int extendedSecondsLimit = (int) date.getTime() / 1000;
-                        
-                            System.out.println("extendedSecondsLimit is " + extendedSecondsLimit);
                         
                         if (startSeconds > stopSeconds && startSeconds > extendedSecondsLimit ){
                             highlightComponent(((JTextField) elements[2]));

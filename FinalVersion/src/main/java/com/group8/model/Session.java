@@ -24,7 +24,7 @@ abstract public class Session
     }
 
     public static boolean isUser() {
-        return "Users".equals(Session.type); //CHANGE KIKE
+        return "Users".equals(Session.type);
     }
     
     public static boolean isGuest() {
@@ -32,11 +32,11 @@ abstract public class Session
     }
     
     public static boolean isOwner() {
-        return "Owners".equals(Session.type); //CHANGE KIKE
+        return "Owners".equals(Session.type);
     }
 
     public static boolean isAdmin() {
-        return "Admins".equals(Session.type); //CHANGE KIKE
+        return "Admins".equals(Session.type);
     }
     
     public static boolean authorize(String username, String password)
