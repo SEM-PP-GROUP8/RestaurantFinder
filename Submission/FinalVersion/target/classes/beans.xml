@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+">
+
+    <bean id="controller" class = "com.group8.controller.Controller">
+        <constructor-arg>
+            <bean id="loginWindow" class = "com.group8.view.Login">
+
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean id="queryWindow" class = "com.group8.view.Query">
+
+            </bean>
+        </constructor-arg>
+        
+        <constructor-arg>
+            <bean id="registerWindow" class = "com.group8.view.Register">
+
+            </bean>
+        </constructor-arg>
+        
+        <constructor-arg>
+            <bean id="userView" class = "com.group8.view.User">
+
+            </bean>
+        </constructor-arg>
+       
+        <constructor-arg>
+            <bean id="ownerView" class = "com.group8.view.Owner">
+
+            </bean>
+        </constructor-arg>
+        
+        <constructor-arg>
+            <bean id="viewRestaurantWindow" class = "com.group8.view.ViewRestaurant">
+
+            </bean>
+        </constructor-arg>
+        
+        <constructor-arg>
+            <bean id="model" class = "com.group8.model.Model">
+
+            </bean>
+        </constructor-arg>
+        
+    </bean>
+   
+</beans>
