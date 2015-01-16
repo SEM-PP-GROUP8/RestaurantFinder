@@ -4,11 +4,11 @@ package com.group8.model;
 public class Review 
 {
     //Variables required. These variables imply the basic information every review must have.
-    int restID;
-    int userID;
-    String review;
-    String date;
-    int grade;
+    private int restID;
+    private int userID;
+    private String review;
+    private String date;
+    private int grade;
     
     /*
     Variables not required when constructing an instance of this class. These variables are used

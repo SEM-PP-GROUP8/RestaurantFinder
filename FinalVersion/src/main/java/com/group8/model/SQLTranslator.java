@@ -401,7 +401,7 @@ public abstract class SQLTranslator
     static String translateAddReview(Review review) 
     {
         sqlQuery = "INSERT INTO Reviews (Restaurant, User, Review, Grade) VALUES";
-        sqlQuery += "('" + review.restID + "', '" + review.getUserID() + "', '" + review.getReview() + "', '" + review.getGrade() + "') ;";
+        sqlQuery += "('" + review.getRestID() + "', '" + review.getUserID() + "', '" + review.getReview() + "', '" + review.getGrade() + "') ;";
         return sqlQuery;
     }
     

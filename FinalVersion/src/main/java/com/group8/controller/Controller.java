@@ -114,7 +114,6 @@ public class Controller implements ControllerListener
     @Override
     public void reloadQueryView() 
     {
-        /*NEW*/
         queryView.setLocationRelativeTo(null);
         queryView.reloadView();
     } 
@@ -294,7 +293,7 @@ public class Controller implements ControllerListener
     @Override
     public void viewButtonClicked(Restaurant selectedRestaurant) {
         
-        // Set the restaurant icon
+        // Try to set the restaurant icon with the submitted url
         try {
             
             int maxWidth = viewRestaurantView.getRestaurantPicture().getWidth();
@@ -311,17 +310,20 @@ public class Controller implements ControllerListener
 
             ImageIcon icon = new ImageIcon(image);
             viewRestaurantView.setRestaurantPicture(icon);
-            
+        
+        // Catch if the url is not valid
         } catch(Exception ex) {
             
             viewRestaurantView.setRestaurantPicture(new javax.swing.ImageIcon(getClass().getResource("/com/group8/view/images/profilepicture.png")));
         
         }
         
+        // Try to get only ten characters from the description
         try {
             
             viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription().substring(0, 10) + "...");  
         
+        // Catch if there is less than ten characters
         } catch (StringIndexOutOfBoundsException ex) {
             
             viewRestaurantView.setDescriptionValue(selectedRestaurant.getDescription());  

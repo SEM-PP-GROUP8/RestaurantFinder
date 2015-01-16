@@ -23,21 +23,17 @@
             </bean>
         </constructor-arg>
         
-        <!--/* USER*/-->
         <constructor-arg>
             <bean id="userView" class = "com.group8.view.User">
 
             </bean>
         </constructor-arg>
        
-        <!--/* OWNER*/-->
         <constructor-arg>
             <bean id="ownerView" class = "com.group8.view.Owner">
 
             </bean>
         </constructor-arg>
-
-        <!--/*END*/-->
         
         <constructor-arg>
             <bean id="viewRestaurantWindow" class = "com.group8.view.ViewRestaurant">
@@ -53,5 +49,4 @@
         
     </bean>
    
-
 </beans>

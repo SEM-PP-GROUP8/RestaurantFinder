@@ -21,7 +21,8 @@ public interface ControllerListener
     public void initiliazeQueryView();
     public void reloadQueryView();
     public List<Restaurant> fetchRestaurantByFilters(String typeOfFood,int intPriceMin,int intPriceMax,String location,String time,String dayName, String searchTxt);
-
+    public void viewButtonClicked(Restaurant selectedRestaurant);
+    
     // Register View
     public void exitRegisterView();
     public void registerButtonClicked();
@@ -42,7 +43,7 @@ public interface ControllerListener
 
     public void ownerButtonClicked();
 
-    public void viewButtonClicked(Restaurant selectedRestaurant);
+    // ViewRestaurant view
     public void exitViewRestaurantView();
     public void reviewItemChanged(int reviewList);
     public void addReview();

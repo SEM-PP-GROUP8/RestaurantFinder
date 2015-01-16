@@ -1,9 +1,6 @@
 
 package com.group8.model;
 
-import java.util.Calendar;
-
-
 public class Model 
 {
     //                  ***************************
@@ -31,20 +28,4 @@ public class Model
         return timeArray;
     }
 
-    /*
-    public static int setCurrentOpeningHour() 
-    {        
-        // Get the current time and convert it to hours
-        Calendar cal = Calendar.getInstance();
-        String thisHour = "" + cal.get(Calendar.HOUR_OF_DAY) + ":00";
-        // Loop through the timeArray
-        for(int i = 0; i < timeArray.length; i++) {
-            // If the item in the timearray matches the current hour
-            if(timeArray[i].equalsIgnoreCase(thisHour))
-                return i;
-        }
-        // If the current hour does not match any of the hours in the array
-        return 0;
-    }
-*/
 }
