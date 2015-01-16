@@ -20,12 +20,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+//To validate the component
 public class ComponentValidator {
 
     private String error = "";
     private final String extendedTimeLimit = "08:00";
     
-
     private boolean valid = true;
     private String userInputValue = "";
     private int userInputValueAsInt;
@@ -231,18 +231,34 @@ public class ComponentValidator {
             
     }
 
+    /**
+     * if a component is valid
+     * @return 
+     */
     public boolean isValid() {
         return valid;
     }    
     
+    /**
+     * if a component is numeric
+     * @return 
+     */
     public boolean isAlphaNumeric() {
         return alphaNumeric;
     }
 
+    /**
+     * if a component is integer
+     * @return 
+     */
     public boolean isInteger() {
         return integer;
     }
 
+    /**
+     * highlight the invalid component
+     * @param c 
+     */
     private void highlightComponent(Component c) {
         
         if(c instanceof JTextField){
@@ -285,11 +301,19 @@ public class ComponentValidator {
         }
         
     }
-    
+    /**
+     * get an error
+     * @return 
+     */
     public String getError() {
         return error;
     }
 
+    /**
+     * test if a valid url of a image is typed in
+     * @param url the url of the image
+     * @return 
+     */
     public Boolean testImage(String url){  
         try {  
             BufferedImage image = ImageIO.read(new URL(url));  

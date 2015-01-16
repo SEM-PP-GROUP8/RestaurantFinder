@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 public class RestaurantDetails extends javax.swing.JPanel {
 
+    /*Getters & Setters*/
     public JTextField getMaxPriceTextField() {
         return maxPriceTextField;
     }

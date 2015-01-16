@@ -3,7 +3,6 @@ package com.group8.model;
 abstract public class Session 
 {
     private static final String defaultType = "guest";
-    
     private static String type = defaultType; // Default value
     private static String username = ""; // Default value
     private static int userid = -1;
@@ -15,6 +14,8 @@ abstract public class Session
         Session.userid = -1;
     }
 
+    //Getters
+    
     public static String getType() {
         return Session.type;
     }
@@ -39,6 +40,12 @@ abstract public class Session
         return "Admins".equals(Session.type);
     }
     
+    /**
+     * authorize
+     * @param username
+     * @param password
+     * @return 
+     */
     public static boolean authorize(String username, String password)
     {
         // Check username and password for each type. If true, change session type from user to matched the one;
@@ -59,6 +66,13 @@ abstract public class Session
         }
     }
     
+    /**
+     * Fetch user ID.
+     * @param username
+     * @param password
+     * @param type
+     * @return 
+     */
     private static int fetchUserid(String username, String password, String type)
     {
         if(!Session.isGuest()){
@@ -67,6 +81,13 @@ abstract public class Session
         return -1;
     }
     
+    /**
+     * Check credentials.
+     * @param username
+     * @param password
+     * @param type
+     * @return 
+     */
     private static boolean checkCredentials(String username, String password, String type)
     {
         return DBHandler.checkCredentials(username, password, type);

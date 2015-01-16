@@ -36,11 +36,8 @@ public interface ControllerListener
     public void updatePassword(int id, String password, String table);
     
     public void exitOwnerView();
-
     public RegisteredOwner fetchOwnerDetails(int id);
-
     public void updateOwnerDetails(RegisteredOwner owner);
-
     public void ownerButtonClicked();
 
     // ViewRestaurant view

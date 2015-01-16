@@ -178,6 +178,10 @@ public abstract class RestaurantDAO
         DBHandler.update(sql);
     }
     
+    /**
+     * Add a restaurant to the database.
+     * @param rest Restaurant to add
+     */
     public static void addRestaurantSchedule (Restaurant rest){
         
         int autoIncrementedID = fetchRecentlyAddedRestaurantID(rest.getOwnerID(),rest.getName());
@@ -188,6 +192,10 @@ public abstract class RestaurantDAO
         DBHandler.update(sql);
     }
     
+    /**
+     * Update a specific restaurant to the database
+     * @param rest Restaurant to update
+     */
     public static void updateRestaurantSchedule (Restaurant rest){
         
         String[] sqlArr = SQLTranslator.translateUpdateRestaurantSchedule(rest);
@@ -298,11 +306,11 @@ public abstract class RestaurantDAO
         return restaurantID;
     }
     
-    
-    //It transforms the restaurant resultSet to a list of Restaurants.
-    //@Param ResultSet rs
-    //@Param List<Restaurant> restaurants
-    //The restaurants will be then included in the list given.
+    /**
+     * It transforms the restaurant resultSet to a list of Restaurants. The restaurants will be then included in the list given.
+     * @param rs ResultSet
+     * @return 
+     */
     private static List<Restaurant> RsToRL(ResultSet rs)
     {
         List<Restaurant> restaurants = new ArrayList<Restaurant>();
@@ -341,6 +349,13 @@ public abstract class RestaurantDAO
         }
     }
 
+    /**
+     * Filter restaurants by time day.
+     * @param restaurants
+     * @param time
+     * @param dayOfWeek
+     * @return 
+     */
     private static List<Restaurant> filterRestaurantsByTimeDay(List<Restaurant> restaurants, String time, String dayOfWeek) {
         
         List<Restaurant> filteredRestaurants = new ArrayList<Restaurant>();
@@ -353,6 +368,13 @@ public abstract class RestaurantDAO
         return filteredRestaurants;
     }
 
+    /**
+     * check if a restaurant is open at a specific day of a week
+     * @param r Restaurant
+     * @param time
+     * @param dayOfWeek
+     * @return 
+     */
     private static boolean isRestaurantOpen(Restaurant r, String time, String dayOfWeek) {
         int day = r.getSchedule().parseDayStringToInt(dayOfWeek);
         int seconds = r.getSchedule().parseTimeStringToSeconds(time);

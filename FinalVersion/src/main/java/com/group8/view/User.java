@@ -592,7 +592,7 @@ public class User extends javax.swing.JFrame
     }
     
     /**
-     * Mehtod updates the table with the appropriate reviews related to the user. It updates
+     * Method updates the table with the appropriate reviews related to the user. It updates
      * the list related to the current form and then it loads from that list. It also calls a 
      * method to justify the columns the desired way.
      */
@@ -619,7 +619,7 @@ public class User extends javax.swing.JFrame
     }
     
     /**
-     * Mehtod updates the table with all the users. It updates
+     * Method updates the table with all the users. It updates
      * the list related to the current form and then it loads from that list. It also calls a 
      * method to justify the columns the desired way.
      */

@@ -344,7 +344,7 @@ public abstract class SQLTranslator
     
     /**
      * This method returns the SQL statement to find out whether or not a review has already
-     * been made on a restauarant by a user depending on the restID and the userID.
+     * been made on a restaurant by a user depending on the restID and the userID.
      * @param restID
      * @param userID
      * @return 
@@ -368,7 +368,7 @@ public abstract class SQLTranslator
     }
 
     /**
-     * This method returns the SQL statemnt to find all the reviews made to a restaurant 
+     * This method returns the SQL statement to find all the reviews made to a restaurant 
      * based on the restID.
      * @param restID
      * @return 
@@ -537,24 +537,42 @@ public abstract class SQLTranslator
             return sqlQuery;
     }
 
+    /**
+     * Delete a specific user.
+     * @param userID
+     * @return 
+     */
     static String translateDeleteUser(int userID) 
     {
         sqlQuery = "Delete from Users where ID = " + userID + ";";
         return sqlQuery;
     }
 
+    /**
+     * Get all user.
+     * @return 
+     */
     static String fetchAllUsers() 
     {
         sqlQuery = "Select * from Users;";
         return sqlQuery;
     }
 
+    /**
+     * Delete a specific owner.
+     * @param id
+     * @return 
+     */
     static String translateDeleteOwner(int id) 
     {
         sqlQuery = "Delete from Owners where ID = " + id + ";";
         return sqlQuery;
     }
 
+    /**
+     * Get all Owners.
+     * @return 
+     */
     static String fetchAllOwners() 
     {
         sqlQuery = "Select * from Owners;";

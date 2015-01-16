@@ -64,134 +64,116 @@ public class Restaurant {
        
     }
     
-
+    //Getters
+    
     public int getId() {
         return id;
     }
     
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-
     public int getOwnerID() {
         return ownerID;
     }
     
-
-    public void setOwnerID(int ownerID) {
-        this.ownerID = ownerID;
-    }
-
-
     public String getName() {
         return name;
     }
+    
+    public String getCity() {
+        return city;
+    }
+    
+    public RestaurantType getType() {
+        return type;
+    }
 
+    public String getStreet() {
+        return street;
+    }
+    
+    public int getZipCode() {
+        return zipCode;
+    }
+    
+    public String getArea() {
+        return area;
+    }
+    
+    public String getImageURL() {
+        return imageURL;
+    }
+    
+    public int getTelephone() {
+        return telephone;
+    }
+    
+    public RestaurantSchedule getSchedule() {
+        return schedule;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+    
+    public int getMinPrice() {
+        return minPrice;
+    }
+    
+    //Setters
+    
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-
-    public RestaurantType getType() {
-        return type;
+    public void setId(int id) {
+        this.id = id;
     }
-
 
     public void setType(RestaurantType type) {
         this.type = type;
     }
-
-
-    public String getStreet() {
-        return street;
-    }
-
-
+    
     public void setStreet(String street) {
         this.street = street;
     }
-
-
-    public String getArea() {
-        return area;
-    }
-
 
     public void setArea(String area) {
         this.area = area;
     }
 
-
-    public String getCity() {
-        return city;
-    }
-
-
     public void setCity(String city) {
         this.city = city;
     }
-
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
-
-    public int getTelephone() {
-        return telephone;
-    }
-
 
     public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
 
-
-    public String getDescription() {
-        return description;
-    }
-
-
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getMinPrice() {
-        return minPrice;
-    }
-
     public void setMinPrice(int minPrice) {
         this.minPrice = minPrice;
-    }
-
-    public int getMaxPrice() {
-        return maxPrice;
-    }
+    }    
 
     public void setMaxPrice(int maxPrice) {
         this.maxPrice = maxPrice;
-    }
-
-    public RestaurantSchedule getSchedule() {
-        return schedule;
     }
 
     public void setSchedule(RestaurantSchedule schedule) {

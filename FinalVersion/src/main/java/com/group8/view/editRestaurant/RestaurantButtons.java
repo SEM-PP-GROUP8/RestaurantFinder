@@ -11,6 +11,7 @@ import javax.swing.JButton;
 
 public class RestaurantButtons extends javax.swing.JPanel {
 
+    /*Getters and Setters*/
     public JButton getDiscardButton() {
         return discardButton;
     }
@@ -52,6 +53,7 @@ public class RestaurantButtons extends javax.swing.JPanel {
     }
 
     private RestaurantEditController controller;
+    
     /**
      * Creates new form CUDButtons
      */

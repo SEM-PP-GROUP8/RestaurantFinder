@@ -46,8 +46,8 @@ public abstract class RegisteredUserDAO
     //                      *****************************    
     
     /**
-     * Recieves the information through a Registered User.
-     * The method will update the user information in the DB with the recieved information.
+     * Receives the information through a Registered User.
+     * The method will update the user information in the DB with the received information.
      * @param user Type RegisteredUser.
      */
     public static void updateUserDetails(RegisteredUser user) 
@@ -58,7 +58,7 @@ public abstract class RegisteredUserDAO
 
     /**
      * Receives the userID the password and the table where the changes will happen.
-     * The method updates the passowrd to a new password.
+     * The method updates the password to a new password.
      * @param id
      * @param password
      * @param table 
@@ -84,7 +84,7 @@ public abstract class RegisteredUserDAO
     //                      *****************************
     
     /**
-     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * This is a helper method. It transfers the information on the resultSet received from the DB query
      * to a registered user. It checks if the variables are null (variables are not demanded) then it 
      * sets them to a default value.
      * @param rs ResultSet to go through and transform into a RegisteredUser type.
@@ -128,7 +128,7 @@ public abstract class RegisteredUserDAO
     }
     
     /**
-     * This is a helper method. It transfers the information on the resultSet recieved from the DB query
+     * This is a helper method. It transfers the information on the resultSet received from the DB query
      * to a registered user list. It checks if the variables are null (variables are not demanded) then it 
      * sets them to a default value.
      * @param rs

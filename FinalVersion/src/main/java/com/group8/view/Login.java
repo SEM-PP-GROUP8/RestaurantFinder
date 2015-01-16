@@ -1,6 +1,5 @@
 package com.group8.view;
 
-import com.group8.controller.Controller;
 import com.group8.controller.ControllerListener;
 import com.group8.model.Session;
 import java.awt.event.KeyEvent;

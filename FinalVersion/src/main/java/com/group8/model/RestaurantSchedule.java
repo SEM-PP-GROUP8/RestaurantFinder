@@ -8,7 +8,6 @@ public class RestaurantSchedule {
     private final String[] dayOfWeekString = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     private int scheduleArray[][];
     
-    
     RestaurantSchedule(){
         this.scheduleArray = new int[7][4];
         
@@ -20,13 +19,13 @@ public class RestaurantSchedule {
         }
     }
     
+    // Getters
+    
     public int getSeconds(int dayOfWeek, int bound){
         return this.scheduleArray[dayOfWeek][bound];
     }
     
-    public void setSeconds(int value, int dayOfWeek, int bound){
-        this.scheduleArray[dayOfWeek][bound] = value;
-    }
+    
     
     public String getFormatedTime(int dayOfWeek, int bounds){
                     
@@ -37,6 +36,36 @@ public class RestaurantSchedule {
         
         return String.format("%02d:%02d", hours, minutes);
     }
+    
+    public int getClosed(int dayOfWeek){
+        return this.scheduleArray[dayOfWeek][2];
+    }
+    public int getNonStop(int dayOfWeek){
+        return this.scheduleArray[dayOfWeek][3];
+    }
+    
+    //Setters
+    
+    public void setSeconds(int value, int dayOfWeek, int bound){
+        this.scheduleArray[dayOfWeek][bound] = value;
+    }
+    
+    public void setClosed(int dayOfWeek, boolean b){
+        this.scheduleArray[dayOfWeek][2] = b ? 1 : 0;
+    }
+    
+    public void setClosed(int dayOfWeek, int value){
+        this.scheduleArray[dayOfWeek][2] = value;
+    }
+    
+    public void setNonStop(int dayOfWeek, boolean b){
+        this.scheduleArray[dayOfWeek][3] = b ? 1 : 0;
+    }
+    
+    public void setNonStop(int dayOfWeek, int value){
+        this.scheduleArray[dayOfWeek][3] = value;
+    }
+    
     
     public boolean isClosed(int dayOfWeek){
         if(this.scheduleArray[dayOfWeek][2] == 1)
@@ -50,26 +79,6 @@ public class RestaurantSchedule {
             return true;
         else
             return false;
-    }
-    
-    public void setClosed(int dayOfWeek, boolean b){
-        this.scheduleArray[dayOfWeek][2] = b ? 1 : 0;
-    }
-    public void setClosed(int dayOfWeek, int value){
-        this.scheduleArray[dayOfWeek][2] = value;
-    }
-    public void setNonStop(int dayOfWeek, boolean b){
-        this.scheduleArray[dayOfWeek][3] = b ? 1 : 0;
-    }
-    public void setNonStop(int dayOfWeek, int value){
-        this.scheduleArray[dayOfWeek][3] = value;
-    }
-    
-    public int getClosed(int dayOfWeek){
-        return this.scheduleArray[dayOfWeek][2];
-    }
-    public int getNonStop(int dayOfWeek){
-        return this.scheduleArray[dayOfWeek][3];
     }
     
     @Override
