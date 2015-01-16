@@ -67,7 +67,6 @@ public class ReviewDAO
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        //DBHandler.terminateDB();
         return false;
     }
     

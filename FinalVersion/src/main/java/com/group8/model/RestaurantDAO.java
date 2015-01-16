@@ -139,7 +139,6 @@ public abstract class RestaurantDAO
         String sql = SQLTranslator.translateFindRestaurantByLogin(UserId);
         ResultSet rs = DBHandler.query(sql);
         List<Restaurant> restaurants = RsToRL(rs);
-        //DBHandler.terminateDB();
         return restaurants;
     }
     
