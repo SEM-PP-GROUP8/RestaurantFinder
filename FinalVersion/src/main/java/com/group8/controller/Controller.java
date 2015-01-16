@@ -37,7 +37,16 @@ public class Controller implements ControllerListener
     public Owner ownerView;
     public RestaurantEditController reController;
 
-    //Constructor - Makes the dependency with the views and the model.
+    /**
+     * Constructor - Makes the dependency with the views and the model.
+     * @param loginView
+     * @param queryView
+     * @param registerView
+     * @param viewRestaurantView
+     * @param userView
+     * @param ownerView
+     * @param model 
+     */
     public Controller(Login loginView, Query queryView, Register registerView, ViewRestaurant viewRestaurantView, User userView, Owner ownerView, Model model) 
     {
         this.loginView = loginView;
@@ -48,7 +57,6 @@ public class Controller implements ControllerListener
         this.userView = userView;
         this.ownerView = ownerView;
         
-        //
         DBHandler.initializeDB();
     }
     
@@ -56,25 +64,26 @@ public class Controller implements ControllerListener
     //                  **        Controls       **
     //                  ***************************
 
-    // Query Related Controls
+     //Query Related Controls
     public void openQueryView ()
     {
         queryView.reloadView();
-        /*NEW*/
         queryView.setLocationRelativeTo(null);
         queryView.setVisible(true);
     }
+    
     public void closeQueryView ()
     {
         queryView.setVisible(false);
     }
+    
     // Login Related Controls
     public void openLoginView ()
     {
-        /*NEW*/
         loginView.setLocationRelativeTo(null);
         loginView.setVisible(true);
     }
+    
     public void closeLoginView ()
     {
         loginView.setVisible(false);
@@ -86,6 +95,7 @@ public class Controller implements ControllerListener
         reController = new RestaurantEditController(this);
         reController.loadView();
     }
+    
     public void closeEditRestaurantsView ()
     {
         reController.closeView();
@@ -175,35 +185,41 @@ public class Controller implements ControllerListener
     
     } 
     
-    
-    
-    //KIKE _ USER
+    /**
+     * Controller link between the UserView and the Registered user factory to fetch
+     * the specific user containing that id. Returns a ResiteredUser type.
+     * @param id
+     * @return fetched user details
+     */
     @Override
-    // Controller link between the UserView and the Registered user factory to fetch
-    // the specific user containing that id. Returns a ResiteredUser type.
     public RegisteredUser fetchUserDetails(int id) 
     {
         return RegisteredUserDAO.fetchUserByID(id);
     }
     
+    /**
+     * Controller link between the queryView and the userView. Closes the queryView and opens
+     * the userView.
+     */
     @Override
-    //Controller link between the queryView and the userView. Closes the queryView and opens
-    // the userView.
     public void userButtonClicked() 
     {
         closeQueryView();
         openUserView();
     }
     
-    // Controller link to open the user view with all the necessary procedures like loadView.
+    /**
+     * Controller link to open the user view with all the necessary procedures like loadView.
+     */
     public void openUserView ()
     {
         userView.setLocationRelativeTo(null);
         userView.loadView();
         userView.setVisible(true);
     }
-    
-    //Controller link to close the userView.
+    /**
+     * Controller link to close the userView.
+     */
     public void closeUserView ()
     {
         
@@ -211,64 +227,87 @@ public class Controller implements ControllerListener
     
     }
     
+    /**
+     * Controller link to close the current userView and open the queryView.
+     */
     @Override
-    //Controller link to close the current userView and open the queryView.
     public void exitUserView() 
     {
         closeUserView();
         openQueryView();
     }
 
+    
+    /**
+     * Controller link between the userView and the RegisteredUser factory to update the details
+     * of a specific user. All the information is packaged in a Registered User class.
+     */
     @Override
-    //Controller link between the userView and the RegisteredUser factory to update the details
-    // of a specific user. All the information is packaged in a Registered User class.
     public void updateUserDetails(RegisteredUser user) 
     {
         RegisteredUserDAO.updateUserDetails(user);
     }
  
+    
+    /**
+     * Controller link between the userView and the RegisteredUser factory to update the password
+     * of a specific user. It passes along the userID, new password and the table to do it to.
+     */
     @Override
-    //Controller link between the userView and the RegisteredUser factory to update the password
-    // of a specific user. It passes along the userID, new password and the table to do it to.
     public void updatePassword(int id, String password, String table) 
     {
         RegisteredUserDAO.updatePassword (id, password, table);
     }
 
+    
+    /**
+     * Controller link to close the current ownerView and open the queryView.
+     */
     @Override
-    //Controller link to close the current ownerView and open the queryView.
     public void exitOwnerView() 
     {
         closeOwnerView();
         openQueryView();
     }
 
+    /**
+     * Controller link between the ownerView and the Registered owner factory to fetch
+     * the specific owner containing that id. Returns a RegisteredOwner type.
+     * @param id the id of the owner
+     * @return a registeredOwner
+     */
     @Override
-    // Controller link between the ownerView and the Registered owner factory to fetch
-    // the specific owner containing that id. Returns a RegisteredOwner type.
     public RegisteredOwner fetchOwnerDetails(int id) 
     {
         return RegisteredOwnerDAO.fetchOwnerByID(id);
     }
 
+    
+    /**
+     * Controller link between the ownerView and the RegisteredOwner factory to update the details
+     * of a specific owner. All the information is packaged in a Registered Owner class.
+     */
     @Override
-    //Controller link between the ownerView and the RegisteredOwner factory to update the details
-    // of a specific owner. All the information is packaged in a Registered Owner class.
     public void updateOwnerDetails(RegisteredOwner owner) 
     {
         RegisteredOwnerDAO.updateOwnerDetails(owner);
     }
 
+    
+    /**
+     * Controller link between the queryView and the ownerView. Closes the queryView and opens
+     * the ownerView.
+     */
     @Override
-    //Controller link between the queryView and the ownerView. Closes the queryView and opens
-    // the ownerView.
     public void ownerButtonClicked() 
     {
         closeQueryView();
         openOwnerView();
     }
 
-    // Controller link to open the owner view with all the necessary procedures like loadView.
+    /**
+     * Controller link to open the owner view with all the necessary procedures like loadView.
+     */
     private void openOwnerView() 
     {
         ownerView.setLocationRelativeTo(null);
@@ -276,20 +315,26 @@ public class Controller implements ControllerListener
         ownerView.setVisible(true);
     }
     
-    //Controller link to close the ownerView.
+    /**
+     * Controller link to close the ownerView.
+     */
     public void closeOwnerView ()
     {
         ownerView.setVisible(false);
     }
 
+    /**
+     * Controller link to fetch the list of reviews from the DB depending on a specific userID.
+     */
     @Override
-    //Controller link to fetch the list of reviews from the DB depending on a specific userID.
     public List<Review> getReviewsByUserID(int id) 
     {
         return ReviewDAO.fetchUserReviews(id);
     }
-    
-    // Method being called when a restaurant is to be viewed --- viewRestaurantView
+    /**
+     * Method being called when a restaurant is to be viewed --- viewRestaurantView
+     * @param selectedRestaurant 
+     */
     @Override
     public void viewButtonClicked(Restaurant selectedRestaurant) {
         
@@ -374,17 +419,20 @@ public class Controller implements ControllerListener
         
     }
     
-    // Closes the viewRestaurantView and returns to the queryView --- viewRestaurantView
+    /**
+     * Closes the viewRestaurantView and returns to the queryView --- viewRestaurantView
+     */
     @Override
     public void exitViewRestaurantView() {
-        
         openQueryView();
         viewRestaurantView.setLocationRelativeTo(null);
         viewRestaurantView.setVisible(false);
-        
     }
     
-    // Prints the selected comment on a review in the fullReviewArea(JTextArea) --- viewRestaurantView
+    /**
+     * Prints the selected comment on a review in the fullReviewArea(JTextArea) --- viewRestaurantView
+     * @param index the index of review
+     */
     @Override
     public void reviewItemChanged(int index) {
  
@@ -401,7 +449,9 @@ public class Controller implements ControllerListener
         
     }
     
-    // Adds a review in the database with the entered details --- viewRestaurantView
+    /**
+     * Adds a review in the database with the entered details --- viewRestaurantView
+     */
     @Override
     public void addReview() {
         
@@ -429,10 +479,12 @@ public class Controller implements ControllerListener
         // Determine if the user can not add a review(if the review has been added successfully)
         if(!canAddReview())
             setCanAdd(false);
-        
     }
     
-    // Deletes a selected review from the database --- viewRestaurantView
+    /**
+     * Deletes a selected review from the database --- viewRestaurantView
+     * @param index the index of view
+     */
     @Override
     public void reviewDeleteButtonPressed(int index) {
         
@@ -451,11 +503,12 @@ public class Controller implements ControllerListener
         if(canAddReview()) {
             setCanEdit(false);
             setCanAdd(true);
-        }
-        
+        }    
     }
     
-    // Updates a review --- viewRestaurantView
+    /**
+     * Updates a review --- viewRestaurantView
+     */
     @Override
     public void reviewUpdateButtonPressed() {
         
@@ -475,22 +528,26 @@ public class Controller implements ControllerListener
         ReviewDAO.updateReview(review);
         
         // Update reviewlist
-        setReviews(viewRestaurantView.getCurrentRestaurant());
-        
+        setReviews(viewRestaurantView.getCurrentRestaurant()); 
     }
     
-    // Determines if a review can be added by the current user on the selected restaurant --- viewRestaurantView
+    /**
+     * Determines if a review can be added by the current user on the selected restaurant --- viewRestaurantView
+     * @return if a review can be added
+     */
     @Override
     public boolean canAddReview() {
         
         int restaurantId = viewRestaurantView.getCurrentRestaurant().getId();
         int userId = Session.getId();
         
-        return !ReviewDAO.alreadyReviewed(restaurantId, userId);
-        
+        return !ReviewDAO.alreadyReviewed(restaurantId, userId);  
     }
     
-    // Enable or disable editing of review --- viewRestaurantView
+    /**
+     * Enable or disable editing of review --- viewRestaurantView
+     * @param ableToEdit if a review can be edited
+     */ 
     private void setCanEdit(boolean ableToEdit) {
         
         viewRestaurantView.setFullReviewAreaState(ableToEdit);
@@ -501,10 +558,12 @@ public class Controller implements ControllerListener
         if(Session.isUser() && canAddReview()) {
             setCanAdd(true);  
         }
-    
     }
     
-    // Enable or disable adding of review in the --- viewRestaurantView
+    /**
+     * Enable or disable adding of review in the --- viewRestaurantView
+     * @param ableToAdd
+     */
     private void setCanAdd(boolean ableToAdd) {
         
         viewRestaurantView.setCommentTextAreaState(ableToAdd);
@@ -517,8 +576,10 @@ public class Controller implements ControllerListener
             viewRestaurantView.setCommentTextArea("");
         
     }
-    
-    // Updates the reviewlist --- viewRestaurantView
+    /**
+     * Updates the reviewlist --- viewRestaurantView
+     * @param selectedRestaurant 
+     */
     private void setReviews(Restaurant selectedRestaurant) {
         
         viewRestaurantView.setReviews(ReviewDAO.fetchRestReviews(selectedRestaurant.getId()));
@@ -532,15 +593,13 @@ public class Controller implements ControllerListener
             String date = reviews.getDate().substring(0, 11);
             
             viewRestaurantView.getReviewTable().addRow(new Object[]{userName, grade, date});
-        
-        }
-        
+        }    
     }
 
     /**
      * Loads schedule data to the view
-     * @param viewRestaurantView The ViewRestaurant View
-     * @param selectedRestaurant The selected Restaurant
+     * @param viewRestaurantView
+     * @param selectedRestaurant
      */    
     private void loadScheduleData(ViewRestaurant view, Restaurant r) {
         JLabel[] scheduleValueLabels = view.getScheduleValLabels();
@@ -559,6 +618,9 @@ public class Controller implements ControllerListener
         }        
     }
 
+    /**
+     * initialize query view
+     */
     @Override
     public void initiliazeQueryView() {
         queryView.loadView();
@@ -566,6 +628,10 @@ public class Controller implements ControllerListener
         queryView.setVisible(true);
     }
 
+    /**
+     * get all users
+     * @return all users
+     */
     @Override
     public List<RegisteredUser> getAllUsers() 
     {
@@ -573,6 +639,10 @@ public class Controller implements ControllerListener
         return allUsers;
     }
 
+    /**
+     * get all owners
+     * @return return all owners
+     */
     @Override
     public List<RegisteredOwner> getAllOwners() 
     {
